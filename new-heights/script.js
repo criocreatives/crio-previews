@@ -1,1 +1,0 @@
-const m=document.querySelector('.menu'),n=document.querySelector('nav');m.onclick=()=>n.classList.toggle('open');document.querySelectorAll('nav a').forEach(a=>a.onclick=()=>n.classList.remove('open'));document.getElementById('form').onsubmit=e=>{e.preventDefault();document.getElementById('note').style.display='block'};
