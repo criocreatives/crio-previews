@@ -60,7 +60,47 @@
     section{padding:76px 0}
     .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:34px}
     h2{margin:0;font-size:clamp(34px,5vw,62px);letter-spacing:-.045em}
-    .section-note{max-width:520px;color:var(--muted);line-height:1.6;margin:0}
+    .section-note{max-width:560px;color:var(--muted);line-height:1.6;margin:0}
+    .power-copy{
+      background:linear-gradient(180deg,rgba(237,28,36,.12),rgba(255,255,255,.02));
+      border:1px solid rgba(237,28,36,.35);
+      border-radius:18px;
+      padding:30px;
+      color:#d7d7da;
+      font-size:17px;
+      line-height:1.72;
+    }
+    .power-copy strong{color:#fff}
+    .app-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .app{
+      min-height:92px;padding:18px;border:1px solid var(--line);border-radius:16px;
+      background:var(--panel);display:flex;align-items:center;gap:14px
+    }
+    .app-icon{
+      width:52px;height:52px;flex:0 0 52px;border-radius:13px;background:#0d0e10;
+      display:grid;place-items:center;border:1px solid rgba(255,255,255,.08);overflow:hidden;
+      position:relative
+    }
+    .app-icon img{width:30px;height:30px;object-fit:contain;position:relative;z-index:2}
+    .app-icon span{position:absolute;font-size:13px;font-weight:900;color:#fff;z-index:1}
+    .app-meta b{display:block;font-size:16px;margin-bottom:4px}
+    .app-meta span{display:block;color:var(--muted);font-size:13px;line-height:1.45}
+    .koolya-thumb{
+      height:280px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;
+      background:
+        radial-gradient(circle at 85% 15%,rgba(237,28,36,.22),transparent 30%),
+        linear-gradient(135deg,#191a1d,#0d0e10 60%,#18191d);
+    }
+    .koolya-word{font-size:54px;font-weight:900;letter-spacing:-.06em}
+    .koolya-word span{color:var(--red)}
+    .koolya-sub{max-width:410px;color:#bcbcc0;font-size:14px;line-height:1.6}
+    .clients{
+      display:flex;flex-wrap:wrap;gap:10px;margin-top:28px
+    }
+    .client{
+      border:1px solid var(--line);border-radius:999px;padding:10px 14px;
+      color:#c8c8cb;background:#101113;font-size:13px
+    }
     .skills{
       display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)
     }
@@ -94,6 +134,9 @@
     .closing h2{max-width:850px;margin:0 auto 28px}
     .closing p{max-width:680px;margin:0 auto 30px;color:var(--muted);font-size:18px;line-height:1.6}
     footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size:12px}
+    @media(max-width:980px){
+      .app-grid{grid-template-columns:repeat(2,1fr)}
+    }
     @media(max-width:860px){
       .hero-bottom,.experience{grid-template-columns:1fr;gap:24px}
       .skills{grid-template-columns:repeat(2,1fr)}
@@ -103,7 +146,7 @@
     }
     @media(max-width:520px){
       .wrap{width:min(var(--max),calc(100% - 28px))}
-      .skills{grid-template-columns:1fr}
+      .skills,.app-grid{grid-template-columns:1fr}
       .skill{min-height:auto}
       .thumb{height:230px}
       .nav{height:66px}
@@ -120,6 +163,7 @@
     <nav class="navlinks">
       <a href="#work">Selected Work</a>
       <a href="#skills">Capabilities</a>
+      <a href="#apps">Apps</a>
       <a href="mailto:lynch@criocreatives.com" class="btn">Contact</a>
     </nav>
   </div>
@@ -138,8 +182,20 @@
           <strong>Kingston, Jamaica</strong><br>
           1 (876) 294-4213<br>
           <a href="mailto:lynch@criocreatives.com">lynch@criocreatives.com</a><br>
-          <a href="https://criocreatives.com">criocreatives.com</a>
+          <a href="https://criocreatives.com" target="_blank" rel="noopener">criocreatives.com</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Creative Vision + Execution Power</h2>
+        <p class="section-note">The ideas matter. So does having the production capacity to execute them properly.</p>
+      </div>
+      <div class="power-copy">
+        I bring more than creative direction and visual instinct — I bring the <strong>technical power to execute ambitious ideas with ease</strong>. My workflow runs on a high-performance production setup built for demanding graphic design, photo, video, motion and 3D visualization work. This is not a laptop-only workflow; it is a professional creative environment designed to move ideas from concept to polished output quickly, consistently and at high quality.
       </div>
     </div>
   </section>
@@ -163,6 +219,45 @@
     </div>
   </section>
 
+  <section id="apps">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Core Apps</h2>
+        <p class="section-note">Primary tools used across design, photography, motion, 3D and post-production workflows.</p>
+      </div>
+      <div class="app-grid">
+        <div class="app">
+          <div class="app-icon"><span>Ps</span><img src="https://cdn.simpleicons.org/adobephotoshop/31A8FF" alt="Adobe Photoshop icon"></div>
+          <div class="app-meta"><b>Photoshop</b><span>Photo editing, compositing and production artwork.</span></div>
+        </div>
+        <div class="app">
+          <div class="app-icon"><span>Ai</span><img src="https://cdn.simpleicons.org/adobeillustrator/FF9A00" alt="Adobe Illustrator icon"></div>
+          <div class="app-meta"><b>Illustrator</b><span>Vector graphics, logos and scalable design assets.</span></div>
+        </div>
+        <div class="app">
+          <div class="app-icon"><span>SU</span><img src="https://cdn.simpleicons.org/sketchup/005F9E" alt="SketchUp icon"></div>
+          <div class="app-meta"><b>SketchUp</b><span>3D modelling, spatial concepts and visualization.</span></div>
+        </div>
+        <div class="app">
+          <div class="app-icon"><span>TM</span><img src="https://cdn.simpleicons.org/twinmotion/FFFFFF" alt="Twinmotion icon"></div>
+          <div class="app-meta"><b>Twinmotion</b><span>Realtime rendering and immersive environment output.</span></div>
+        </div>
+        <div class="app">
+          <div class="app-icon"><span>CC</span><img src="https://cdn.simpleicons.org/capcut/FFFFFF" alt="CapCut icon"></div>
+          <div class="app-meta"><b>CapCut</b><span>Fast video editing and social content production.</span></div>
+        </div>
+        <div class="app">
+          <div class="app-icon"><span>Lr</span><img src="https://cdn.simpleicons.org/adobelightroom/31A8FF" alt="Adobe Lightroom icon"></div>
+          <div class="app-meta"><b>Lightroom</b><span>Photography workflow, colour and image management.</span></div>
+        </div>
+        <div class="app">
+          <div class="app-icon"><span>Ae</span><img src="https://cdn.simpleicons.org/adobeaftereffects/9999FF" alt="Adobe After Effects icon"></div>
+          <div class="app-meta"><b>After Effects</b><span>Motion graphics, compositing and animated elements.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="work">
     <div class="wrap">
       <div class="section-head">
@@ -171,7 +266,7 @@
       </div>
 
       <div class="grid">
-        <a class="card large" href="../face-billboard/">
+        <a class="card large" href="../face-billboard/" target="_blank" rel="noopener">
           <div class="thumb"><img src="../face-billboard/face-billboard-daylight-compressed.jpg" alt="Outdoor billboard concept visualization"></div>
           <div class="meta">
             <div class="kicker">Environmental Graphics · Visualization</div>
@@ -181,7 +276,7 @@
           </div>
         </a>
 
-        <a class="card small" href="../good-morning/">
+        <a class="card small" href="../good-morning/" target="_blank" rel="noopener">
           <div class="thumb"><img src="../good-morning/cover-v3.jpg" alt="Good Morning cover artwork"></div>
           <div class="meta">
             <div class="kicker">Graphic Design · Music</div>
@@ -191,7 +286,7 @@
           </div>
         </a>
 
-        <a class="card half" href="../summit/">
+        <a class="card half" href="../summit/" target="_blank" rel="noopener">
           <div class="thumb"><img src="../summit/assets/Appleton-Summit-01-Pool-Facing-v7-Logo-Revision.jpg" alt="Appleton Summit branded environmental visualization"></div>
           <div class="meta">
             <div class="kicker">Brand Application · Environmental Design</div>
@@ -201,16 +296,20 @@
           </div>
         </a>
 
-        <div class="card half">
-          <div class="thumb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#171719,#0f0f10);">
-            <div style="font-size:clamp(32px,5vw,58px);font-weight:900;letter-spacing:-.05em;text-align:center;padding:30px;">MORE WORK<br><span style="color:#ED1C24">BEING ADDED.</span></div>
+        <a class="card half" href="../koolya/" target="_blank" rel="noopener">
+          <div class="koolya-thumb">
+            <div>
+              <div class="kicker">Branding · Product Visualization</div>
+              <div class="koolya-word">KOOL<span>YA</span></div>
+            </div>
+            <div class="koolya-sub">Identity development, machine branding, realistic product mockups and presentation design for an ice and water vending concept.</div>
           </div>
           <div class="meta">
-            <div class="kicker">Print · Branding · Web · Corporate</div>
-            <div class="title">Expanded Portfolio</div>
-            <div class="desc">Additional selected work covering corporate design, print production, signage, UI/web assets, branding and presentation design will be added here.</div>
+            <div class="title">KOOLYA Machine Branding</div>
+            <div class="desc">Brand identity, machine graphics, realistic mockups and visual rollout direction developed for a commercial ice and water dispensing concept.</div>
+            <div class="arrow">View project →</div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -219,13 +318,48 @@
     <div class="wrap">
       <div class="section-head">
         <h2>Experience</h2>
-        <p class="section-note">Professional creative practice built around practical production, problem-solving and reliable delivery.</p>
+        <p class="section-note">Over a decade of professional work across design, creative leadership, photography, print, digital production and visualization.</p>
       </div>
+
       <div class="experience">
         <div class="year">2014 — Present</div>
         <div>
-          <div class="role">Crio Creatives — Creative Lead / Multimedia Designer</div>
-          <div class="rolecopy">Developing visual communication across print, digital, photography, web, branding, signage, presentations, environmental graphics and 3D visualization. Responsible for client briefs, concepts, execution, revisions, production coordination and final delivery.</div>
+          <div class="role">Crio Creatives, LLC — Creative Lead / Multimedia Designer (Founder)</div>
+          <div class="rolecopy">Lead multidisciplinary creative production across graphic and layout design, branding, print, digital content, photography, web design, signage, presentations, environmental graphics and 3D visualization. Manage projects from client brief and concept development through revisions, production coordination and final delivery.</div>
+        </div>
+      </div>
+
+      <div class="experience">
+        <div class="year">2013 — 2020</div>
+        <div>
+          <div class="role">Production Resource Systems — Head Graphic Designer & Creative Lead</div>
+          <div class="rolecopy">Led graphic design and creative execution for commercial production work, developing visual concepts and production-ready assets while coordinating high-volume creative output across multiple client projects.</div>
+        </div>
+      </div>
+
+      <div class="experience">
+        <div class="year">2018 — 2020</div>
+        <div>
+          <div class="role">Cloudspanse — Contract Graphic Designer</div>
+          <div class="rolecopy">Provided contracted graphic design support across digital and print deliverables, translating briefs into polished visual assets while working within established brand and production requirements.</div>
+        </div>
+      </div>
+
+      <div style="padding-top:36px">
+        <div class="eyebrow" style="margin-bottom:14px">Selected Clients & Projects</div>
+        <div class="clients">
+          <span class="client">J. Wray & Nephew / Gruppo Campari</span>
+          <span class="client">Walmart Puerto Rico</span>
+          <span class="client">Suncoast Beach Club</span>
+          <span class="client">Face Marketing</span>
+          <span class="client">McDonald’s — USA</span>
+          <span class="client">RawBar — Jamaica & Punta Cana</span>
+          <span class="client">Chantier Construction</span>
+          <span class="client">Hospitality & Real Estate</span>
+          <span class="client">Mavado</span>
+          <span class="client">Jada Kingdom</span>
+          <span class="client">Damian “Jr. Gong” Marley</span>
+          <span class="client">Keznamdi</span>
         </div>
       </div>
     </div>
