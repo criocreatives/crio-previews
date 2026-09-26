@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Romario Lynch — Multimedia Design Portfolio</title>
+  <meta name="description" content="Selected multimedia, graphic design, digital, web and visualization work by Romario Lynch / Crio Creatives.">
+  <meta property="og:title" content="Romario Lynch — Multimedia Design Portfolio">
+  <meta property="og:description" content="Selected graphic, digital, web and visualization work by Romario Lynch / Crio Creatives.">
+  <meta property="og:image" content="../face-billboard/face-billboard-daylight-compressed.jpg">
+  <style>
+    :root{
+      --red:#ED1C24;
+      --bg:#090909;
+      --panel:#111214;
+      --panel2:#17181b;
+      --text:#f4f4f4;
+      --muted:#a7a7aa;
+      --line:#2a2b2f;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;background:var(--bg);color:var(--text);
+      font-family:Arial,Helvetica,sans-serif;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+    header{
+      position:sticky;top:0;z-index:20;
+      backdrop-filter:blur(16px);
+      background:rgba(9,9,9,.84);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand img{height:28px;width:auto}
+    .navlinks{display:flex;gap:26px;align-items:center;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .navlinks a{color:#c7c7c9}
+    .navlinks a:hover{color:#fff}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:48px;padding:0 20px;border-radius:999px;
+      background:var(--red);color:white;font-weight:800;
+    }
+    .hero{padding:92px 0 72px;border-bottom:1px solid var(--line)}
+    .eyebrow{color:var(--red);font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px}
+    h1{
+      margin:0;max-width:950px;
+      font-size:clamp(54px,9vw,118px);
+      line-height:.88;letter-spacing:-.065em;
+    }
+    h1 span{color:var(--red)}
+    .hero-bottom{display:grid;grid-template-columns:1.45fr .75fr;gap:60px;margin-top:44px;align-items:end}
+    .intro{max-width:730px;color:#b9b9bc;font-size:20px;line-height:1.55;margin:0}
+    .contact{font-size:14px;line-height:1.8;color:#c9c9cb}
+    .contact strong{color:#fff}
+    section{padding:76px 0}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:34px}
+    h2{margin:0;font-size:clamp(34px,5vw,62px);letter-spacing:-.045em}
+    .section-note{max-width:520px;color:var(--muted);line-height:1.6;margin:0}
+    .skills{
+      display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)
+    }
+    .skill{padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:150px}
+    .skill b{display:block;font-size:18px;margin-bottom:10px}
+    .skill span{color:var(--muted);font-size:14px;line-height:1.5}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .card{
+      position:relative;overflow:hidden;border-radius:18px;background:var(--panel);
+      border:1px solid var(--line);min-height:360px
+    }
+    .card.large{grid-column:span 8}
+    .card.small{grid-column:span 4}
+    .card.half{grid-column:span 6}
+    .thumb{height:280px;overflow:hidden;background:#151515}
+    .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+    .card:hover .thumb img{transform:scale(1.025)}
+    .meta{padding:22px 22px 24px}
+    .kicker{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.13em;color:var(--red);margin-bottom:9px}
+    .title{font-size:25px;font-weight:800;letter-spacing:-.025em;margin-bottom:8px}
+    .desc{color:var(--muted);font-size:14px;line-height:1.55}
+    .arrow{margin-top:16px;font-size:13px;font-weight:800}
+    .experience{
+      display:grid;grid-template-columns:1fr 2fr;gap:60px;padding:38px 0;border-top:1px solid var(--line)
+    }
+    .experience:last-child{border-bottom:1px solid var(--line)}
+    .year{color:var(--muted);font-size:14px}
+    .role{font-size:26px;font-weight:800;margin-bottom:10px}
+    .rolecopy{color:var(--muted);line-height:1.65;max-width:780px}
+    .closing{padding:94px 0 110px;text-align:center}
+    .closing h2{max-width:850px;margin:0 auto 28px}
+    .closing p{max-width:680px;margin:0 auto 30px;color:var(--muted);font-size:18px;line-height:1.6}
+    footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size:12px}
+    @media(max-width:860px){
+      .hero-bottom,.experience{grid-template-columns:1fr;gap:24px}
+      .skills{grid-template-columns:repeat(2,1fr)}
+      .card.large,.card.small,.card.half{grid-column:span 12}
+      .navlinks a:not(.btn){display:none}
+      .hero{padding-top:64px}
+    }
+    @media(max-width:520px){
+      .wrap{width:min(var(--max),calc(100% - 28px))}
+      .skills{grid-template-columns:1fr}
+      .skill{min-height:auto}
+      .thumb{height:230px}
+      .nav{height:66px}
+      .brand img{height:24px}
+      .btn{min-height:42px;padding:0 15px}
+      section{padding:58px 0}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="../"><img src="../assets/logos/Crio%20Creatives%20white%20-%20Copy.png" alt="Crio Creatives"></a>
+    <nav class="navlinks">
+      <a href="#work">Selected Work</a>
+      <a href="#skills">Capabilities</a>
+      <a href="mailto:lynch@criocreatives.com" class="btn">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Multimedia Designer · Creative Developer</div>
+      <h1>ROMARIO<br><span>LYNCH.</span></h1>
+      <div class="hero-bottom">
+        <p class="intro">
+          Multidisciplinary creative professional with more than a decade of hands-on experience across graphic design, print, digital content, photography, web, branding, signage and 3D visualization.
+        </p>
+        <div class="contact">
+          <strong>Kingston, Jamaica</strong><br>
+          1 (876) 294-4213<br>
+          <a href="mailto:lynch@criocreatives.com">lynch@criocreatives.com</a><br>
+          <a href="https://criocreatives.com">criocreatives.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Capabilities</h2>
+        <p class="section-note">A production-focused skill set spanning physical and digital media, with experience carrying projects from brief through final delivery.</p>
+      </div>
+      <div class="skills">
+        <div class="skill"><b>Graphic & Layout Design</b><span>Campaign graphics, presentations, branded collateral, social media, publication and advertising layouts.</span></div>
+        <div class="skill"><b>Print & Signage</b><span>Large-format graphics, environmental branding, production artwork and vendor-ready asset preparation.</span></div>
+        <div class="skill"><b>Web & Digital</b><span>WordPress, responsive HTML, digital presentation pages, web graphics, email design and online content.</span></div>
+        <div class="skill"><b>Photography & Retouching</b><span>Professional photography, image editing, compositing, cleanup and digital asset preparation.</span></div>
+        <div class="skill"><b>Brand Development</b><span>Visual identities, brand applications, packaging concepts and cohesive cross-platform systems.</span></div>
+        <div class="skill"><b>3D Visualization</b><span>Architectural, environmental and event visualization using SketchUp and Twinmotion workflows.</span></div>
+        <div class="skill"><b>Presentation Design</b><span>Corporate, project and proposal decks designed for clarity, visual hierarchy and stakeholder communication.</span></div>
+        <div class="skill"><b>Creative Production</b><span>Multi-project scheduling, revision management, client communication and deadline-driven delivery.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Selected Work</h2>
+        <p class="section-note">A cross-section of digital, environmental, branded and visual communication work.</p>
+      </div>
+
+      <div class="grid">
+        <a class="card large" href="../face-billboard/">
+          <div class="thumb"><img src="../face-billboard/face-billboard-daylight-compressed.jpg" alt="Outdoor billboard concept visualization"></div>
+          <div class="meta">
+            <div class="kicker">Environmental Graphics · Visualization</div>
+            <div class="title">FACE Billboard Concept</div>
+            <div class="desc">Concept development and realistic visualization for a large-format branded billboard installation, including lighting and fabrication considerations.</div>
+            <div class="arrow">View project →</div>
+          </div>
+        </a>
+
+        <a class="card small" href="../good-morning/">
+          <div class="thumb"><img src="../good-morning/cover-v3.jpg" alt="Good Morning cover artwork"></div>
+          <div class="meta">
+            <div class="kicker">Graphic Design · Music</div>
+            <div class="title">Good Morning</div>
+            <div class="desc">Cover art direction and final digital artwork developed for music release distribution and promotion.</div>
+            <div class="arrow">View project →</div>
+          </div>
+        </a>
+
+        <a class="card half" href="../summit/">
+          <div class="thumb"><img src="../summit/assets/Appleton-Summit-01-Pool-Facing-v7-Logo-Revision.jpg" alt="Appleton Summit branded environmental visualization"></div>
+          <div class="meta">
+            <div class="kicker">Brand Application · Environmental Design</div>
+            <div class="title">Summit Brand Environment</div>
+            <div class="desc">Application of brand graphics and identity elements across an existing physical environment, presented through realistic visual mockups.</div>
+            <div class="arrow">View project →</div>
+          </div>
+        </a>
+
+        <div class="card half">
+          <div class="thumb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#171719,#0f0f10);">
+            <div style="font-size:clamp(32px,5vw,58px);font-weight:900;letter-spacing:-.05em;text-align:center;padding:30px;">MORE WORK<br><span style="color:#ED1C24">BEING ADDED.</span></div>
+          </div>
+          <div class="meta">
+            <div class="kicker">Print · Branding · Web · Corporate</div>
+            <div class="title">Expanded Portfolio</div>
+            <div class="desc">Additional selected work covering corporate design, print production, signage, UI/web assets, branding and presentation design will be added here.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Experience</h2>
+        <p class="section-note">Professional creative practice built around practical production, problem-solving and reliable delivery.</p>
+      </div>
+      <div class="experience">
+        <div class="year">2014 — Present</div>
+        <div>
+          <div class="role">Crio Creatives — Creative Lead / Multimedia Designer</div>
+          <div class="rolecopy">Developing visual communication across print, digital, photography, web, branding, signage, presentations, environmental graphics and 3D visualization. Responsible for client briefs, concepts, execution, revisions, production coordination and final delivery.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <h2>Design built for the real world.</h2>
+      <p>Available to discuss selected projects, production workflows and the thinking behind the work shown in this portfolio.</p>
+      <a class="btn" href="mailto:lynch@criocreatives.com">lynch@criocreatives.com</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Crio Creatives · Portfolio of Romario Lynch</div>
+</footer>
+</body>
+</html>
