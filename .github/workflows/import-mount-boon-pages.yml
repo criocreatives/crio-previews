@@ -1,0 +1,66 @@
+name: Import Mount Boon PDF pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/import-mount-boon-pages.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download rendered PDF pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/mountboon
+          mkdir -p /tmp/mountboon/download /tmp/mountboon/extracted lot-18-mount-boon/assets
+          curl -L --fail --retry 3 -o /tmp/mountboon/download/pages.bin 'https://at.adobe.com/th9GRgWu0zjB49WeL9OVUhhICPKl'
+          echo "Downloaded:"
+          file /tmp/mountboon/download/pages.bin
+
+          if unzip -t /tmp/mountboon/download/pages.bin >/dev/null 2>&1; then
+            unzip -q /tmp/mountboon/download/pages.bin -d /tmp/mountboon/extracted
+          else
+            cp /tmp/mountboon/download/pages.bin /tmp/mountboon/extracted/page-source.jpg
+          fi
+
+          echo "Extracted files:"
+          find /tmp/mountboon/extracted -type f -maxdepth 4 -print
+
+          mapfile -t IMAGES < <(find /tmp/mountboon/extracted -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) | sort -V)
+          COUNT=${#IMAGES[@]}
+          echo "Found $COUNT page images"
+          if [ "$COUNT" -lt 30 ]; then
+            echo "Expected at least 30 page images from the 30-page PDF."
+            exit 1
+          fi
+
+          i=1
+          for src in "${IMAGES[@]:0:30}"; do
+            printf -v num "%02d" "$i"
+            cp "$src" "lot-18-mount-boon/assets/page-$num.jpg"
+            i=$((i+1))
+          done
+
+          # Re-compress only if ImageMagick is available; otherwise keep Adobe's JPEGs.
+          if command -v mogrify >/dev/null 2>&1; then
+            mogrify -strip -interlace Plane -quality 84 'lot-18-mount-boon/assets/'*.jpg || true
+          fi
+
+      - name: Commit page assets and remove importer
+        shell: bash
+        run: |
+          rm -f .github/workflows/import-mount-boon-pages.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add lot-18-mount-boon/assets .github/workflows/import-mount-boon-pages.yml
+          git commit -m 'Add Lot 18 Mount Boon preview assets'
+          git pull --rebase origin main
+          git push
