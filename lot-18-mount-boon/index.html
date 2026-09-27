@@ -7,30 +7,16 @@
   <meta name="description" content="Interior and exterior design visualization for Lot 18 Mount Boon, Discovery Bay, St. Ann by Crio Creatives, LLC.">
   <meta property="og:title" content="Lot 18 Mount Boon — Crio Creatives">
   <meta property="og:description" content="Interior & exterior designs with simple floor plans.">
-  <meta property="og:image" content="https://previews.criocreatives.com/lot-18-mount-boon/assets/page-06.jpg">
+  <meta property="og:image" content="https://previews.criocreatives.com/lot-18-mount-boon/renders/Image2.jpg">
   <link rel="icon" href="/assets/icons/Crio%20Creatives%20favicon.png">
   <style>
-    :root{
-      --red:#ED1C24;
-      --bg:#080808;
-      --panel:#111214;
-      --panel2:#151619;
-      --line:#292a2e;
-      --text:#f4f4f4;
-      --muted:#a5a5a9;
-      --max:1240px;
-    }
+    :root{--red:#ED1C24;--bg:#080808;--panel:#111214;--line:#292a2e;--text:#f4f4f4;--muted:#a5a5a9;--max:1240px}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}
-    img{display:block;max-width:100%}
-    button{font:inherit}
+    a{color:inherit;text-decoration:none} img{display:block;max-width:100%} button{font:inherit}
     .wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
-    header{
-      position:sticky;top:0;z-index:30;background:rgba(8,8,8,.88);
-      backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07)
-    }
+    header{position:sticky;top:0;z-index:30;background:rgba(8,8,8,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07)}
     .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
     .brand img{height:28px;width:auto}
     .navlinks{display:flex;gap:24px;align-items:center;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#c7c7c9}
@@ -49,65 +35,38 @@
     .section-head{display:grid;grid-template-columns:.8fr 1.2fr;gap:42px;align-items:end;margin-bottom:32px}
     h2{margin:0;font-size:clamp(34px,5vw,62px);letter-spacing:-.045em;line-height:.96}
     .section-copy{margin:0;color:var(--muted);line-height:1.7;max-width:650px}
-    .overview{
-      display:grid;grid-template-columns:1.15fr .85fr;gap:20px
-    }
+    .feature-strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+    .feature{padding:22px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .feature strong{display:block;font-size:16px;margin-bottom:6px}
+    .feature span{color:var(--muted);font-size:13px;line-height:1.5}
+    .overview{display:grid;grid-template-columns:1.15fr .85fr;gap:20px}
     .card{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden}
     .card img{width:100%;height:auto}
     .card-copy{padding:20px 22px 23px}
     .card-copy b{display:block;font-size:17px;margin-bottom:7px}
     .card-copy p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+    .dual{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+    .dual button{border:0;padding:0;background:#111;cursor:zoom-in}
+    .dual img{width:100%;height:100%;object-fit:contain;background:#0d0d0e}
     .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-    .media{
-      border:1px solid var(--line);border-radius:18px;background:var(--panel);
-      overflow:hidden;break-inside:avoid
-    }
+    .media{border:1px solid var(--line);border-radius:18px;background:var(--panel);overflow:hidden}
     .media button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
     .media img{width:100%;height:auto}
     .caption{padding:14px 16px 16px;border-top:1px solid var(--line);color:#a8a8ac;font-size:12px;line-height:1.5}
     .caption strong{display:block;color:#fff;font-size:13px;margin-bottom:3px}
-    .feature-strip{
-      display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)
-    }
-    .feature{padding:22px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-    .feature strong{display:block;font-size:16px;margin-bottom:6px}
-    .feature span{color:var(--muted);font-size:13px;line-height:1.5}
     .closing{padding:94px 0 104px;border-top:1px solid var(--line)}
     .closing-inner{display:flex;justify-content:space-between;gap:36px;align-items:end}
     .closing h2{max-width:760px}
     .closing-note{max-width:380px;color:var(--muted);line-height:1.6;font-size:14px}
     footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#777;font-size:12px}
-    dialog{
-      border:0;padding:0;background:rgba(0,0,0,.96);
-      width:100vw;height:100vh;max-width:none;max-height:none;margin:0
-    }
+    dialog{border:0;padding:0;background:rgba(0,0,0,.96);width:100vw;height:100vh;max-width:none;max-height:none;margin:0}
     dialog::backdrop{background:rgba(0,0,0,.96)}
     .lightbox{width:100%;height:100%;display:grid;place-items:center;padding:42px;position:relative}
     .lightbox img{max-width:min(94vw,1700px);max-height:90vh;width:auto;height:auto;object-fit:contain}
-    .close{
-      position:fixed;top:18px;right:18px;width:44px;height:44px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.55);color:white;
-      cursor:pointer;font-size:21px
-    }
-    @media(max-width:900px){
-      .hero-grid,.section-head,.overview{grid-template-columns:1fr}
-      .feature-strip{grid-template-columns:repeat(2,1fr)}
-      .closing-inner{display:block}
-      .closing-note{margin-top:22px}
-    }
-    @media(max-width:700px){
-      .gallery{grid-template-columns:1fr}
-      .navlinks a:not(:last-child){display:none}
-      .hero{padding-top:58px}
-    }
-    @media(max-width:520px){
-      .wrap{width:min(var(--max),calc(100% - 28px))}
-      .nav{height:66px}
-      .brand img{height:24px}
-      .feature-strip{grid-template-columns:1fr}
-      section{padding:58px 0}
-      .lightbox{padding:18px}
-    }
+    .close{position:fixed;top:18px;right:18px;width:44px;height:44px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.55);color:white;cursor:pointer;font-size:21px}
+    @media(max-width:900px){.hero-grid,.section-head,.overview{grid-template-columns:1fr}.feature-strip{grid-template-columns:repeat(2,1fr)}.closing-inner{display:block}.closing-note{margin-top:22px}}
+    @media(max-width:700px){.gallery{grid-template-columns:1fr}.navlinks a:not(:last-child){display:none}.hero{padding-top:58px}}
+    @media(max-width:520px){.wrap{width:min(var(--max),calc(100% - 28px))}.nav{height:66px}.brand img{height:24px}.feature-strip{grid-template-columns:1fr}.dual{grid-template-columns:1fr 1fr}section{padding:58px 0}.lightbox{padding:18px}}
   </style>
 </head>
 <body>
@@ -115,9 +74,7 @@
   <div class="wrap nav">
     <a class="brand" href="../"><img src="../assets/logos/Crio%20Creatives%20white%20-%20Copy.png" alt="Crio Creatives"></a>
     <nav class="navlinks">
-      <a href="#plans">Plans</a>
-      <a href="#exterior">Exterior</a>
-      <a href="#interior">Interior</a>
+      <a href="#plans">Plans</a><a href="#exterior">Exterior</a><a href="#interior">Interior</a>
       <a href="https://criocreatives.com" target="_blank" rel="noopener">Crio Creatives</a>
     </nav>
   </div>
@@ -130,24 +87,15 @@
         <div class="eyebrow">Architectural Visualization · Residential</div>
         <h1>LOT 18<br><span>MOUNT BOON.</span></h1>
         <p class="lede">Interior and exterior design visualization for a multi-level residential property in Mount Boon, Discovery Bay, St. Ann, including simple floor plans, site planning, exterior development, rooftop amenities and interior concepts.</p>
-        <div class="facts">
-          <span class="fact">Discovery Bay, St. Ann</span>
-          <span class="fact">Interior + Exterior</span>
-          <span class="fact">Floor Plans</span>
-        </div>
+        <div class="facts"><span class="fact">Discovery Bay, St. Ann</span><span class="fact">Interior + Exterior</span><span class="fact">Floor Plans</span></div>
       </div>
-      <div class="hero-media">
-        <img src="./assets/page-06.jpg" alt="Aerial architectural visualization of Lot 18 Mount Boon">
-      </div>
+      <div class="hero-media"><img src="./renders/Image2.jpg" alt="Aerial architectural visualization of Lot 18 Mount Boon"></div>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <div class="section-head">
-        <h2>Project Overview</h2>
-        <p class="section-copy">The source presentation combines the project cover, floor plans, site mapping, early massing/model views, exterior renderings, rooftop leisure spaces, gym concepts and finished interior visualizations. All visual material below was extracted from the original 30-page presentation.</p>
-      </div>
+      <div class="section-head"><h2>Project Overview</h2><p class="section-copy">The project combines floor planning, site organization, exterior architecture, landscaping, rooftop leisure and wellness spaces, and interior visualization into one coordinated residential design.</p></div>
       <div class="feature-strip">
         <div class="feature"><strong>Planning</strong><span>Ground floor, first floor and site-map presentation.</span></div>
         <div class="feature"><strong>Exterior Design</strong><span>Street, aerial, side and courtyard views of the building.</span></div>
@@ -159,26 +107,17 @@
 
   <section id="plans">
     <div class="wrap">
-      <div class="section-head">
-        <h2>Plans & Development</h2>
-        <p class="section-copy">The proposal is documented with ground-floor and first-floor layouts, a site map and early 3D development views before moving into the more resolved visualization set.</p>
-      </div>
+      <div class="section-head"><h2>Plans & Development</h2><p class="section-copy">Ground-floor and first-floor layouts, site positioning, early massing and rendered top-down studies document the project from planning through visualization.</p></div>
       <div class="overview">
+        <div class="card"><img src="./assets/page-02.jpg" alt="Ground floor and first floor plans"><div class="card-copy"><b>Ground Floor + First Floor</b><p>Simple plan presentation showing the two primary building levels and room organization.</p></div></div>
+        <div class="card"><img src="./assets/page-04.jpg" alt="Site map showing ground and first floor footprints"><div class="card-copy"><b>Site Map</b><p>Building footprint and circulation positioned within the lot geometry.</p></div></div>
+        <div class="card"><img src="./assets/page-03.jpg" alt="Early 3D model view of Lot 18 Mount Boon"><div class="card-copy"><b>Design Development</b><p>Early 3D model view establishing the massing, facade language and rooftop arrangement.</p></div></div>
         <div class="card">
-          <img src="./assets/page-02.jpg" alt="Ground floor and first floor plans">
-          <div class="card-copy"><b>Ground Floor + First Floor</b><p>Simple plan presentation showing the two primary building levels and room organization.</p></div>
-        </div>
-        <div class="card">
-          <img src="./assets/page-04.jpg" alt="Site map showing ground and first floor footprints">
-          <div class="card-copy"><b>Site Map</b><p>Building footprint and circulation positioned within the lot geometry.</p></div>
-        </div>
-        <div class="card">
-          <img src="./assets/page-03.jpg" alt="Early 3D model view of Lot 18 Mount Boon">
-          <div class="card-copy"><b>Design Development</b><p>Early 3D model view establishing the massing, facade language and rooftop arrangement.</p></div>
-        </div>
-        <div class="card">
-          <img src="./assets/page-21.jpg" alt="Top-down plan visualization">
-          <div class="card-copy"><b>Top-Down Layout Study</b><p>Rendered overhead views showing the relationship between interior planning, landscaping and site circulation.</p></div>
+          <div class="dual">
+            <button class="zoomable"><img src="./renders/Image16.jpg" alt="Top-down rendered ground-floor layout study"></button>
+            <button class="zoomable"><img src="./renders/Image29.jpg" alt="Top-down rendered first-floor layout study"></button>
+          </div>
+          <div class="card-copy"><b>Top-Down Layout Study</b><p>Two rendered overhead studies showing the ground-floor and first-floor relationship to landscaping, circulation and the site.</p></div>
         </div>
       </div>
     </div>
@@ -186,75 +125,65 @@
 
   <section id="exterior">
     <div class="wrap">
-      <div class="section-head">
-        <h2>Exterior Visualization</h2>
-        <p class="section-copy">A complete exterior study showing the street presence, side elevations, rear circulation, stairs, landscaping and rooftop massing from multiple viewpoints.</p>
-      </div>
-      <div class="gallery">
-        <article class="media"><button><img loading="lazy" src="./assets/page-05.jpg" alt="Front Facade"></button><div class="caption"><strong>Front Facade</strong>Street-facing elevation with stone accents, balcony framing and landscaped frontage.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-06.jpg" alt="Aerial Front View"></button><div class="caption"><strong>Aerial Front View</strong>Overall building form, rooftop amenities and site relationship.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-07.jpg" alt="Street View"></button><div class="caption"><strong>Street View</strong>Front boundary, entry sequence and upper-level facade.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-08.jpg" alt="Side Elevation"></button><div class="caption"><strong>Side Elevation</strong>Long side elevation with restrained openings and landscaped edge.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-09.jpg" alt="Rear Stair Tower"></button><div class="caption"><strong>Rear Stair Tower</strong>External stair circulation and rooftop access expressed as a black steel structure.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-10.jpg" alt="Rear Aerial"></button><div class="caption"><strong>Rear Aerial</strong>Rear circulation, garden path and service-side organization.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-11.jpg" alt="Rear Elevation"></button><div class="caption"><strong>Rear Elevation</strong>Rear facade composition with glazed upper rooms and external stairs.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-12.jpg" alt="Courtyard View"></button><div class="caption"><strong>Courtyard View</strong>Central rear courtyard and circulation between levels.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-13.jpg" alt="Garden + Stairs"></button><div class="caption"><strong>Garden + Stairs</strong>Landscape path, secondary stairs and the main external stair tower.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-14.jpg" alt="Stair Tower Detail"></button><div class="caption"><strong>Stair Tower Detail</strong>Low-angle view highlighting the external circulation structure.</div></article>
-      </div>
+      <div class="section-head"><h2>Exterior Visualization</h2><p class="section-copy">The updated render set documents the street presence, side elevations, rear circulation, stair tower, landscaping and rooftop massing from multiple viewpoints.</p></div>
+      <div class="gallery"><article class="media"><button><img loading="lazy" src="./renders/Image1.jpg" alt="Front Facade"></button><div class="caption"><strong>Front Facade</strong>Primary street-facing elevation with stone accents, black framing and landscaped frontage.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image2.jpg" alt="Aerial Front View"></button><div class="caption"><strong>Aerial Front View</strong>High-angle view showing the overall massing, roof terrace and front garden.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image3.jpg" alt="Rear Elevation"></button><div class="caption"><strong>Rear Elevation</strong>Rear facade and external stair tower with upper-level glazing.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image4.jpg" alt="Side Elevation"></button><div class="caption"><strong>Side Elevation</strong>Long side elevation with a restrained window rhythm and planted edge.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image5.jpg" alt="Street View"></button><div class="caption"><strong>Street View</strong>Front boundary, driveway and the building's relationship to the road.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image6.jpg" alt="Rear Aerial"></button><div class="caption"><strong>Rear Aerial</strong>Rear garden, stepping-stone path and circulation around the building.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image7.jpg" alt="Rear Stair Tower"></button><div class="caption"><strong>Rear Stair Tower</strong>External stair structure and rooftop access viewed from above.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image8.jpg" alt="Garden + Stairs"></button><div class="caption"><strong>Garden + Stairs</strong>Landscaped rear courtyard with secondary stairs and circulation.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image9.jpg" alt="Stair Tower Detail"></button><div class="caption"><strong>Stair Tower Detail</strong>Low-angle view emphasizing the black steel external stair tower.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image10.jpg" alt="Rooftop Aerial"></button><div class="caption"><strong>Rooftop Aerial</strong>Aerial view clarifying the roof pavilion, solar panels and terrace layout.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image30.jpg" alt="Courtyard View"></button><div class="caption"><strong>Courtyard View</strong>Lower rear courtyard, stairs and planted central zone.</div></article></div>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <div class="section-head">
-        <h2>Rooftop & Amenities</h2>
-        <p class="section-copy">The rooftop is developed as a social and wellness zone, with multiple shaded seating areas, planting, a compact gym enclosure and solar panels integrated into the overall design.</p>
-      </div>
-      <div class="gallery">
-        <article class="media"><button><img loading="lazy" src="./assets/page-15.jpg" alt="Rooftop Overview"></button><div class="caption"><strong>Rooftop Overview</strong>Large open terrace with multiple shaded lounge zones and rooftop pavilion.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-16.jpg" alt="Central Lounge"></button><div class="caption"><strong>Central Lounge</strong>Fire-pit seating area surrounded by planters and covered social spaces.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-17.jpg" alt="Covered Seating"></button><div class="caption"><strong>Covered Seating</strong>Shaded lounge arrangement with soft seating and planted edges.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-18.jpg" alt="Gym Interior I"></button><div class="caption"><strong>Gym Interior I</strong>Compact rooftop fitness room with free weights and cardio equipment.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-19.jpg" alt="Gym Interior II"></button><div class="caption"><strong>Gym Interior II</strong>Alternate gym view showing glazing toward the terrace.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-20.jpg" alt="Gym Interior III"></button><div class="caption"><strong>Gym Interior III</strong>Wide fitness-room view with natural light and terrace access.</div></article>
-      </div>
+      <div class="section-head"><h2>Rooftop & Amenities</h2><p class="section-copy">The rooftop functions as a social and wellness zone with shaded seating, planting, a glazed pavilion, gym spaces and solar panels integrated into the overall architecture.</p></div>
+      <div class="gallery"><article class="media"><button><img loading="lazy" src="./renders/Image11.jpg" alt="Rooftop Pavilion"></button><div class="caption"><strong>Rooftop Pavilion</strong>Glazed rooftop pavilion opening directly onto the terrace.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image12.jpg" alt="Central Lounge"></button><div class="caption"><strong>Central Lounge</strong>Open-air lounge centered around a fire-pit seating arrangement.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image13.jpg" alt="Rooftop Overview"></button><div class="caption"><strong>Rooftop Overview</strong>Wide view of the rooftop social spaces, shade structures and planting.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image15.jpg" alt="Covered Seating"></button><div class="caption"><strong>Covered Seating</strong>Shaded lounge zone with soft seating and planted edges.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image14.jpg" alt="Rooftop Gym I"></button><div class="caption"><strong>Rooftop Gym I</strong>Fitness room with free weights and cardio equipment.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image27.jpg" alt="Rooftop Gym II"></button><div class="caption"><strong>Rooftop Gym II</strong>Alternate gym view showing the glazing and open workout area.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image28.jpg" alt="Rooftop Gym III"></button><div class="caption"><strong>Rooftop Gym III</strong>Wide fitness-room view with terrace access and natural light.</div></article></div>
     </div>
   </section>
 
   <section id="interior">
     <div class="wrap">
-      <div class="section-head">
-        <h2>Interior Visualization</h2>
-        <p class="section-copy">The interior scheme uses warm wood, white surfaces, dark feature walls, black frames and restrained olive accents across the open living, dining and kitchen spaces.</p>
-      </div>
-      <div class="gallery">
-        <article class="media"><button><img loading="lazy" src="./assets/page-22.jpg" alt="Living Room"></button><div class="caption"><strong>Living Room</strong>Long open-plan living space with dark feature wall, floating media console and warm neutral furniture.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-23.jpg" alt="Media Wall"></button><div class="caption"><strong>Media Wall</strong>Front-facing composition of the living-room feature wall and entertainment zone.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-24.jpg" alt="Dining Area"></button><div class="caption"><strong>Dining Area</strong>Six-seat dining layout with vertical timber feature panel and sculptural ring pendant.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-25.jpg" alt="Kitchen Overview"></button><div class="caption"><strong>Kitchen Overview</strong>U-shaped kitchen with peninsula seating, white upper cabinetry and darker base units.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-26.jpg" alt="Kitchen Storage Wall"></button><div class="caption"><strong>Kitchen Storage Wall</strong>Tall refrigerator wall with integrated open shelving and timber detailing.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-27.jpg" alt="Kitchen Work Zone"></button><div class="caption"><strong>Kitchen Work Zone</strong>Sink, cooktop and prep surfaces arranged around a compact U-shaped plan.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-28.jpg" alt="Kitchen to Dining"></button><div class="caption"><strong>Kitchen to Dining</strong>View through the kitchen toward the dining zone, showing the open-plan relationship.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-29.jpg" alt="Dining to Living"></button><div class="caption"><strong>Dining to Living</strong>Dining area aligned with the living space and repeated circular pendant lighting.</div></article><article class="media"><button><img loading="lazy" src="./assets/page-30.jpg" alt="Living Room II"></button><div class="caption"><strong>Living Room II</strong>Alternate living-room view showing the staircase feature and full open-plan circulation.</div></article>
-      </div>
+      <div class="section-head"><h2>Interior Visualization</h2><p class="section-copy">The interior scheme uses warm timber, white and taupe cabinetry, dark feature surfaces, black frames and restrained olive accents across the open living, dining and kitchen spaces.</p></div>
+      <div class="gallery"><article class="media"><button><img loading="lazy" src="./renders/Image17.jpg" alt="Living Room"></button><div class="caption"><strong>Living Room</strong>Open-plan living room with warm neutrals, timber accents and a dark media wall.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image18.jpg" alt="Media Wall"></button><div class="caption"><strong>Media Wall</strong>Front-facing composition of the television wall and low floating console.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image19.jpg" alt="Dining Area"></button><div class="caption"><strong>Dining Area</strong>Six-seat dining arrangement with vertical timber feature panel and ring pendant.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image20.jpg" alt="Kitchen Overview"></button><div class="caption"><strong>Kitchen Overview</strong>U-shaped kitchen with peninsula seating and layered white, taupe and timber finishes.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image21.jpg" alt="Kitchen Storage Wall"></button><div class="caption"><strong>Kitchen Storage Wall</strong>Tall refrigerator wall with open shelving and integrated timber detailing.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image22.jpg" alt="Kitchen Work Zone"></button><div class="caption"><strong>Kitchen Work Zone</strong>Sink, cooktop and prep surfaces arranged around the compact U-shaped plan.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image23.jpg" alt="Kitchen to Dining"></button><div class="caption"><strong>Kitchen to Dining</strong>View through the kitchen toward the dining area and open-plan circulation.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image24.jpg" alt="Dining to Living"></button><div class="caption"><strong>Dining to Living</strong>Dining area aligned toward the living room with repeated circular pendant lighting.</div></article>
+<article class="media"><button><img loading="lazy" src="./renders/Image25.jpg" alt="Living Room II"></button><div class="caption"><strong>Living Room II</strong>Alternate living-room view highlighting the staircase feature and full circulation path.</div></article></div>
     </div>
   </section>
 
   <section class="closing">
-    <div class="wrap closing-inner">
-      <h2>Interior & exterior design presented as one cohesive visual system.</h2>
-      <div class="closing-note">Lot 18 Mount Boon, Discovery Bay, St. Ann<br>Crio Creatives, LLC</div>
-    </div>
+    <div class="wrap closing-inner"><h2>Interior & exterior design presented as one cohesive visual system.</h2><div class="closing-note">Lot 18 Mount Boon, Discovery Bay, St. Ann<br>Crio Creatives, LLC</div></div>
   </section>
 </main>
 
 <footer><div class="wrap">© 2026 Crio Creatives · Lot 18 Mount Boon Project Preview</div></footer>
 
-<dialog id="viewer">
-  <div class="lightbox">
-    <button class="close" aria-label="Close image">×</button>
-    <img id="viewerImage" src="" alt="">
-  </div>
-</dialog>
-
+<dialog id="viewer"><div class="lightbox"><button class="close" aria-label="Close image">×</button><img id="viewerImage" src="" alt=""></div></dialog>
 <script>
-  const viewer=document.getElementById('viewer');
-  const viewerImage=document.getElementById('viewerImage');
-  document.querySelectorAll('.media button').forEach(button=>{
-    button.addEventListener('click',()=>{
-      const img=button.querySelector('img');
-      viewerImage.src=img.src;
-      viewerImage.alt=img.alt;
-      viewer.showModal();
-    });
-  });
+  const viewer=document.getElementById('viewer'), viewerImage=document.getElementById('viewerImage');
+  document.querySelectorAll('.media button,.zoomable').forEach(button=>button.addEventListener('click',()=>{
+    const img=button.querySelector('img');viewerImage.src=img.src;viewerImage.alt=img.alt;viewer.showModal();
+  }));
   document.querySelector('.close').addEventListener('click',()=>viewer.close());
-  viewer.addEventListener('click',e=>{
-    if(e.target===viewer||e.target.classList.contains('lightbox'))viewer.close();
-  });
-  document.addEventListener('keydown',e=>{
-    if(e.key==='Escape'&&viewer.open)viewer.close();
-  });
+  viewer.addEventListener('click',e=>{if(e.target===viewer||e.target.classList.contains('lightbox'))viewer.close()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&viewer.open)viewer.close()});
 </script>
 </body>
 </html>
