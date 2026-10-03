@@ -10,15 +10,15 @@ figure,p,dl,dd{margin:0}
 a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:5px}
 .skip-link{position:fixed;left:20px;top:-100px;z-index:100;padding:14px 18px;border-radius:9px;background:var(--red);color:#fff}
 .skip-link:focus{top:12px}
-.site-header{position:sticky;z-index:20;top:0;background:rgba(16,16,16,.97);color:#fff;border-bottom:1px solid rgba(255,255,255,.15);backdrop-filter:blur(16px)}
-.header-inner{min-height:86px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.site-header{position:sticky;z-index:20;top:0;background:rgba(237,28,36,.96);color:#fff;border-bottom:1px solid rgba(255,255,255,.18);backdrop-filter:blur(16px)}
+.header-inner{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand{display:inline-flex;flex-shrink:0}
-.brand img{width:189px;height:54px;border-radius:9px;object-fit:cover}
+.brand img{width:168px;height:48px;border-radius:9px;object-fit:cover}
 .nav{display:flex;align-items:center;gap:30px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
-.section-link{padding:16px 0;color:#d2d2d2}
+.section-link{padding:16px 0;color:#fff}
 .section-link:hover{color:#fff}
-.website-link,.button{display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:48px;padding:0 22px;border-radius:9px;background:var(--red);color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;transition:background .2s}
-.website-link:hover,.button:hover{background:#c90f1b}
+.website-link,.button{display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:48px;padding:0 22px;border-radius:9px;background:#fff;color:var(--red);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;transition:background .2s}
+.website-link:hover{background:#f2f2f2}.button:hover{background:#c90f1b}
 .hero{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:center;padding-block:80px 70px}
 .eyebrow{margin:0 0 22px;color:var(--red);font-size:11px;font-weight:800;line-height:1.5;letter-spacing:.17em;text-transform:uppercase}
 h1{margin:0;font-size:clamp(42px,4.4vw,70px);line-height:.92;letter-spacing:-.055em;font-weight:800;text-transform:uppercase}
