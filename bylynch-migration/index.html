@@ -160,6 +160,32 @@ img{display:block;max-width:100%}
   .menu-toggle{display:none!important}
   .menu{display:flex!important}
 }
+
+/* Final mobile fixes from live Gazette comparison */
+.menu-toggle span{display:none!important}
+.menu-toggle::before{
+  content:"";position:absolute;left:50%;top:50%;width:16px;height:2px;
+  background:var(--red);transform:translate(-50%,-50%);
+  box-shadow:0 -5px 0 var(--red),0 5px 0 var(--red)
+}
+@media(max-width:839px){
+  .menu-toggle{display:block!important}
+  .menu{display:none!important}
+  .menu.toggled{display:block!important}
+}
+@media(max-width:680px){
+  .card{height:auto!important;min-height:0!important;aspect-ratio:1.08/1!important}
+  .cardcopy{position:absolute!important;left:30px!important;right:30px!important;bottom:30px!important;padding:0!important}
+  .cardcopy h2{margin:0 0 30px!important;font-size:25px!important;line-height:1.2!important}
+  .cardcopy p{font-size:16px!important;line-height:1.5!important;display:block!important;overflow:hidden!important;max-height:72px}
+  .hero-preview{background:#fff!important;overflow:visible!important}
+  .hero-inner{background:#fff!important;color:#111!important}
+  .hero-inner .hero-cat{color:var(--red)!important}
+  .hero-inner h1{color:#111!important}
+  .single-body ul:has(img),.single-body ol:has(img),.single-body li:has(img){list-style:none!important}
+  .single-body ul:has(img),.single-body ol:has(img){padding-left:0!important;margin-left:0!important}
+  .single-body li:has(img){padding-left:0!important;margin-left:0!important}
+}
 </style>
 </head>
 <body>
@@ -233,6 +259,22 @@ async function loadPostSource(p){
   if(!r.ok) return {body:''};
   return splitPost(await r.text());
 }
+function cardExcerpt(src){
+  const explicit=frontValue(src.front||'','excerpt');
+  if(explicit) return explicit;
+  const matches=[...(src.body||'').matchAll(/<p(?:\s[^>]*)?>([\s\S]*?)<\/p>/gi)];
+  for(const m of matches){
+    const t=stripText(m[1]);
+    if(t) return t;
+  }
+  return '';
+}
+function shortExcerpt(text,max=110){
+  text=(text||'').trim();
+  if(text.length<=max) return {text,cut:false};
+  let cut=text.slice(0,max).replace(/\s+\S*$/,'').trim();
+  return {text:cut,cut:true};
+}
 async function showIndex(){
   let items=await loadManifest();
   const cat=qp.get('cat');
@@ -244,14 +286,15 @@ async function showIndex(){
   const enriched=await Promise.all(slice.map(async p=>({p,src:await loadPostSource(p)})));
   app.innerHTML=`<div class="grid">${enriched.map(({p,src})=>{
     const img=cardImg(p,src.body);
-    const excerpt=stripText(src.body).slice(0,95);
+    const ex=shortExcerpt(cardExcerpt(src),110);
+    const excerpt=ex.text;
     const comments=p.comments?(`${p.comments} comment${p.comments===1?'':'s'}`):'Leave a comment';
     return `<article class="archive-card">
       <div class="cardmeta"><span>${esc((p.categories||[]).join(', '))}</span><span>${comments}</span></div>
       <a class="card" href="?post=${encodeURIComponent(p.slug)}">
         ${img?`<img src="${img}" alt="">`:'<div style="position:absolute;inset:0;background:#222"></div>'}
         <div class="shade"></div>
-        <div class="cardcopy"><h2>${esc(p.title)}</h2><p>${esc(excerpt)}${excerpt?'… ':''}<b>Continue reading</b></p></div>
+        <div class="cardcopy"><h2>${esc(p.title)}</h2><p>${esc(excerpt)}${ex.cut?'… ':excerpt?' ':''}<b>Continue reading</b></p></div>
       </a>
     </article>`;
   }).join('')}</div>
