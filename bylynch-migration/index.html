@@ -25,13 +25,13 @@ img{display:block;max-width:100%}
 .main{padding:62px 0 80px}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:50px;row-gap:60px}
 .cardmeta{display:flex;justify-content:space-between;gap:15px;margin-bottom:14px;font-size:12px;color:#5f5f5f;text-transform:uppercase}
-.card{position:relative;aspect-ratio:1/1.12;background:#ddd;overflow:hidden}
+.card{position:relative;display:block;width:100%;aspect-ratio:1/1.12;background:#222;overflow:hidden}
 .card img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
 .card:hover img{transform:scale(1.015)}
 .shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72) 0,rgba(0,0,0,.12) 56%,rgba(0,0,0,0) 78%)}
 .cardcopy{position:absolute;left:26px;right:26px;bottom:25px;color:#fff}
-.cardcopy h2{margin:0 0 26px;font-size:24px;line-height:1.05;font-weight:800}
-.cardcopy p{margin:0;font-size:15px;line-height:1.45}
+.cardcopy h2{margin:0 0 20px;font-size:24px;line-height:1.05;font-weight:800;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cardcopy p{margin:0;font-size:15px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .cardcopy b{font-weight:800}
 .pager{display:flex;justify-content:center;gap:10px;margin-top:58px}
 .pager button{border:1px solid #ddd;background:#fff;padding:9px 12px;cursor:pointer}
@@ -111,9 +111,13 @@ function firstImg(body){
   if(src.startsWith('/assets/uploads/')) src=RAW+'assets/uploads/'+src.slice('/assets/uploads/'.length);
   return src;
 }
+function cardImg(p,body){
+  if(FEATURED[p.slug]) return RAW+'assets/uploads/'+FEATURED[p.slug];
+  return firstImg(body);
+}
 function stripText(body){
   return body
-    .replace(/\[[^\]]+\]/g,' ')
+    .replace(/\[(gallery|caption|youtube|soundcloud)[^\]]*\]/gi,' ')
     .replace(/<[^>]*>/g,' ')
     .replace(/&nbsp;/gi,' ')
     .replace(/&amp;/gi,'&')
@@ -142,8 +146,8 @@ async function showIndex(){
   const slice=items.slice(start,start+perPage);
   const enriched=await Promise.all(slice.map(async p=>({p,src:await loadPostSource(p)})));
   app.innerHTML=`<div class="grid">${enriched.map(({p,src})=>{
-    const img=firstImg(src.body);
-    const excerpt=stripText(src.body).slice(0,125);
+    const img=cardImg(p,src.body);
+    const excerpt=stripText(src.body).slice(0,95);
     const comments=p.comments?(`${p.comments} comment${p.comments===1?'':'s'}`):'Leave a comment';
     return `<article>
       <div class="cardmeta"><span>${esc((p.categories||[]).join(', '))}</span><span>${comments}</span></div>
