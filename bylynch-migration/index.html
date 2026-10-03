@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>by LYNCH — Migration Preview</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#fff;--fg:#171717;--muted:#777;--line:#e8e8e8;--max:1120px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Georgia,"Times New Roman",serif;line-height:1.65}
+a{color:inherit;text-decoration:none} a:hover{text-decoration:underline}
+img{max-width:100%;height:auto}
+.site{width:min(var(--max),calc(100% - 48px));margin:auto}
+.preview-bar{background:#111;color:#fff;padding:10px 0;font:700 10px/1.4 Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.site-header{padding:58px 0 34px;border-bottom:1px solid var(--line)}
+.brand{font:700 32px/1 Helvetica,Arial,sans-serif;letter-spacing:-.035em}
+.tagline{margin-top:10px;color:var(--muted);font-size:18px}
+.nav{margin-top:25px;display:flex;gap:20px;flex-wrap:wrap;font:700 11px/1.2 Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.content{padding:56px 0 80px}
+.post-card{padding:0 0 52px;margin:0 0 52px;border-bottom:1px solid var(--line)}
+.eyebrow,.meta{font:700 10px/1.4 Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1,h2{line-height:1.08;font-weight:400;letter-spacing:-.03em}
+h1{font-size:clamp(42px,6vw,78px);margin:14px 0 18px}
+h2{font-size:clamp(32px,4.5vw,58px);margin:10px 0 14px}
+.post-body{font-size:18px}
+.post-body>*{max-width:880px}
+.post-body img{display:block;margin:28px 0}
+.post-body figure{margin:28px 0}
+.post-body figcaption{color:var(--muted);font-size:14px;margin-top:8px}
+.wp-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:none!important;margin:30px 0}
+.wp-gallery figure{margin:0;max-width:none}
+.wp-gallery img{width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;margin:0}
+.embed{position:relative;padding-top:56.25%;max-width:880px;margin:30px 0}
+.embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.archive-comments{margin-top:64px;padding-top:32px;border-top:1px solid var(--line)}
+.comment{padding:20px 0;border-bottom:1px solid var(--line)}
+.comment-meta{font:700 10px/1.4 Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.back{display:inline-block;margin-bottom:30px;font:700 11px/1 Helvetica,Arial,sans-serif;text-transform:uppercase;letter-spacing:.1em}
+.status{padding:20px 0;color:var(--muted)}
+.site-footer{border-top:1px solid var(--line);padding:28px 0 48px;color:var(--muted);font:11px/1.5 Helvetica,Arial,sans-serif}
+@media(max-width:700px){.site{width:calc(100% - 28px)}.site-header{padding-top:34px}.content{padding-top:36px}.wp-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<div class="preview-bar"><div class="site">Migration Preview · Not Live</div></div>
+<header class="site-header"><div class="site"><a class="brand" href="./">by LYNCH</a><div class="tagline">I saw it. Now you get to.</div><nav class="nav"><a href="./">Journal</a><a href="?page=about">About LYNCH</a><a href="?page=contact">Contact</a></nav></div></header>
+<main class="site content" id="app"><div class="status">Loading migration preview…</div></main>
+<footer class="site-footer"><div class="site">by LYNCH · WordPress → GitHub migration preview</div></footer>
+<script>
+const RAW='https://raw.githubusercontent.com/criocreatives/byLYNCH/wordpress-migration/';
+const app=document.getElementById('app');
+const qp=new URLSearchParams(location.search);
+
+function esc(s=''){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+function fmtDate(s){const d=new Date(s.replace(' ','T')+'-05:00');return d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});}
+function rewriteMedia(html){
+  return html
+    .replaceAll('src="/assets/uploads/','src="'+RAW+'assets/uploads/')
+    .replaceAll('href="/assets/uploads/','href="'+RAW+'assets/uploads/')
+    .replace(/\[gallery[^\]]*\]/gi,'<p><em>Unconverted gallery shortcode detected.</em></p>')
+    .replace(/\[youtube[^\]]*\]/gi,'<p><em>Unconverted YouTube shortcode detected.</em></p>')
+    .replace(/\[soundcloud[^\]]*\]/gi,'<p><em>Unconverted SoundCloud shortcode detected.</em></p>');
+}
+function splitPost(md){
+  const parts=md.split(/^---\s*$/m);
+  if(parts.length<3) return {body:md};
+  return {front:parts[1],body:parts.slice(2).join('---')};
+}
+async function loadManifest(){
+  const r=await fetch(RAW+'migration-manifest.json',{cache:'no-store'});
+  if(!r.ok) throw new Error('Could not load migration manifest.');
+  return r.json();
+}
+async function showIndex(){
+  const items=await loadManifest();
+  items.sort((a,b)=>b.date.localeCompare(a.date));
+  app.innerHTML=items.map(p=>`<article class="post-card">
+    <div class="eyebrow">${esc((p.categories||[]).join(' · '))}</div>
+    <h2><a href="?post=${encodeURIComponent(p.slug)}">${esc(p.title)}</a></h2>
+    <div class="meta">${fmtDate(p.date)}${p.comments?' · '+p.comments+' archived comment'+(p.comments===1?'':'s'):''}</div>
+    <p><a href="?post=${encodeURIComponent(p.slug)}">Continue reading</a></p>
+  </article>`).join('');
+}
+async function showPost(slug){
+  const items=await loadManifest();
+  const p=items.find(x=>x.slug===slug);
+  if(!p) throw new Error('Post not found.');
+  const date=p.date.slice(0,10);
+  const r=await fetch(RAW+`_posts/${date}-${slug}.md`,{cache:'no-store'});
+  if(!r.ok) throw new Error('Could not load post source.');
+  const {body}=splitPost(await r.text());
+  document.title=p.title+' — by LYNCH Preview';
+  app.innerHTML=`<a class="back" href="./">← All posts</a>
+    <article>
+      <div class="eyebrow">${esc((p.categories||[]).join(' · '))}</div>
+      <h1>${esc(p.title)}</h1>
+      <div class="meta">${fmtDate(p.date)}</div>
+      <div class="post-body">${rewriteMedia(body)}</div>
+    </article>`;
+}
+async function showPage(name){
+  const path=name==='about'?'about/index.html':'contact/index.html';
+  const r=await fetch(RAW+path,{cache:'no-store'});
+  if(!r.ok) throw new Error('Could not load page.');
+  const {body}=splitPost(await r.text());
+  const title=name==='about'?'about LYNCH':'CONTACT';
+  document.title=title+' — by LYNCH Preview';
+  app.innerHTML=`<a class="back" href="./">← Journal</a><article><h1>${title}</h1><div class="post-body">${rewriteMedia(body)}</div></article>`;
+}
+(async()=>{
+  try{
+    if(qp.get('post')) await showPost(qp.get('post'));
+    else if(qp.get('page')) await showPage(qp.get('page'));
+    else await showIndex();
+  }catch(e){app.innerHTML='<div class="status"><strong>Preview error:</strong> '+esc(e.message)+'</div>';}
+})();
+</script>
+</body>
+</html>
