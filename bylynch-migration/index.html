@@ -16,23 +16,23 @@ img{display:block;max-width:100%}
 .previewbar .wrap{padding:10px 0}
 .wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
 .sitehead{border-bottom:1px solid var(--line);background:#fff}
-.navrow{min-height:76px;display:flex;align-items:center}
+.navrow{min-height:60px;display:flex;align-items:center;position:relative}
 .logo{padding-right:14px;display:flex;align-items:center}
-.logo img{width:164px;height:52px;object-fit:contain;background:#000}
-.menu{display:flex;align-items:stretch;min-height:76px;border-left:1px solid var(--line);flex:1}
+.logo img{width:auto;height:auto;max-width:187px;max-height:60px;object-fit:contain}
+.menu{display:flex;align-items:stretch;min-height:60px;border-left:1px solid var(--line);flex:1}
 .menu a{display:flex;align-items:center;padding:0 14px;border-right:1px solid #f2f2f2;font-family:Lato,Arial,sans-serif;font-size:14px;font-weight:700;white-space:nowrap}
 .menu a.active{color:var(--red)}
 .searchbtn{margin-left:auto;width:53px;display:grid;place-items:center;border-left:1px solid var(--line);border-right:1px solid var(--line);font-size:25px;color:var(--red)}
 .main{padding:62px 0 80px}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:50px;row-gap:60px}
-.cardmeta{display:flex;justify-content:space-between;gap:15px;margin-bottom:14px;font-family:Lato,Arial,sans-serif;font-size:12px;color:#5f5f5f;text-transform:uppercase}
+.cardmeta{display:flex;justify-content:space-between;gap:15px;margin-bottom:15px;padding:5px 0;font-family:Lato,Arial,sans-serif;font-size:13px;line-height:1.54;color:#777;text-transform:uppercase}
 .card{position:relative;display:block;width:100%;aspect-ratio:1/1.12;background:#222;overflow:hidden}
 .card img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
 .card:hover img{transform:scale(1.015)}
 .shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72) 0,rgba(0,0,0,.12) 56%,rgba(0,0,0,0) 78%)}
-.cardcopy{position:absolute;left:26px;right:26px;bottom:25px;color:#fff}
-.cardcopy h2{margin:0 0 20px;font-family:Lato,Arial,sans-serif;font-size:24px;line-height:1.05;font-weight:900;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.cardcopy p{margin:0;font-family:Lora,Georgia,serif;font-size:15px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.cardcopy{position:absolute;left:30px;right:30px;bottom:28px;color:#fff}
+.cardcopy h2{margin:0 0 30px;font-family:Lato,Arial,sans-serif;font-size:25px;line-height:1.2;font-weight:900;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cardcopy p{margin:0;font-family:Lora,Georgia,serif;font-size:16px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .cardcopy b{font-weight:800}
 .pager{display:flex;justify-content:center;gap:10px;margin-top:58px}
 .pager button{border:1px solid #ddd;background:#fff;padding:9px 12px;cursor:pointer}
@@ -94,6 +94,40 @@ img{display:block;max-width:100%}
   .hero-inner h1{font-family:Lato,Arial,sans-serif;font-size:clamp(44px,5vw,72px);font-weight:900}
   .single-body{font-family:Lora,Georgia,serif}
 }
+
+.menu-toggle{display:none}
+@media(max-width:680px){
+  .sitehead{padding:15px 0}
+  .navrow{min-height:60px;display:block;padding:0}
+  .logo{display:block;padding-right:75px;max-width:270px}
+  .logo img{max-height:60px;max-width:187px}
+  .menu-toggle{display:block;position:absolute;right:0;top:50%;transform:translateY(-50%);width:60px;height:62px;background:#fff;border:1px solid #ddd;z-index:30}
+  .menu-toggle span{display:block;width:16px;height:2px;background:var(--red);margin:3px auto}
+  .menu{display:none;position:absolute;top:75px;left:0;width:100%;min-height:0;margin:0;padding:30px;background:#fff;border:1px solid #ddd;box-shadow:0 5px 15px rgba(0,0,0,.075);z-index:25}
+  .menu.toggled{display:block}
+  .menu>a,.menu>.menu-parent{display:block;border:0!important;padding:8px 0!important;font-size:16px}
+  .submenu{position:static;display:block;border:0;box-shadow:none;padding-left:18px}
+  .submenu a{padding:5px 0!important}
+  .searchbtn{display:none}
+  .main{padding-top:30px}
+  .grid{grid-template-columns:1fr;gap:30px}
+  .grid article{border-top:1px solid #eee;padding-top:30px}
+  .grid article:first-child{border-top:0;padding-top:0}
+  .cardmeta{margin-bottom:15px}
+  .card{aspect-ratio:1/1}
+  .cardcopy{left:30px;right:30px;bottom:30px}
+  .cardcopy h2{font-size:25px;line-height:1.2;margin-bottom:30px}
+  .cardcopy p{font-size:16px;line-height:1.5;-webkit-line-clamp:4}
+  .hero-preview{height:auto;min-height:0;background:#000}
+  .hero-preview img{width:100%;height:auto;object-fit:contain}
+  .hero-preview:after{display:none}
+  .hero-inner{position:static;transform:none;width:calc(100% - 48px);padding:30px 0 0;color:#111}
+  .hero-inner .hero-cat{font-family:Lato,Arial,sans-serif;color:var(--red)}
+  .hero-inner h1{font-family:Lato,Arial,sans-serif;color:#111;font-size:39px;line-height:1.54}
+  .single-shell{display:block;width:calc(100% - 48px);margin-top:30px}
+  .meta-rail{margin-bottom:30px}
+  .single-body{width:100%;font-family:Lora,Georgia,serif;font-size:16px;line-height:1.5}
+}
 </style>
 </head>
 <body>
@@ -101,7 +135,7 @@ img{display:block;max-width:100%}
 <header class="sitehead">
   <div class="wrap navrow">
     <a class="logo" href="./"><img src="https://raw.githubusercontent.com/criocreatives/byLYNCH/main/assets/LYNCH%20Logo%20Family/LYNCH%20Logo%20brick%20solid.svg" alt="LYNCH"></a>
-    <nav class="menu">
+    <button class="menu-toggle" type="button" aria-expanded="false"><span></span><span></span><span></span></button><nav class="menu">
       <a class="active" href="./">Home</a>
       <a href="https://gumroad.com/seenbylynch" target="_blank" rel="noopener">Store</a>
       <a href="?cat=FILM">Film</a>
@@ -119,6 +153,7 @@ img{display:block;max-width:100%}
 <script>
 const RAW='https://raw.githubusercontent.com/criocreatives/byLYNCH/wordpress-migration/';
 const app=document.getElementById('app');
+const mt=document.querySelector('.menu-toggle'),mn=document.querySelector('.menu');if(mt&&mn){mt.addEventListener('click',()=>{const on=mn.classList.toggle('toggled');mt.setAttribute('aria-expanded',on?'true':'false');});}
 const qp=new URLSearchParams(location.search);
 const perPage=12;
 const FEATURED={"another-not-lit-christmas-eve":"2016/12/img_4713.jpg","mcavelle":"2016/12/mcavellc3a9.jpg","hotel-in-kingston":"2016/12/img_3125.jpg","dont-need":"2017/01/img_9773.jpg","the-disease":"2017/01/img_2563.jpg","anchor-studio-with-runkus":"2017/01/img_8977.jpg","omelette":"2017/01/img_9859.jpg","alpine-compound":"2017/01/img_0095.jpg","jada-the-iphone":"2017/01/mg_3845.jpg","raj-the-pretty-dress":"2017/01/img_5676.jpg","boaty-ft-pedro-deniro":"2017/01/img_5606.png","riviere-flechir":"2017/01/img_6001.jpg","god-ting":"2017/01/img_9088.jpg","sherlock-shenanigans":"2017/01/img_6264.jpg","saturday-night-blues-w-yanah-kone":"2017/01/img_6689.jpg","h-e-a-l-i-n-g-in-tivoli-gardens":"2017/01/img_4489.jpg","jungle-flex-w-hiidden-fvces":"2017/02/img_7403.jpg","yada":"2017/02/img_4682-2.jpg","new-wave-february-6-2017":"2017/02/img_8264-2.jpg","belisario-the-soundboy-by-leasho-johnson":"2017/02/mg_8573.jpg","compound-live":"2017/03/mg_7279.jpg","hail-who-hail-you":"2017/04/img_9942.jpg","tsajmelle":"2017/04/mg_8769-e1493052866531.jpg","naked-lady":"2017/05/mg_0792-1.jpg","light-skin-stop-wear":"2017/07/mg_4445.jpg","the-roze-the-rimz":"2017/07/mg_3918-1.jpg","unsicher":"2017/09/img_2810.jpg","sblv1":"2017/10/sblv1-promo2.jpg","red-october":"2017/10/mg_8782.jpg","tuyo":"2017/10/screenshot-31-e1509166962562.png","codeine-crazy":"2017/11/mg_9153.jpg","dubwise-ft-chronixx-friends":"2017/11/mg_0687.jpg","chocolate":"2017/11/mg_1010.jpg","my-gf":"2017/12/mg_2768.jpg","havana":"2018/01/mg_8518.jpg","phone-secks":"2018/03/mg_4530.jpg","russian-rickolette":"2018/03/mg_5378.jpg","no-rest-for-the-wicked-ft-jada-kingdom":"2018/06/mg_9431.jpg","something-like-a-dream":"2018/09/mg_7929.jpg","kingdom":"2018/09/mg_9407-2.jpg","lust":"2018/11/mg_8657-no-kltat.jpg","chloe-ana":"2019/02/mg_0359.jpg","kesi-g":"2019/03/mg_2598.jpg","ricki-ticki":"2019/03/mg_3409.jpg","purplereign":"2020/01/mg_8263.jpg","fabricki":"2020/01/mg_8295.jpg","black-gold":"2020/01/mg_1483-2.jpg","mcavelle-returns":"2020/02/mg_1894.jpg","falling-edge":"2021/02/share-24fb74e0-94c3-4bb7-b441-737eb082a940.jpg","bk":"2022/08/mg_9156.jpg","swove-in-ledish":"2024/09/img_7884.jpg","kraka":"2024/09/img_6780.jpg"};
