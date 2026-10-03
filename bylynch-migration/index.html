@@ -6,115 +6,177 @@
 <title>by LYNCH — Migration Preview</title>
 <meta name="robots" content="noindex,nofollow">
 <style>
-:root{--bg:#fff;--fg:#171717;--muted:#777;--line:#e8e8e8;--max:1120px}
+:root{--red:#ff1744;--ink:#111;--muted:#6f6f6f;--line:#e8e8e8;--max:1115px}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:Georgia,"Times New Roman",serif;line-height:1.65}
-a{color:inherit;text-decoration:none} a:hover{text-decoration:underline}
-img{max-width:100%;height:auto}
-.site{width:min(var(--max),calc(100% - 48px));margin:auto}
-.preview-bar{background:#111;color:#fff;padding:10px 0;font:700 10px/1.4 Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
-.site-header{padding:58px 0 34px;border-bottom:1px solid var(--line)}
-.brand{font:700 32px/1 Helvetica,Arial,sans-serif;letter-spacing:-.035em}
-.tagline{margin-top:10px;color:var(--muted);font-size:18px}
-.nav{margin-top:25px;display:flex;gap:20px;flex-wrap:wrap;font:700 11px/1.2 Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
-.content{padding:56px 0 80px}
-.post-card{padding:0 0 52px;margin:0 0 52px;border-bottom:1px solid var(--line)}
-.eyebrow,.meta{font:700 10px/1.4 Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-h1,h2{line-height:1.08;font-weight:400;letter-spacing:-.03em}
-h1{font-size:clamp(42px,6vw,78px);margin:14px 0 18px}
-h2{font-size:clamp(32px,4.5vw,58px);margin:10px 0 14px}
-.post-body{font-size:18px}
-.post-body>*{max-width:880px}
-.post-body img{display:block;margin:28px 0}
-.post-body figure{margin:28px 0}
-.post-body figcaption{color:var(--muted);font-size:14px;margin-top:8px}
-.wp-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:none!important;margin:30px 0}
-.wp-gallery figure{margin:0;max-width:none}
-.wp-gallery img{width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;margin:0}
-.embed{position:relative;padding-top:56.25%;max-width:880px;margin:30px 0}
-.embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.archive-comments{margin-top:64px;padding-top:32px;border-top:1px solid var(--line)}
-.comment{padding:20px 0;border-bottom:1px solid var(--line)}
-.comment-meta{font:700 10px/1.4 Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.back{display:inline-block;margin-bottom:30px;font:700 11px/1 Helvetica,Arial,sans-serif;text-transform:uppercase;letter-spacing:.1em}
-.status{padding:20px 0;color:var(--muted)}
-.site-footer{border-top:1px solid var(--line);padding:28px 0 48px;color:var(--muted);font:11px/1.5 Helvetica,Arial,sans-serif}
-@media(max-width:700px){.site{width:calc(100% - 28px)}.site-header{padding-top:34px}.content{padding-top:36px}.wp-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+body{margin:0;background:#fff;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.previewbar{background:#111;color:#fff;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.previewbar .wrap{padding:10px 0}
+.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+.sitehead{border-bottom:1px solid var(--line);background:#fff}
+.navrow{min-height:76px;display:flex;align-items:center}
+.logo{padding-right:14px;display:flex;align-items:center}
+.logo img{width:164px;height:52px;object-fit:contain;background:#000}
+.menu{display:flex;align-items:stretch;min-height:76px;border-left:1px solid var(--line);flex:1}
+.menu a{display:flex;align-items:center;padding:0 14px;border-right:1px solid #f2f2f2;font-size:14px;font-weight:700;white-space:nowrap}
+.menu a.active{color:var(--red)}
+.searchbtn{margin-left:auto;width:53px;display:grid;place-items:center;border-left:1px solid var(--line);border-right:1px solid var(--line);font-size:25px;color:var(--red)}
+.main{padding:62px 0 80px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:50px;row-gap:60px}
+.cardmeta{display:flex;justify-content:space-between;gap:15px;margin-bottom:14px;font-size:12px;color:#5f5f5f;text-transform:uppercase}
+.card{position:relative;aspect-ratio:1/1.12;background:#ddd;overflow:hidden}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+.card:hover img{transform:scale(1.015)}
+.shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72) 0,rgba(0,0,0,.12) 56%,rgba(0,0,0,0) 78%)}
+.cardcopy{position:absolute;left:26px;right:26px;bottom:25px;color:#fff}
+.cardcopy h2{margin:0 0 26px;font-size:24px;line-height:1.05;font-weight:800}
+.cardcopy p{margin:0;font-size:15px;line-height:1.45}
+.cardcopy b{font-weight:800}
+.pager{display:flex;justify-content:center;gap:10px;margin-top:58px}
+.pager button{border:1px solid #ddd;background:#fff;padding:9px 12px;cursor:pointer}
+.pager button.active{background:#111;color:#fff;border-color:#111}
+.postwrap{max-width:920px;margin:auto}
+.back{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.posthead{margin:25px 0 36px}
+.posthead .eyebrow{font-size:12px;color:#666;text-transform:uppercase;margin-bottom:12px}
+.posthead h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(42px,7vw,76px);line-height:1.02;margin:0 0 14px;font-weight:400}
+.posthead .date{font-size:12px;color:#777;text-transform:uppercase;letter-spacing:.08em}
+.postbody{font-family:Georgia,"Times New Roman",serif;font-size:18px;line-height:1.65}
+.postbody img{margin:28px auto;max-width:100%}
+.wp-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:28px 0}
+.wp-gallery figure{margin:0}.wp-gallery img{width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;margin:0}
+.embed{position:relative;padding-top:56.25%;margin:30px 0}.embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.footer{border-top:1px solid var(--line);padding:34px 0 50px;color:#777;font-size:12px}
+.status{padding:80px 0;text-align:center;color:#777}
+@media(max-width:980px){
+  .menu{overflow:auto}.menu a{padding:0 11px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 28px}
+}
+@media(max-width:680px){
+  .wrap{width:calc(100% - 24px)}
+  .navrow{display:block;padding:12px 0}
+  .logo img{width:145px;height:46px}.menu{min-height:auto;margin-top:12px;border:0;overflow:auto}
+  .menu a{padding:12px 10px;border:0;font-size:12px}.searchbtn{display:none}
+  .main{padding-top:34px}.grid{grid-template-columns:1fr}.card{aspect-ratio:1/1.05}
+}
 </style>
 </head>
 <body>
-<div class="preview-bar"><div class="site">Migration Preview · Not Live</div></div>
-<header class="site-header"><div class="site"><a class="brand" href="./">by LYNCH</a><div class="tagline">I saw it. Now you get to.</div><nav class="nav"><a href="./">Journal</a><a href="?page=about">About LYNCH</a><a href="?page=contact">Contact</a></nav></div></header>
-<main class="site content" id="app"><div class="status">Loading migration preview…</div></main>
-<footer class="site-footer"><div class="site">by LYNCH · WordPress → GitHub migration preview</div></footer>
+<div class="previewbar"><div class="wrap">Migration Preview · Not Live</div></div>
+<header class="sitehead">
+  <div class="wrap navrow">
+    <a class="logo" href="./"><img src="https://raw.githubusercontent.com/criocreatives/byLYNCH/main/assets/brand/lynch-logo.png" alt="LYNCH"></a>
+    <nav class="menu">
+      <a class="active" href="./">Home</a>
+      <a href="#">Store</a>
+      <a href="?cat=FILM">Film</a>
+      <a href="?cat=CULTURE">Culture & Arts</a>
+      <a href="?cat=PHOTO%20SET">Photography</a>
+      <a href="?cat=PIXTAPE">Series</a>
+      <a href="https://www.instagram.com/lebosslynch/" target="_blank" rel="noopener">Instagram</a>
+      <a href="?page=about">about LYNCH</a>
+    </nav>
+    <div class="searchbtn">⌕</div>
+  </div>
+</header>
+<main class="wrap main" id="app"><div class="status">Loading migration preview…</div></main>
+<footer class="footer"><div class="wrap">by LYNCH · WordPress → GitHub migration preview</div></footer>
 <script>
 const RAW='https://raw.githubusercontent.com/criocreatives/byLYNCH/wordpress-migration/';
 const app=document.getElementById('app');
 const qp=new URLSearchParams(location.search);
+const perPage=12;
 
-function esc(s=''){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
 function fmtDate(s){const d=new Date(s.replace(' ','T')+'-05:00');return d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});}
 function rewriteMedia(html){
   return html
     .replaceAll('src="/assets/uploads/','src="'+RAW+'assets/uploads/')
-    .replaceAll('href="/assets/uploads/','href="'+RAW+'assets/uploads/')
-    .replace(/\[gallery[^\]]*\]/gi,'<p><em>Unconverted gallery shortcode detected.</em></p>')
-    .replace(/\[youtube[^\]]*\]/gi,'<p><em>Unconverted YouTube shortcode detected.</em></p>')
-    .replace(/\[soundcloud[^\]]*\]/gi,'<p><em>Unconverted SoundCloud shortcode detected.</em></p>');
+    .replaceAll('href="/assets/uploads/','href="'+RAW+'assets/uploads/');
 }
 function splitPost(md){
   const parts=md.split(/^---\s*$/m);
-  if(parts.length<3) return {body:md};
-  return {front:parts[1],body:parts.slice(2).join('---')};
+  return parts.length>=3?{front:parts[1],body:parts.slice(2).join('---')}:{body:md};
+}
+function firstImg(body){
+  const m=body.match(/<img[^>]+src=["']([^"']+)["']/i);
+  if(!m) return '';
+  let src=m[1];
+  if(src.startsWith('/assets/uploads/')) src=RAW+'assets/uploads/'+src.slice('/assets/uploads/'.length);
+  return src;
+}
+function stripText(body){
+  return body
+    .replace(/\[[^\]]+\]/g,' ')
+    .replace(/<[^>]*>/g,' ')
+    .replace(/&nbsp;/gi,' ')
+    .replace(/&amp;/gi,'&')
+    .replace(/&#8217;/g,"'")
+    .replace(/\s+/g,' ')
+    .trim();
 }
 async function loadManifest(){
   const r=await fetch(RAW+'migration-manifest.json',{cache:'no-store'});
   if(!r.ok) throw new Error('Could not load migration manifest.');
   return r.json();
 }
+async function loadPostSource(p){
+  const date=p.date.slice(0,10);
+  const r=await fetch(RAW+`_posts/${date}-${p.slug}.md`,{cache:'no-store'});
+  if(!r.ok) return {body:''};
+  return splitPost(await r.text());
+}
 async function showIndex(){
-  const items=await loadManifest();
+  let items=await loadManifest();
+  const cat=qp.get('cat');
+  if(cat) items=items.filter(x=>(x.categories||[]).some(c=>c.toUpperCase()===cat.toUpperCase()));
   items.sort((a,b)=>b.date.localeCompare(a.date));
-  app.innerHTML=items.map(p=>`<article class="post-card">
-    <div class="eyebrow">${esc((p.categories||[]).join(' · '))}</div>
-    <h2><a href="?post=${encodeURIComponent(p.slug)}">${esc(p.title)}</a></h2>
-    <div class="meta">${fmtDate(p.date)}${p.comments?' · '+p.comments+' archived comment'+(p.comments===1?'':'s'):''}</div>
-    <p><a href="?post=${encodeURIComponent(p.slug)}">Continue reading</a></p>
-  </article>`).join('');
+  const page=Math.max(1,parseInt(qp.get('p')||'1',10));
+  const start=(page-1)*perPage;
+  const slice=items.slice(start,start+perPage);
+  const enriched=await Promise.all(slice.map(async p=>({p,src:await loadPostSource(p)})));
+  app.innerHTML=`<div class="grid">${enriched.map(({p,src})=>{
+    const img=firstImg(src.body);
+    const excerpt=stripText(src.body).slice(0,125);
+    const comments=p.comments?(`${p.comments} comment${p.comments===1?'':'s'}`):'Leave a comment';
+    return `<article>
+      <div class="cardmeta"><span>${esc((p.categories||[]).join(', '))}</span><span>${comments}</span></div>
+      <a class="card" href="?post=${encodeURIComponent(p.slug)}">
+        ${img?`<img src="${img}" alt="">`:'<div style="position:absolute;inset:0;background:#222"></div>'}
+        <div class="shade"></div>
+        <div class="cardcopy"><h2>${esc(p.title)}</h2><p>${esc(excerpt)}${excerpt?'… ':''}<b>Continue reading</b></p></div>
+      </a>
+    </article>`;
+  }).join('')}</div>
+  <div class="pager">${Array.from({length:Math.ceil(items.length/perPage)},(_,i)=>i+1).map(n=>`<button class="${n===page?'active':''}" onclick="location.href='?p=${n}${cat?'&cat='+encodeURIComponent(cat):''}'">${n}</button>`).join('')}</div>`;
 }
 async function showPost(slug){
   const items=await loadManifest();
   const p=items.find(x=>x.slug===slug);
   if(!p) throw new Error('Post not found.');
-  const date=p.date.slice(0,10);
-  const r=await fetch(RAW+`_posts/${date}-${slug}.md`,{cache:'no-store'});
-  if(!r.ok) throw new Error('Could not load post source.');
-  const {body}=splitPost(await r.text());
+  const src=await loadPostSource(p);
   document.title=p.title+' — by LYNCH Preview';
-  app.innerHTML=`<a class="back" href="./">← All posts</a>
-    <article>
-      <div class="eyebrow">${esc((p.categories||[]).join(' · '))}</div>
-      <h1>${esc(p.title)}</h1>
-      <div class="meta">${fmtDate(p.date)}</div>
-      <div class="post-body">${rewriteMedia(body)}</div>
-    </article>`;
+  app.innerHTML=`<div class="postwrap">
+    <a class="back" href="./">← Back to journal</a>
+    <header class="posthead"><div class="eyebrow">${esc((p.categories||[]).join(' · '))}</div><h1>${esc(p.title)}</h1><div class="date">${fmtDate(p.date)}</div></header>
+    <div class="postbody">${rewriteMedia(src.body)}</div>
+  </div>`;
 }
 async function showPage(name){
   const path=name==='about'?'about/index.html':'contact/index.html';
   const r=await fetch(RAW+path,{cache:'no-store'});
   if(!r.ok) throw new Error('Could not load page.');
-  const {body}=splitPost(await r.text());
+  const src=splitPost(await r.text());
   const title=name==='about'?'about LYNCH':'CONTACT';
-  document.title=title+' — by LYNCH Preview';
-  app.innerHTML=`<a class="back" href="./">← Journal</a><article><h1>${title}</h1><div class="post-body">${rewriteMedia(body)}</div></article>`;
+  app.innerHTML=`<div class="postwrap"><a class="back" href="./">← Back to journal</a><header class="posthead"><h1>${title}</h1></header><div class="postbody">${rewriteMedia(src.body)}</div></div>`;
 }
 (async()=>{
-  try{
-    if(qp.get('post')) await showPost(qp.get('post'));
-    else if(qp.get('page')) await showPage(qp.get('page'));
-    else await showIndex();
-  }catch(e){app.innerHTML='<div class="status"><strong>Preview error:</strong> '+esc(e.message)+'</div>';}
+ try{
+  if(qp.get('post')) await showPost(qp.get('post'));
+  else if(qp.get('page')) await showPage(qp.get('page'));
+  else await showIndex();
+ }catch(e){app.innerHTML='<div class="status"><strong>Preview error:</strong> '+esc(e.message)+'</div>';}
 })();
 </script>
 </body>
