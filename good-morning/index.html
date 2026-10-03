@@ -16,9 +16,9 @@
     :root{--red:#ed1c24;--ink:#171717;--paper:#f3f0e8;--green:#142a18;--gold:#d6ad58;--muted:#77736c}
     *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
     .topbar{height:8px;background:var(--red)}
-    header{padding:22px 5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #d9d4ca;background:rgba(243,240,232,.96);position:sticky;top:0;z-index:5}
-    .brand{display:flex;align-items:center;gap:16px}.brand-logo{display:block;width:112px;height:auto}.brand-copy{padding-left:16px;border-left:1px solid #cbc6bb;font-size:11px;font-weight:900;letter-spacing:.1em;line-height:1.25}.brand-copy small{display:block;margin-top:4px;color:var(--muted);font-size:8px;letter-spacing:.2em;font-weight:700}
-    nav{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+    header{min-height:68px;padding:10px 5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.18);background:rgba(237,28,36,.96);position:sticky;top:0;z-index:5}
+    .brand{display:flex;align-items:center}.brand-logo{display:block;width:168px;height:48px;object-fit:contain}.brand-copy{padding-left:16px;border-left:1px solid #cbc6bb;font-size:11px;font-weight:900;letter-spacing:.1em;line-height:1.25}.brand-copy small{display:block;margin-top:4px;color:var(--muted);font-size:8px;letter-spacing:.2em;font-weight:700}
+    nav{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#fff}
     .hero{min-height:86vh;padding:7vw 5vw;display:grid;grid-template-columns:minmax(280px,.88fr) minmax(330px,1.12fr);gap:7vw;align-items:center;background:linear-gradient(135deg,#ebe6dc 0%,#f8f6f0 65%)}
     .eyebrow{color:var(--red);font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;margin-bottom:24px}
     h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(54px,8vw,120px);line-height:.82;letter-spacing:-.055em;margin:0;color:var(--green)}
@@ -50,7 +50,7 @@
 </head>
 <body style="--cover-image:url(cover-v3.jpg)">
   <div class="topbar"></div>
-  <header><div class="brand"><img class="brand-logo" src="/assets/logos/Crio%20Creatives%20red%20-%20Copy.png" alt="Crio Creatives"><div class="brand-copy">CRIO CREATIVES<small>VISUAL DESIGN STUDIO</small></div></div><nav>Cover Art Breakdown · 2026</nav></header>
+  <header><div class="brand"><img class="brand-logo" src="https://criocreatives.com/assets/logos/Crio%20Creatives%20Logo%20wide%20white.svg" alt="Crio Creatives"></div><nav>Cover Art Breakdown · 2026</nav></header>
   <main>
     <div class="hero">
       <div><div class="eyebrow">Single Artwork · Art Direction</div><h1>GOOD<br>MORNING<span>450 ft. DAMIAN MARLEY</span></h1><p class="intro">A grounded, cinematic portrait shaped around gratitude, composure and the quiet confidence of a new day. The final artwork balances a cooler weathered backdrop with deep green typography, warm skin tones, tactile grain and directional tropical sunlight.</p><div class="meta"><div><b>01</b><small>Final direction</small></div><div><b>1:1</b><small>Cover format</small></div><div><b>3000</b><small>Delivery pixels</small></div></div></div>
