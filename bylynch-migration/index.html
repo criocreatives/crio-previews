@@ -60,6 +60,10 @@ img{display:block;max-width:100%}
   .menu a{padding:12px 10px;border:0;font-size:12px}.searchbtn{display:none}
   .main{padding-top:34px}.grid{grid-template-columns:1fr}.card{aspect-ratio:1/1.05}
 }
+
+/* OG Gazette single-post treatment */
+.post-main-preview{padding:0 0 80px}.hero-preview{position:relative;background:#000;height:min(47vw,768px);min-height:440px;overflow:hidden}.hero-preview img{width:100%;height:100%;object-fit:cover}.hero-preview:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.75))}.hero-inner{position:absolute;z-index:2;left:50%;bottom:58px;transform:translateX(-50%);width:min(1260px,90%);color:#fff}.hero-inner .hero-cat{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px}.hero-inner h1{margin:0;max-width:930px;font-size:clamp(44px,5vw,72px);line-height:1.04;font-weight:800}.single-shell{width:min(930px,90%);margin:60px auto 0;display:grid;grid-template-columns:270px 600px;gap:60px;align-items:start}.meta-rail{font-size:13px;font-weight:700;text-transform:uppercase;color:#777}.meta-rail span{display:block;border-top:1px solid #eee;padding:7px 0}.meta-rail span:last-child{border-bottom:1px solid #eee}.single-body{width:600px;max-width:100%;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.65}.single-body p{margin:0 0 28px}.single-body figure,.single-body .wp-block-image{margin:0 0 30px}.single-body img{display:block;width:auto;max-width:100%;height:auto;margin:0 auto}.single-body blockquote{margin:30px 0;padding-left:24px;border-left:4px solid #eee;color:#555;font-style:italic}.single-body blockquote.has-text-align-right{text-align:right;padding-left:0;padding-right:24px;border-left:0;border-right:4px solid #eee}.single-body .wp-gallery,.single-body .wp-block-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:30px 0}.single-body .wp-gallery figure,.single-body .wp-block-gallery figure{margin:0}.single-body .wp-gallery img,.single-body .wp-block-gallery img{width:100%;height:100%;object-fit:cover}.single-comments{width:min(600px,90%);margin:60px calc((100% - 930px)/2) 0 auto;border-top:1px solid #ddd;padding-top:60px}.single-comments h2{font-size:24px}.menu-parent{position:relative;display:flex}.submenu{display:none;position:absolute;left:0;top:100%;min-width:210px;background:#fff;border:1px solid #ddd;z-index:20;box-shadow:0 4px 12px rgba(0,0,0,.08)}.submenu a{display:block!important;padding:12px 14px!important;border:0!important}.menu-parent:hover .submenu{display:block}
+@media(max-width:760px){.hero-preview{height:62vw;min-height:300px}.hero-inner{bottom:28px}.hero-inner h1{font-size:42px}.single-shell{display:block;width:calc(100% - 28px);margin-top:36px}.meta-rail{margin-bottom:34px}.single-body{width:100%}.single-comments{width:calc(100% - 28px);margin:40px auto 0;padding-top:36px}.submenu{display:none!important}}
 </style>
 </head>
 <body>
@@ -69,11 +73,11 @@ img{display:block;max-width:100%}
     <a class="logo" href="./"><img src="https://raw.githubusercontent.com/criocreatives/byLYNCH/main/assets/brand/lynch-logo.png" alt="LYNCH"></a>
     <nav class="menu">
       <a class="active" href="./">Home</a>
-      <a href="#">Store</a>
+      <a href="https://gumroad.com/seenbylynch" target="_blank" rel="noopener">Store</a>
       <a href="?cat=FILM">Film</a>
-      <a href="?cat=CULTURE">Culture & Arts</a>
-      <a href="?cat=PHOTO%20SET">Photography</a>
-      <a href="?cat=PIXTAPE">Series</a>
+      <div class="menu-parent"><a href="?cat=CULTURE">Culture &amp; Arts</a><div class="submenu"><a href="?tag=music">MUSIC</a><a href="?cat=ARTS">ARTS</a><a href="?cat=NEW%20WAVE">NEW WAVE</a></div></div>
+      <a href="https://www.flickr.com/photos/lebosslynch/albums" target="_blank" rel="noopener">Photography</a>
+      <div class="menu-parent"><a href="?tag=series">Series</a><div class="submenu"><a href="?cat=KNIGHT%20LOVE%20L%E2%80%99S">KNIGHT LOVE L’S</a><a href="?cat=PHOTO%20SET">PHOTO SETS</a><a href="?cat=PIXTAPE">PIXTAPE</a></div></div>
       <a href="https://www.instagram.com/lebosslynch/" target="_blank" rel="noopener">Instagram</a>
       <a href="?page=about">about LYNCH</a>
     </nav>
@@ -87,6 +91,7 @@ const RAW='https://raw.githubusercontent.com/criocreatives/byLYNCH/wordpress-mig
 const app=document.getElementById('app');
 const qp=new URLSearchParams(location.search);
 const perPage=12;
+const FEATURED={"another-not-lit-christmas-eve":"2016/12/img_4713.jpg","mcavelle":"2016/12/mcavellc3a9.jpg","hotel-in-kingston":"2016/12/img_3125.jpg","dont-need":"2017/01/img_9773.jpg","the-disease":"2017/01/img_2563.jpg","anchor-studio-with-runkus":"2017/01/img_8977.jpg","omelette":"2017/01/img_9859.jpg","alpine-compound":"2017/01/img_0095.jpg","jada-the-iphone":"2017/01/mg_3845.jpg","raj-the-pretty-dress":"2017/01/img_5676.jpg","boaty-ft-pedro-deniro":"2017/01/img_5606.png","riviere-flechir":"2017/01/img_6001.jpg","god-ting":"2017/01/img_9088.jpg","sherlock-shenanigans":"2017/01/img_6264.jpg","saturday-night-blues-w-yanah-kone":"2017/01/img_6689.jpg","h-e-a-l-i-n-g-in-tivoli-gardens":"2017/01/img_4489.jpg","jungle-flex-w-hiidden-fvces":"2017/02/img_7403.jpg","yada":"2017/02/img_4682-2.jpg","new-wave-february-6-2017":"2017/02/img_8264-2.jpg","belisario-the-soundboy-by-leasho-johnson":"2017/02/mg_8573.jpg","compound-live":"2017/03/mg_7279.jpg","hail-who-hail-you":"2017/04/img_9942.jpg","tsajmelle":"2017/04/mg_8769-e1493052866531.jpg","naked-lady":"2017/05/mg_0792-1.jpg","light-skin-stop-wear":"2017/07/mg_4445.jpg","the-roze-the-rimz":"2017/07/mg_3918-1.jpg","unsicher":"2017/09/img_2810.jpg","sblv1":"2017/10/sblv1-promo2.jpg","red-october":"2017/10/mg_8782.jpg","tuyo":"2017/10/screenshot-31-e1509166962562.png","codeine-crazy":"2017/11/mg_9153.jpg","dubwise-ft-chronixx-friends":"2017/11/mg_0687.jpg","chocolate":"2017/11/mg_1010.jpg","my-gf":"2017/12/mg_2768.jpg","havana":"2018/01/mg_8518.jpg","phone-secks":"2018/03/mg_4530.jpg","russian-rickolette":"2018/03/mg_5378.jpg","no-rest-for-the-wicked-ft-jada-kingdom":"2018/06/mg_9431.jpg","something-like-a-dream":"2018/09/mg_7929.jpg","kingdom":"2018/09/mg_9407-2.jpg","lust":"2018/11/mg_8657-no-kltat.jpg","chloe-ana":"2019/02/mg_0359.jpg","kesi-g":"2019/03/mg_2598.jpg","ricki-ticki":"2019/03/mg_3409.jpg","purplereign":"2020/01/mg_8263.jpg","fabricki":"2020/01/mg_8295.jpg","black-gold":"2020/01/mg_1483-2.jpg","mcavelle-returns":"2020/02/mg_1894.jpg","falling-edge":"2021/02/share-24fb74e0-94c3-4bb7-b441-737eb082a940.jpg","bk":"2022/08/mg_9156.jpg","swove-in-ledish":"2024/09/img_7884.jpg","kraka":"2024/09/img_6780.jpg"};
 
 function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
 function fmtDate(s){const d=new Date(s.replace(' ','T')+'-05:00');return d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});}
@@ -151,17 +156,22 @@ async function showIndex(){
   }).join('')}</div>
   <div class="pager">${Array.from({length:Math.ceil(items.length/perPage)},(_,i)=>i+1).map(n=>`<button class="${n===page?'active':''}" onclick="location.href='?p=${n}${cat?'&cat='+encodeURIComponent(cat):''}'">${n}</button>`).join('')}</div>`;
 }
+function frontValue(front,key){const m=front.match(new RegExp('^'+key+':\\s*["\\']?([^\\n"\\']+)','m'));return m?m[1].trim():'';}
+function frontList(front,key){const m=front.match(new RegExp('^'+key+':\\s*\\n((?:\\s+-.*\\n?)*)','m'));if(!m)return[];return m[1].split('\\n').map(x=>x.replace(/^\\s+-\\s*/,'').replace(/^["']|["']$/g,'').trim()).filter(Boolean);}
 async function showPost(slug){
   const items=await loadManifest();
   const p=items.find(x=>x.slug===slug);
   if(!p) throw new Error('Post not found.');
   const src=await loadPostSource(p);
+  const tags=frontList(src.front||'','tags');
+  const author=frontValue(src.front||'','author')||'lebosslynch';
+  const modified=frontValue(src.front||'','modified');
+  const hero=FEATURED[slug]?RAW+'assets/uploads/'+FEATURED[slug]:firstImg(src.body);
   document.title=p.title+' — by LYNCH Preview';
-  app.innerHTML=`<div class="postwrap">
-    <a class="back" href="./">← Back to journal</a>
-    <header class="posthead"><div class="eyebrow">${esc((p.categories||[]).join(' · '))}</div><h1>${esc(p.title)}</h1><div class="date">${fmtDate(p.date)}</div></header>
-    <div class="postbody">${rewriteMedia(src.body)}</div>
-  </div>`;
+  app.className='post-main-preview';
+  app.innerHTML=`<header class="hero-preview">${hero?`<img src="${hero}" alt="">`:''}<div class="hero-inner"><div class="hero-cat">${esc((p.categories||[]).join(' · '))}</div><h1>${esc(p.title)}</h1></div></header>
+  <div class="single-shell"><aside class="meta-rail"><span>${fmtDate(p.date)}</span>${modified?`<span>Updated ${fmtDate(modified.split(' ')[0]+' 00:00:00')}</span>`:''}<span>${esc(author)}</span>${tags.length?`<span>${esc(tags.join(', '))}</span>`:''}</aside><article class="single-body">${rewriteMedia(src.body)}</article></div>
+  ${p.comments?`<section class="single-comments"><h2>${p.comments} Comment${p.comments===1?'':'s'}</h2><p style="color:#777">Archived WordPress comments are preserved in the migrated post source.</p></section>`:''}`;
 }
 async function showPage(name){
   const path=name==='about'?'about/index.html':'contact/index.html';
@@ -175,7 +185,7 @@ async function showPage(name){
  try{
   if(qp.get('post')) await showPost(qp.get('post'));
   else if(qp.get('page')) await showPage(qp.get('page'));
-  else await showIndex();
+  else {app.className='wrap main'; await showIndex();}
  }catch(e){app.innerHTML='<div class="status"><strong>Preview error:</strong> '+esc(e.message)+'</div>';}
 })();
 </script>
