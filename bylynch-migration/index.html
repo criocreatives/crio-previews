@@ -156,8 +156,23 @@ async function showIndex(){
   }).join('')}</div>
   <div class="pager">${Array.from({length:Math.ceil(items.length/perPage)},(_,i)=>i+1).map(n=>`<button class="${n===page?'active':''}" onclick="location.href='?p=${n}${cat?'&cat='+encodeURIComponent(cat):''}'">${n}</button>`).join('')}</div>`;
 }
-function frontValue(front,key){const m=front.match(new RegExp('^'+key+':\\s*["\\']?([^\\n"\\']+)','m'));return m?m[1].trim():'';}
-function frontList(front,key){const m=front.match(new RegExp('^'+key+':\\s*\\n((?:\\s+-.*\\n?)*)','m'));if(!m)return[];return m[1].split('\\n').map(x=>x.replace(/^\\s+-\\s*/,'').replace(/^["']|["']$/g,'').trim()).filter(Boolean);}
+function frontValue(front,key){
+  const line=(front||'').split('\n').find(x=>x.startsWith(key+':'));
+  if(!line)return '';
+  return line.slice(key.length+1).trim().replace(/^["']|["']$/g,'');
+}
+function frontList(front,key){
+  const lines=(front||'').split('\n');
+  const i=lines.findIndex(x=>x.trim()===key+':');
+  if(i<0)return[];
+  const out=[];
+  for(let n=i+1;n<lines.length;n++){
+    const line=lines[n];
+    if(!/^\s+-\s+/.test(line))break;
+    out.push(line.replace(/^\s+-\s+/,'').replace(/^["']|["']$/g,'').trim());
+  }
+  return out;
+}
 async function showPost(slug){
   const items=await loadManifest();
   const p=items.find(x=>x.slug===slug);
