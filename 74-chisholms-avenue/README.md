@@ -13,7 +13,7 @@ Prepared for **Oniel Stephens**.
 - `Image5.png` — Street & entrance view
 - `Image6.jpg` — Top-down site layout
 - `Image7.jpg` — Isometric design model
-- `Image8.jpg` — Site plan
+- `74 Chisholm Avenue Site mAp.jpg` — Site map
 
 ## Parking note
 
@@ -22,3 +22,7 @@ Five designated parking spaces are shown. When the yard is not in active loading
 Preview URL:
 
 https://previews.criocreatives.com/74-chisholms-avenue/
+
+## Video
+
+- `74 chisholm ave.mp4` — Project walkthrough video embedded on the preview page.
