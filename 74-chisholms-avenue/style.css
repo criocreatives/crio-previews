@@ -47,3 +47,8 @@ dialog{width:min(1480px,calc(100% - 40px));height:min(92vh,1000px);padding:0;bor
 .parking-note{margin-top:16px;padding:20px 22px;border:1px solid rgba(237,28,36,.35);border-radius:14px;background:linear-gradient(135deg,rgba(237,28,36,.08),rgba(255,255,255,.025))}
 .parking-note-label{display:block;margin-bottom:8px;color:var(--red);font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
 .parking-note p{margin:0;max-width:920px;color:var(--muted);font-size:13px;line-height:1.7}
+
+.walkthrough{padding-top:95px;padding-bottom:100px;border-top:1px solid var(--line)}
+.video-frame{overflow:hidden;border:1px solid var(--line);border-radius:16px;background:#050505;box-shadow:0 16px 46px rgba(0,0,0,.22)}
+.video-frame video{display:block;width:100%;height:auto;max-height:82vh;background:#050505}
+@media(max-width:640px){.walkthrough{padding-top:70px;padding-bottom:72px}.video-frame{border-radius:12px}}
