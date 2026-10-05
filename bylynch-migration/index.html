@@ -89,6 +89,25 @@ body:not(.single) .format-gallery.has-post-thumbnail{color:#fff;position:relativ
 @media(min-width:600px){.single .bk-redesign .entry-content{column-count:2}}
 @media(min-width:900px){.single .bk-redesign .entry-content{column-count:3}}
 @media(min-width:1250px){.single .bk-redesign .entry-content{column-count:4}}
+
+/* B***K redesign v2 */
+.bk-redesign{background:#000;color:#fff;padding:0 10px 40px}
+.bk-redesign .bk-post-meta{background:#fff;color:#111;border-radius:2px;padding:16px 18px;margin:10px 0;font-size:14px;line-height:1.45}
+.bk-redesign .bk-post-date{font-weight:700}.bk-redesign .bk-post-tags{margin-top:4px;font-weight:400}
+.single .bk-redesign .entry-content{display:grid!important;grid-template-columns:1fr;gap:10px;column-count:initial!important;width:100%!important;max-width:none!important}
+.bk-redesign .entry-content>*{margin:0!important;min-width:0}
+.bk-redesign .entry-content figure,.bk-redesign .entry-content .wp-block-image{width:100%;margin:0!important;padding:0;background:transparent}
+.bk-redesign .entry-content figure img,.bk-redesign .entry-content>img,.bk-redesign .entry-content .wp-block-image img{display:block;width:100%;height:auto;max-width:100%;border-radius:2px}
+.bk-redesign .entry-content>p,.bk-redesign .entry-content>blockquote,.bk-redesign .entry-content>h1,.bk-redesign .entry-content>h2,.bk-redesign .entry-content>h3,.bk-redesign .entry-content>h4,.bk-redesign .entry-content>h5,.bk-redesign .entry-content>h6{background:#151515;color:#f5f5f5;border-radius:2px;padding:18px}
+.bk-redesign .entry-content>p:empty{display:none}
+.bk-redesign .entry-content a{color:#ed1744;font-weight:700}
+.bk-redesign .comments-area{width:100%!important;margin:20px 0 0!important;padding:0!important;border:0!important;background:#000;color:#fff}
+.bk-redesign .comments-area h2{color:#fff;margin:0 0 10px}
+.bk-redesign .comment{background:#151515;color:#f5f5f5;border:0;border-radius:2px;padding:18px;margin:0 0 10px}
+.bk-redesign .comment-date{color:#999}
+@media(min-width:600px){.single .bk-redesign .entry-content{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:900px){.single .bk-redesign .entry-content{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1250px){.single .bk-redesign .entry-content{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style>
 </head>
 <body class="blog">
@@ -122,6 +141,20 @@ function fmtDate(s){const d=new Date(s.replace(' ','T')+'-05:00');return d.toLoc
 function splitPost(md){const parts=md.split(/^---\s*$/m);return parts.length>=3?{front:parts[1],body:parts.slice(2).join('---')}:{front:'',body:md};}
 function frontValue(front,key){const line=(front||'').split('\n').find(x=>x.startsWith(key+':'));if(!line)return '';return line.slice(key.length+1).trim().replace(/^["']|["']$/g,'');}
 function frontList(front,key){const lines=(front||'').split('\n'),i=lines.findIndex(x=>x.trim()===key+':');if(i<0)return[];const out=[];for(let n=i+1;n<lines.length;n++){if(!/^\s+-\s+/.test(lines[n]))break;out.push(lines[n].replace(/^\s+-\s+/,'').replace(/^["']|["']$/g,'').trim());}return out;}
+function archivedComments(front){
+  const lines=(front||'').split('\n'),start=lines.findIndex(x=>x.trim()==='archived_comments:');
+  if(start<0)return[];
+  const out=[];let cur=null;
+  for(let i=start+1;i<lines.length;i++){
+    const line=lines[i];
+    if(/^\S/.test(line))break;
+    let m=line.match(/^\s{2}- author:\s*["']?(.*?)["']?\s*$/);
+    if(m){if(cur)out.push(cur);cur={author:m[1],date:'',content:''};continue;}
+    m=line.match(/^\s{4}date:\s*["']?(.*?)["']?\s*$/);if(m&&cur){cur.date=m[1];continue;}
+    m=line.match(/^\s{4}content:\s*["']?(.*?)["']?\s*$/);if(m&&cur){cur.content=m[1].replace(/\\n/g,' ').replace(/<[^>]+>/g,' ').trim();continue;}
+  }
+  if(cur)out.push(cur);return out;
+}
 function rewriteMedia(html){return html.replaceAll('src="/assets/uploads/','src="'+RAW+'assets/uploads/').replaceAll('href="/assets/uploads/','href="'+RAW+'assets/uploads/');}
 function firstImg(body){const m=body.match(/<img[^>]+src=["']([^"']+)["']/i);if(!m)return '';let src=m[1];if(src.startsWith('/assets/uploads/'))src=RAW+'assets/uploads/'+src.slice('/assets/uploads/'.length);return src;}
 function cleanText(body){return body.replace(/<!--[sS]*?-->/g,' ').replace(/<figure[sS]*?<\/figure>/gi,' ').replace(/<img[^>]*>/gi,' ').replace(/<[^>]+>/g,' ').replace(/&nbsp;/gi,' ').replace(/&amp;/gi,'&').replace(/&#8217;/g,"’").replace(/&#8220;|&#8221;/g,'"').replace(/\s+/g,' ').trim();}
@@ -145,7 +178,11 @@ async function showIndex(){
 async function showPost(slug){
   document.body.className='single';const items=await loadManifest(),p=items.find(x=>x.slug===slug);if(!p)throw new Error('Post not found.');const src=await loadPostSource(p),tags=frontList(src.front||'','tags'),author=frontValue(src.front||'','author')||'lebosslynch',modified=frontValue(src.front||'','modified'),hero=FEATURED[slug]?RAW+'assets/uploads/'+FEATURED[slug]:firstImg(src.body);
   document.title=p.title+' — by LYNCH Preview';
-  app.innerHTML=`<header class="entry-header entry-hero"><div class="post-thumbnail">${hero?'<img data-featured-image src="'+hero+'" alt="">':'<img data-featured-image alt="">'}</div><div class="entry-header-wrapper"><div class="entry-header-inner"><div class="entry-meta">${esc((p.categories||[]).join(', '))}</div><h1 class="entry-title">${esc(p.title)}</h1></div></div></header><div class="site-content-inner${slug==='bk'?' bk-redesign':''}"><div class="content-area"><main class="site-main"><article class="hentry single-entry"><div class="entry-content">${rewriteMedia(src.body)}</div><footer class="entry-footer"><span>${fmtDate(p.date)}</span>${modified?'<span>'+fmtDate(modified.split(' ')[0]+' 00:00:00')+'</span>':''}<span>${esc(author)}</span>${tags.length?'<span>'+esc(tags.join(', '))+'</span>':''}</footer></article>${p.comments?'<section class="comments-area"><h2>'+p.comments+' thought'+(p.comments===1?'':'s')+' on “'+esc(p.title)+'”</h2></section>':''}</main></div></div>`;
+  const isBk=slug==='bk',comments=archivedComments(src.front||'');
+  const meta=isBk?`<div class="bk-post-meta"><div class="bk-post-date">${fmtDate(p.date)}</div>${tags.length?`<div class="bk-post-tags"><em>${esc(tags.join(', '))}</em></div>`:''}</div>`:'';
+  const footer=isBk?'':`<footer class="entry-footer"><span>${fmtDate(p.date)}</span>${modified?'<span>'+fmtDate(modified.split(' ')[0]+' 00:00:00')+'</span>':''}<span>${esc(author)}</span>${tags.length?'<span>'+esc(tags.join(', '))+'</span>':''}</footer>`;
+  const commentsHtml=comments.length?`<section class="comments-area"><h2>${comments.length} thought${comments.length===1?'':'s'} on “${esc(p.title)}”</h2>${comments.map(c=>`<article class="comment"><div class="comment-author">${esc(c.author)} says:</div>${c.date?`<div class="comment-date">${esc(c.date)}</div>`:''}<div class="comment-body">${esc(c.content)}</div></article>`).join('')}</section>`:(p.comments?`<section class="comments-area"><h2>${p.comments} thought${p.comments===1?'':'s'} on “${esc(p.title)}”</h2></section>`:'');
+  app.innerHTML=`<header class="entry-header entry-hero"><div class="post-thumbnail">${hero?'<img data-featured-image src="'+hero+'" alt="">':'<img data-featured-image alt="">'}</div><div class="entry-header-wrapper"><div class="entry-header-inner"><div class="entry-meta">${esc((p.categories||[]).join(', '))}</div><h1 class="entry-title">${esc(p.title)}</h1></div></div></header><div class="site-content-inner${isBk?' bk-redesign':''}"><div class="content-area"><main class="site-main"><article class="hentry single-entry">${meta}<div class="entry-content">${rewriteMedia(src.body)}</div>${footer}</article>${commentsHtml}</main></div></div>`;
   const hi=document.querySelector('[data-featured-image]');if(hi){hi.onerror=()=>{const first=document.querySelector('.entry-content img');if(first&&hi.src!==first.src)hi.src=first.src;};if(!hi.getAttribute('src')){const first=document.querySelector('.entry-content img');if(first)hi.src=first.src;}}
   cleanImageLists(app);
 }
