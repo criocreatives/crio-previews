@@ -71,6 +71,24 @@ body:not(.single) .format-gallery.has-post-thumbnail{color:#fff;position:relativ
   .main-navigation{float:none;flex:1 1 auto;min-width:0;margin:-15px 0}
   .search-header{flex:0 0 60px;width:60px;height:60px;position:relative}
 }
+
+/* B***K experimental post redesign */
+.bk-redesign{width:100%;max-width:none;margin:0;padding:0 10px 40px;background:#000}
+.bk-redesign .content-area{width:100%;max-width:1600px;margin:0 auto}
+.single .bk-redesign .site-main{width:100%;max-width:none;margin:0;padding:10px 0 0}
+.bk-redesign .single-entry{width:100%;padding:0;overflow:visible}
+.single .bk-redesign .entry-content{float:none;width:100%;column-count:1;column-gap:10px;font-size:16px;line-height:1.5}
+.bk-redesign .entry-content>*{break-inside:avoid;-webkit-column-break-inside:avoid;page-break-inside:avoid;margin:0 0 10px}
+.bk-redesign .entry-content figure,.bk-redesign .entry-content .wp-block-image{display:block;width:100%;margin:0 0 10px;padding:0;background:transparent}
+.bk-redesign .entry-content figure img,.bk-redesign .entry-content>img,.bk-redesign .entry-content .wp-block-image img{display:block;width:100%;max-width:100%;height:auto;margin:0;border-radius:2px}
+.bk-redesign .entry-content>p,.bk-redesign .entry-content>blockquote,.bk-redesign .entry-content>h1,.bk-redesign .entry-content>h2,.bk-redesign .entry-content>h3,.bk-redesign .entry-content>h4,.bk-redesign .entry-content>h5,.bk-redesign .entry-content>h6{padding:18px;background:#151515;color:#f5f5f5;border-radius:2px}
+.bk-redesign .entry-content>p:empty{display:none}
+.bk-redesign .entry-content blockquote p:last-child{margin-bottom:0}
+.bk-redesign .entry-content a{color:#fff}
+.bk-redesign .entry-footer{float:none;clear:both;width:100%;margin:0;padding:10px 0 0;color:#aaa}
+@media(min-width:600px){.single .bk-redesign .entry-content{column-count:2}}
+@media(min-width:900px){.single .bk-redesign .entry-content{column-count:3}}
+@media(min-width:1250px){.single .bk-redesign .entry-content{column-count:4}}
 </style>
 </head>
 <body class="blog">
@@ -127,7 +145,7 @@ async function showIndex(){
 async function showPost(slug){
   document.body.className='single';const items=await loadManifest(),p=items.find(x=>x.slug===slug);if(!p)throw new Error('Post not found.');const src=await loadPostSource(p),tags=frontList(src.front||'','tags'),author=frontValue(src.front||'','author')||'lebosslynch',modified=frontValue(src.front||'','modified'),hero=FEATURED[slug]?RAW+'assets/uploads/'+FEATURED[slug]:firstImg(src.body);
   document.title=p.title+' — by LYNCH Preview';
-  app.innerHTML=`<header class="entry-header entry-hero"><div class="post-thumbnail">${hero?'<img data-featured-image src="'+hero+'" alt="">':'<img data-featured-image alt="">'}</div><div class="entry-header-wrapper"><div class="entry-header-inner"><div class="entry-meta">${esc((p.categories||[]).join(', '))}</div><h1 class="entry-title">${esc(p.title)}</h1></div></div></header><div class="site-content-inner"><div class="content-area"><main class="site-main"><article class="hentry single-entry"><div class="entry-content">${rewriteMedia(src.body)}</div><footer class="entry-footer"><span>${fmtDate(p.date)}</span>${modified?'<span>'+fmtDate(modified.split(' ')[0]+' 00:00:00')+'</span>':''}<span>${esc(author)}</span>${tags.length?'<span>'+esc(tags.join(', '))+'</span>':''}</footer></article>${p.comments?'<section class="comments-area"><h2>'+p.comments+' thought'+(p.comments===1?'':'s')+' on “'+esc(p.title)+'”</h2></section>':''}</main></div></div>`;
+  app.innerHTML=`<header class="entry-header entry-hero"><div class="post-thumbnail">${hero?'<img data-featured-image src="'+hero+'" alt="">':'<img data-featured-image alt="">'}</div><div class="entry-header-wrapper"><div class="entry-header-inner"><div class="entry-meta">${esc((p.categories||[]).join(', '))}</div><h1 class="entry-title">${esc(p.title)}</h1></div></div></header><div class="site-content-inner${slug==='bk'?' bk-redesign':''}"><div class="content-area"><main class="site-main"><article class="hentry single-entry"><div class="entry-content">${rewriteMedia(src.body)}</div><footer class="entry-footer"><span>${fmtDate(p.date)}</span>${modified?'<span>'+fmtDate(modified.split(' ')[0]+' 00:00:00')+'</span>':''}<span>${esc(author)}</span>${tags.length?'<span>'+esc(tags.join(', '))+'</span>':''}</footer></article>${p.comments?'<section class="comments-area"><h2>'+p.comments+' thought'+(p.comments===1?'':'s')+' on “'+esc(p.title)+'”</h2></section>':''}</main></div></div>`;
   const hi=document.querySelector('[data-featured-image]');if(hi){hi.onerror=()=>{const first=document.querySelector('.entry-content img');if(first&&hi.src!==first.src)hi.src=first.src;};if(!hi.getAttribute('src')){const first=document.querySelector('.entry-content img');if(first)hi.src=first.src;}}
   cleanImageLists(app);
 }
