@@ -6,347 +6,127 @@
 <title>by LYNCH — Migration Preview</title>
 <meta name="robots" content="noindex,nofollow">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');700;900&family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap');700;900&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
-:root{--red:#ff1744;--ink:#111;--muted:#6f6f6f;--line:#e8e8e8;--max:1260px}
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+:root{--accent:#ed1744;--ink:#222;--muted:#777;--line:#ddd}
 *{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
 body{margin:0;background:#fff;color:var(--ink);font-family:Lato,Arial,sans-serif;font-size:16px;line-height:1.5}
-a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
-.previewbar{background:#111;color:#fff;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
-.previewbar .wrap{padding:10px 0}
-.wrap{width:90%;margin:0 auto}
-@media(min-width:768px){.wrap{width:648px}}
-@media(min-width:840px){.wrap{width:720px}}
-@media(min-width:960px){.wrap{width:840px}}
-@media(min-width:1080px){.wrap{width:960px}}
-@media(min-width:1380px){.wrap{width:1260px}}
-.sitehead{border-bottom:1px solid #ddd;background:#fff;padding:15px 0}
-.navrow{min-height:60px;display:flex;align-items:center;position:relative}
-.logo{display:flex;align-items:center;width:187px;min-width:187px;height:60px;margin-right:15px}
-.logo img{display:block;width:187px;height:60px;max-width:187px;max-height:60px;object-fit:contain;background:#000}
-.menu{display:flex;align-items:stretch;min-height:90px;border-left:1px solid #ddd;flex:1;margin-top:-15px;margin-bottom:-15px}
-.menu a{display:flex;align-items:center;padding:0 15px;border-right:1px solid #eee;font-family:Lato,sans-serif;font-size:13px;font-weight:700;line-height:1.54;white-space:nowrap;text-transform:none}
-.menu a.active{color:var(--red)}
-.searchbtn{margin-left:auto;width:60px;height:90px;display:grid;place-items:center;border-left:1px solid #eee;border-right:1px solid #ddd;font-family:Lato,sans-serif;font-size:24px;color:#e80832;margin-top:-15px;margin-bottom:-15px}
-.main{padding:60px 0 80px}
-.grid{display:block;overflow:hidden}
-.cardmeta{display:flex;justify-content:space-between;gap:15px;margin-bottom:15px;padding:5px 0;font-family:Lato,sans-serif;font-size:13px;line-height:1.54;color:#777;text-transform:uppercase}
-.card{position:relative;display:block;width:100%;height:100%;min-height:360px;background:#222;overflow:hidden;color:#fff}
-.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.7}
-.card:hover img{transform:scale(1.015)}
-.shade{position:absolute;inset:0;background:rgba(0,0,0,.3);z-index:1}
-.cardcopy{position:relative;z-index:2;padding:240px 30px 30px;color:#fff;text-shadow:rgba(0,0,0,.3) 0 0 .125em}
-.cardcopy h2{margin:0 0 15px;font-family:Lato,sans-serif;font-size:25px;line-height:1.2;font-weight:900;text-transform:none}
-.cardcopy p{margin:0;font-family:Lato,Arial,sans-serif;font-size:16px;line-height:1.5;display:block;overflow:visible}
-.cardcopy b{font-weight:800}
-.pager{display:flex;justify-content:center;gap:10px;margin-top:58px}
-.pager button{border:1px solid #ddd;background:#fff;padding:9px 12px;cursor:pointer}
-.pager button.active{background:#111;color:#fff;border-color:#111}
-.postwrap{max-width:920px;margin:auto}
-.back{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
-.posthead{margin:25px 0 36px}
-.posthead .eyebrow{font-size:12px;color:#666;text-transform:uppercase;margin-bottom:12px}
-.posthead h1{font-family:Lato,Arial,sans-serif;font-size:clamp(42px,7vw,76px);line-height:1.02;margin:0 0 14px;font-weight:400}
-.posthead .date{font-size:12px;color:#777;text-transform:uppercase;letter-spacing:.08em}
-.postbody{font-family:Lato,Arial,sans-serif;font-size:18px;line-height:1.65}
-.postbody img{margin:28px auto;max-width:100%}
-.wp-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:28px 0}
-.wp-gallery figure{margin:0}.wp-gallery img{width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;margin:0}
-.embed{position:relative;padding-top:56.25%;margin:30px 0}.embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.footer{border-top:1px solid var(--line);padding:34px 0 50px;color:#777;font-size:12px}
-.status{padding:80px 0;text-align:center;color:#777}
-@media(max-width:980px){
-  .menu{overflow:auto}.menu a{padding:0 11px}
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 28px}
-}
-@media(max-width:680px){
-  .wrap{width:calc(100% - 24px)}
-  .navrow{display:block;padding:12px 0}
-  .logo img{width:145px;height:46px}.menu{min-height:auto;margin-top:12px;border:0;overflow:auto}
-  .menu a{padding:12px 10px;border:0;font-size:12px}.searchbtn{display:none}
-  .main{padding-top:34px}.grid{grid-template-columns:1fr}.card{aspect-ratio:1/1.05}
-}
-
-/* OG Gazette single-post treatment */
-.post-main-preview{padding:0 0 80px}.hero-preview{position:relative;background:#000;height:min(47vw,768px);min-height:440px;overflow:hidden}.hero-preview img{width:100%;height:100%;object-fit:cover}.hero-preview:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.75))}.hero-inner{position:absolute;z-index:2;left:50%;bottom:58px;transform:translateX(-50%);width:min(1260px,90%);color:#fff}.hero-inner .hero-cat{font-family:Lato,Arial,sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px}.hero-inner h1{margin:0;max-width:930px;font-family:Lato,Arial,sans-serif;font-size:clamp(44px,5vw,72px);line-height:1.04;font-weight:900}.single-shell{width:min(930px,90%);margin:60px auto 0;display:grid;grid-template-columns:270px 600px;gap:60px;align-items:start}.meta-rail{font-family:Lato,Arial,sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;color:#777}.meta-rail span{display:block;border-top:1px solid #eee;padding:7px 0}.meta-rail span:last-child{border-bottom:1px solid #eee}.single-body{width:600px;max-width:100%;font-family:Lato,Arial,sans-serif;font-size:16px;line-height:1.65}.single-body p{margin:0 0 28px}.single-body figure,.single-body .wp-block-image{margin:0 0 30px}.single-body img{display:block;width:auto;max-width:100%;height:auto;margin:0 auto}.single-body blockquote{margin:30px 0;padding-left:24px;border-left:4px solid #eee;color:#555;font-style:italic}.single-body blockquote.has-text-align-right{text-align:right;padding-left:0;padding-right:24px;border-left:0;border-right:4px solid #eee}.single-body .wp-gallery,.single-body .wp-block-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:30px 0}.single-body .wp-gallery figure,.single-body .wp-block-gallery figure{margin:0}.single-body .wp-gallery img,.single-body .wp-block-gallery img{width:100%;height:100%;object-fit:cover}.single-comments{width:min(600px,90%);margin:60px calc((100% - 930px)/2) 0 auto;border-top:1px solid #ddd;padding-top:60px}.single-comments h2{font-size:24px}.menu-parent{position:relative;display:flex}.submenu{display:none;position:absolute;left:0;top:100%;min-width:210px;background:#fff;border:1px solid #ddd;z-index:20;box-shadow:0 4px 12px rgba(0,0,0,.08)}.submenu a{display:block!important;padding:12px 14px!important;border:0!important}.menu-parent:hover .submenu{display:block}
-@media(max-width:760px){.hero-preview{height:62vw;min-height:300px}.hero-inner{bottom:28px}.hero-inner h1{font-size:42px}.single-shell{display:block;width:calc(100% - 28px);margin-top:36px}.meta-rail{margin-bottom:34px}.single-body{width:100%}.single-comments{width:calc(100% - 28px);margin:40px auto 0;padding-top:36px}.submenu{display:none!important}}
-
-/* Mobile single-post fidelity to original Gazette theme */
-@media(max-width:959px){
-  .post-main-preview{padding:0 0 80px}
-  .hero-preview{height:auto;min-height:0;background:#fff;overflow:visible}
-  .hero-preview img{display:block;width:auto;max-width:100%;height:auto;margin:0 auto;background:#000}
-  .hero-preview:after{display:none}
-  .hero-inner{position:relative;left:auto;bottom:auto;transform:none;width:90%;margin:0 auto;color:#222;padding:30px 0 0}
-  .hero-inner .hero-cat{font-family:Lato,Arial,sans-serif;font-size:13px;line-height:1.54;color:#e80832;text-transform:uppercase;margin:0 0 5px}
-  .hero-inner h1{font-family:Lato,Arial,sans-serif;font-size:39px;line-height:1.54;font-weight:900;color:#222;margin:0}
-  .single-shell{width:90%;margin:30px auto 0;display:flex;flex-direction:column;gap:0}
-  .single-body{order:1;width:100%;max-width:none;font-family:Lato,Arial,sans-serif;font-size:16px;line-height:1.5}
-  .single-body p{margin:0 0 30px}
-  .single-body figure{margin:0 0 30px}
-  .single-body img{display:block;width:auto;max-width:100%;height:auto;margin:0 auto}
-  .single-body blockquote{color:#555;font-style:italic;margin:0 0 30px;padding:0;border:0}
-  .meta-rail{order:2;width:100%;margin:0 0 30px;font-family:Lato,Arial,sans-serif;font-size:13px;line-height:1.54;text-transform:uppercase;color:#777}
-  .meta-rail span{display:block;border-top:1px solid #eee;padding:5px 0}
-  .meta-rail span:last-child{border-bottom:1px solid #eee}
-  .single-comments{width:90%;margin:30px auto 0;padding-top:30px;border-top:1px solid #ddd}
-  .single-comments h2{font-family:Lato,Arial,sans-serif;font-size:25px;line-height:1.2;font-weight:900;margin:0 0 30px}
-}
-@media(min-width:960px){
-  .hero-preview{height:auto;min-height:440px;max-height:768px}
-  .hero-preview img{width:100%;height:auto;min-height:440px;max-height:768px;object-fit:cover}
-  .hero-inner{bottom:60px}
-  .hero-inner h1{font-family:Lato,Arial,sans-serif;font-size:clamp(44px,5vw,72px);font-weight:900}
-  .single-body{font-family:Lato,Arial,sans-serif}
-}
-
-.menu-toggle{display:none}
-@media(max-width:680px){
-  .sitehead{padding:15px 0}
-  .navrow{min-height:60px;display:block;padding:0}
-  .logo{display:block;padding-right:75px;max-width:270px}
-  .logo img{max-height:60px;max-width:187px}
-  .menu-toggle{display:block;position:absolute;right:0;top:50%;transform:translateY(-50%);width:60px;height:62px;background:#fff;border:1px solid #ddd;z-index:30}
-  .menu-toggle span{display:block;width:16px;height:2px;background:var(--red);margin:3px auto}
-  .menu{display:none;position:absolute;top:75px;left:0;width:100%;min-height:0;margin:0;padding:30px;background:#fff;border:1px solid #ddd;box-shadow:0 5px 15px rgba(0,0,0,.075);z-index:25}
-  .menu.toggled{display:block}
-  .menu>a,.menu>.menu-parent{display:block;border:0!important;padding:8px 0!important;font-size:16px}
-  .submenu{position:static;display:block;border:0;box-shadow:none;padding-left:18px}
-  .submenu a{padding:5px 0!important}
-  .searchbtn{display:none}
-  .main{padding-top:30px}
-  .grid{grid-template-columns:1fr;gap:30px}
-  .grid article{border-top:1px solid #eee;padding-top:30px}
-  .grid article:first-child{border-top:0;padding-top:0}
-  .cardmeta{margin-bottom:15px}
-  .card{aspect-ratio:1/1}
-  .cardcopy{left:30px;right:30px;bottom:30px}
-  .cardcopy h2{font-size:25px;line-height:1.2;margin-bottom:30px}
-  .cardcopy p{font-size:16px;line-height:1.5;-webkit-line-clamp:4}
-  .hero-preview{height:auto;min-height:0;background:#000}
-  .hero-preview img{width:100%;height:auto;object-fit:contain}
-  .hero-preview:after{display:none}
-  .hero-inner{position:static;transform:none;width:calc(100% - 48px);padding:30px 0 0;color:#111}
-  .hero-inner .hero-cat{font-family:Lato,Arial,sans-serif;color:var(--red)}
-  .hero-inner h1{font-family:Lato,Arial,sans-serif;color:#111;font-size:39px;line-height:1.54}
-  .single-shell{display:block;width:calc(100% - 48px);margin-top:30px}
-  .meta-rail{margin-bottom:30px}
-  .single-body{width:100%;font-family:Lato,Arial,sans-serif;font-size:16px;line-height:1.5}
-}
-
-.archive-card{width:100%;margin:0 0 30px}
-@media(min-width:768px){
-  body{font-size:20px}
-  .archive-card{float:left;width:294px;margin-left:30px;margin-right:30px}
-  .archive-card:nth-of-type(2n+1){margin-left:0;clear:left}
-  .archive-card:nth-of-type(2n){margin-right:0;clear:right}
-}
-@media(min-width:840px){
-  .archive-card{width:330px}
-}
-@media(min-width:960px){
-  .archive-card{width:240px;margin-left:30px;margin-right:30px}
-  .archive-card:nth-of-type(2n),.archive-card:nth-of-type(2n+1){margin-left:30px;margin-right:30px;clear:none}
-  .archive-card:nth-of-type(3n+1){margin-left:0;clear:left}
-  .archive-card:nth-of-type(3n+3){margin-right:0;clear:right}
-}
-@media(min-width:1080px){
-  .archive-card{width:280px}
-}
-@media(min-width:1380px){
-  .archive-card{width:380px}
-}
-@media(min-width:840px){
-  .menu-toggle{display:none!important}
-  .menu{display:flex!important}
-}
-
-/* Final mobile fixes from live Gazette comparison */
-.menu-toggle span{display:none!important}
-.menu-toggle::before{
-  content:"";position:absolute;left:50%;top:50%;width:16px;height:2px;
-  background:var(--red);transform:translate(-50%,-50%);
-  box-shadow:0 -5px 0 var(--red),0 5px 0 var(--red)
-}
-@media(max-width:839px){
-  .menu-toggle{display:block!important}
-  .menu{display:none!important}
-  .menu.toggled{display:block!important}
-}
-@media(max-width:680px){
-  .card{height:auto!important;min-height:0!important;aspect-ratio:1.08/1!important}
-  .cardcopy{position:absolute!important;left:30px!important;right:30px!important;bottom:30px!important;padding:0!important}
-  .cardcopy h2{margin:0 0 30px!important;font-size:25px!important;line-height:1.2!important}
-  .cardcopy p{font-size:16px!important;line-height:1.5!important;display:block!important;overflow:hidden!important;max-height:72px}
-  .hero-preview{background:#fff!important;overflow:visible!important}
-  .hero-inner{background:#fff!important;color:#111!important}
-  .hero-inner .hero-cat{color:var(--red)!important}
-  .hero-inner h1{color:#111!important}
-  .single-body ul:has(img),.single-body ol:has(img),.single-body li:has(img){list-style:none!important}
-  .single-body ul:has(img),.single-body ol:has(img){padding-left:0!important;margin-left:0!important}
-  .single-body li:has(img){padding-left:0!important;margin-left:0!important}
-}
+a{color:inherit;font-weight:700;text-decoration:none}img{max-width:100%;height:auto;border:0}figure{margin:0 0 30px}p{margin-top:0}h1,h2,h3,h4,h5,h6{font-family:Lato,Arial,sans-serif;font-weight:900;margin-top:0}
+.previewbar{background:#111;color:#fff;font:700 10px/1.4 Lato,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.previewbar-inner{width:90%;margin:auto;padding:10px 0}
+.screen-reader-text{clip:rect(1px,1px,1px,1px);clip-path:inset(50%);height:1px;overflow:hidden;position:absolute!important;width:1px;white-space:nowrap}
+.site-header{background:#fff;border-bottom:1px solid var(--line);padding:15px 0;position:relative;width:100%}
+.site-header-inner,.site-content-inner,.site-footer-inner,.entry-header-inner,.content-area{width:90%;margin:0 auto}
+.site-header-inner{position:relative;min-height:60px}
+.site-branding{float:left;padding-right:75px;position:relative;width:100%}
+.site-logo-link{align-items:center;display:flex;justify-content:flex-start;min-height:30px;max-height:60px;max-width:270px}
+.site-logo-link img{display:block;height:auto;max-height:60px;max-width:100%;width:auto}
+.menu-toggle{background:#fff;border:1px solid var(--line);height:62px;margin-top:-31px;padding:0;position:absolute;right:0;top:50%;width:60px;z-index:3}
+.menu-toggle:before{content:"";position:absolute;left:50%;top:50%;width:16px;height:2px;background:var(--accent);transform:translate(-50%,-50%);box-shadow:0 -5px 0 var(--accent),0 5px 0 var(--accent)}
+.main-navigation{font:400 16px/1.875 Lato,Arial,sans-serif;margin:0;z-index:2}
+.main-navigation>div{display:none}
+.main-navigation.toggled>div{background:#fff;border:1px solid var(--line);box-shadow:0 5px 15px rgba(0,0,0,.075);display:block;position:absolute;top:100%;margin-top:15px;width:100%;left:0;padding:30px;z-index:9998}
+.main-navigation ul{border-bottom:1px solid #eee;list-style:none;margin:0;padding-left:0}
+.main-navigation li{border-top:1px solid #eee;padding:7.5px 0;position:relative}
+.main-navigation ul ul{display:none}.main-navigation ul ul.toggled{border-bottom:0;display:block;margin:-1px 0 -7.5px;padding-left:30px}
+.main-navigation a{color:#222;display:block}.main-navigation .current-menu-item>a{color:var(--accent)}
+.dropdown-toggle{background:#fff;border:1px solid var(--line);height:30px;margin-top:-15px;padding:0;position:absolute;right:0;top:50%;width:30px}
+.dropdown-toggle:before{content:"+";color:var(--accent);font:700 18px/28px Lato}.dropdown-toggle.toggled:before{content:"−"}
+.search-header{display:none}.search-toggle{display:none;background:#fff;border:1px solid var(--line);height:62px;margin-top:-31px;padding:0;position:absolute;right:0;top:50%;width:60px}
+.search-toggle:before{content:"";position:absolute;width:13px;height:13px;border:2px solid var(--accent);border-radius:50%;left:21px;top:20px}.search-toggle:after{content:"";position:absolute;width:8px;height:2px;background:var(--accent);transform:rotate(45deg);left:33px;top:34px}
+.site-main{margin-top:30px;overflow:hidden}.hentry{margin:0 0 30px}
+.blog .hentry{border-top:1px solid #eee;margin-bottom:0;padding-top:30px}.blog .hentry:first-of-type{border-top:0;padding-top:0}
+.entry-meta{font:400 13px/1.54 Lato,Arial,sans-serif;padding:5px 0;text-transform:uppercase;color:var(--muted);overflow:hidden}.cat-links{float:left}.comments-link{float:right}.long-meta .comments-link{clear:both;float:left}
+.entry-meta+.post-thumbnail{margin-top:15px}
+.entry-summary{font:400 16px/1.5 Lato,Arial,sans-serif;margin:30px 0 0;position:relative;word-wrap:break-word}.more-link{white-space:nowrap}
+.blog .hentry .entry-title{font-size:25px;line-height:1.2;margin:15px 0}
+body:not(.single) .format-gallery.has-post-thumbnail{color:#fff;position:relative;margin-bottom:30px;overflow:hidden}
+.format-gallery.has-post-thumbnail .entry-title a,.format-gallery.has-post-thumbnail .entry-summary a{color:#fff}
+.format-gallery.has-post-thumbnail .entry-title{margin:240px 0 0;padding:15px 30px;position:relative;text-shadow:0 0 .125em rgba(0,0,0,.3);z-index:1}
+.format-gallery.has-post-thumbnail .entry-summary{margin-top:0;padding:30px;position:relative;text-shadow:0 0 .125em rgba(0,0,0,.3);z-index:1}.format-gallery.has-post-thumbnail .entry-summary p{margin-bottom:0}
+.format-gallery .post-thumbnail{background-position:50% 50%;background-repeat:no-repeat;background-size:cover;display:block;height:100%;margin:0;overflow:hidden;position:absolute;top:0;width:100%;z-index:0}
+.format-gallery .post-thumbnail:before{background:#000;content:"";display:block;height:100%;left:0;opacity:.3;position:absolute;top:0;width:100%}
+.entry-hero{position:relative}.entry-hero .post-thumbnail{background:#000;display:block;width:100%}.entry-hero .post-thumbnail img{display:block;margin:0 auto}
+.entry-header-wrapper{padding:30px 0 0;width:100%}.single .entry-title{font-size:39px;line-height:1.54;margin:0}.entry-hero .entry-meta{color:var(--accent)}
+.single .site-main{padding-top:30px}.single-entry{overflow:hidden}.entry-content{font:400 16px/1.5 Lato,Arial,sans-serif;margin:0}.entry-content p{margin:0 0 30px}.entry-content img{display:block;margin:0 auto}.entry-content .wp-block-image,.entry-content .wp-block-gallery{clear:both;margin-bottom:30px}
+.entry-content .wp-block-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.entry-content .wp-block-gallery figure{margin:0}.entry-content .wp-block-gallery img{width:100%;height:100%;object-fit:cover}
+.entry-content ul.image-list,.entry-content ol.image-list{list-style:none;padding-left:0;margin-left:0}.entry-content li.image-item{list-style:none;margin-left:0;padding-left:0}
+.entry-content blockquote{font-style:italic;margin:0 0 30px}.entry-content .has-text-align-center{text-align:center}.entry-content .has-text-align-right{text-align:right}
+.entry-footer{color:var(--muted);display:block;font:700 13px/1.54 Lato,Arial,sans-serif;margin-bottom:30px;text-transform:uppercase;width:100%}.entry-footer span{border-top:1px solid #eee;display:block;padding:5px 0}.entry-footer span:last-of-type{border-bottom:1px solid #eee}
+.comments-area{border-top:1px solid var(--line);margin-top:30px;padding-top:30px}.comments-area h2{font-size:25px;line-height:1.2}.comment{border-bottom:1px solid #eee;padding:22px 0}
+.site-footer{border-top:1px solid var(--line);font-size:13px;line-height:1.845;padding:15px 0;color:var(--muted);margin-top:30px}.pager{width:90%;margin:30px auto;display:flex;justify-content:center;gap:8px}.pager button{background:#fff;border:1px solid #ddd;padding:8px 11px}.pager button.active{background:#111;color:#fff}
+.status{width:90%;margin:60px auto;color:#777}
+@media(min-width:600px){.menu-toggle{right:59px}.search-header,.search-toggle{display:block}.site-branding{padding-right:135px}.site-main{margin-top:60px}.blog .hentry{margin-bottom:30px;padding-top:60px}.single .site-main{padding-top:60px}.entry-header-wrapper{padding-top:60px}.comments-area{padding-top:60px}}
+@media(min-width:768px){body{font-size:20px}.site-header-inner,.site-content-inner,.site-footer-inner,.entry-header-inner,.content-area{width:648px}.blog .hentry{float:left;width:294px;margin-left:30px;margin-right:30px;border-top:0;padding-top:0}.blog .hentry:nth-of-type(odd){margin-left:0;clear:left}.blog .hentry:nth-of-type(even){margin-right:0;clear:right}}
+@media(min-width:840px){.site-header-inner,.site-content-inner,.site-footer-inner,.entry-header-inner,.content-area{width:720px}.blog .hentry{width:330px}.menu-toggle{display:none}.main-navigation{float:left;padding-right:60px;position:relative;border-left:1px solid var(--line);margin:-15px 0 -15px 15px;padding-top:15px;padding-bottom:15px}.main-navigation>div{display:block}.main-navigation ul{border-bottom:0}.main-navigation li{border-top:0;float:left;padding:0 15px}.main-navigation .nav-menu>li+li{border-left:1px solid #eee}.main-navigation ul ul{background:#fff;border:1px solid var(--line);box-shadow:0 5px 15px rgba(0,0,0,.075);float:left;padding:15px 0;position:absolute;top:1.875em;left:-999em;z-index:99999}.main-navigation ul ul li{background:#fff;float:none}.main-navigation ul ul a{width:208px}.main-navigation ul li:hover>ul{display:block;left:auto;margin-left:-16px}.main-navigation .menu-item-has-children{padding-right:38.5px}.main-navigation .menu-item-has-children>a:after{content:"⌄";color:var(--accent);position:absolute;right:15px}.site-branding{max-width:100%;padding-right:0;width:auto}.search-toggle{display:block}}
+@media(min-width:960px){.site-header-inner,.site-content-inner,.site-footer-inner,.entry-header-inner,.content-area{width:840px}.blog .hentry{width:240px;margin-left:30px;margin-right:30px}.blog .hentry:nth-of-type(odd),.blog .hentry:nth-of-type(even){margin-left:30px;margin-right:30px;clear:none}.blog .hentry:nth-of-type(3n+1){margin-left:0;clear:left}.blog .hentry:nth-of-type(3n+3){margin-right:0;clear:right}.single .site-main{width:615px}.entry-header-wrapper{background:linear-gradient(to bottom,transparent,rgba(0,0,0,.7));bottom:0;left:0;padding-bottom:60px;position:absolute}.entry-hero .entry-title,.entry-hero .entry-meta{color:#fff;max-width:930px;text-shadow:0 0 .125em rgba(0,0,0,.3)}.entry-hero .post-thumbnail img{width:100%;max-height:768px;object-fit:cover}.single-entry{padding-right:60px}}
+@media(min-width:1080px){.site-header-inner,.site-content-inner,.site-footer-inner,.entry-header-inner,.content-area{width:960px}.blog .hentry{width:280px}.single .site-main{width:705px}}
+@media(min-width:1380px){.site-header-inner,.site-content-inner,.site-footer-inner,.entry-header-inner,.content-area{width:1260px}.blog .hentry{width:380px}.single .site-main{width:930px}.single .entry-content{float:right;width:540px}.entry-footer{float:left;width:270px}.comments-area{clear:both;margin-left:330px;width:600px}}
 </style>
 </head>
-<body>
-<div class="previewbar"><div class="wrap">Migration Preview · Not Live</div></div>
-<header class="sitehead">
-  <div class="wrap navrow">
-    <a class="logo" href="./"><img src="./assets/lynch-logo.svg" alt="LYNCH"></a>
-    <button class="menu-toggle" type="button" aria-expanded="false"><span></span><span></span><span></span></button><nav class="menu">
-      <a class="active" href="./">HOME</a>
-      <a href="https://gumroad.com/seenbylynch" target="_blank" rel="noopener">STORE</a>
-      <a href="?cat=FILM">FILM</a>
-      <div class="menu-parent"><a href="?cat=CULTURE">CULTURE &amp; ARTS</a><div class="submenu"><a href="?tag=music">MUSIC</a><a href="?cat=ARTS">ARTS</a><a href="?cat=NEW%20WAVE">NEW WAVE</a></div></div>
-      <a href="https://www.flickr.com/photos/lebosslynch/albums" target="_blank" rel="noopener">PHOTOGRAPHY</a>
-      <div class="menu-parent"><a href="?tag=series">SERIES</a><div class="submenu"><a href="?cat=KNIGHT%20LOVE%20L%E2%80%99S">KNIGHT LOVE L’S</a><a href="?cat=PHOTO%20SET">PHOTO SETS</a><a href="?cat=PIXTAPE">PIXTAPE</a></div></div>
-      <a href="https://www.instagram.com/lebosslynch/" target="_blank" rel="noopener">INSTAGRAM</a>
-      <a href="?page=about">about LYNCH</a>
+<body class="blog">
+<div class="previewbar"><div class="previewbar-inner">Migration Preview · Not Live</div></div>
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="site-branding"><a class="site-logo-link" href="./"><img src="./assets/lynch-logo.svg" alt="LYNCH"></a></div>
+    <nav id="site-navigation" class="main-navigation" aria-label="Primary Menu">
+      <button class="menu-toggle" type="button" aria-expanded="false"><span class="screen-reader-text">Primary Menu</span></button>
+      <div class="menu-primary-container">
+        <ul class="nav-menu">
+          <li class="current-menu-item"><a href="./">HOME</a></li><li><a href="https://gumroad.com/seenbylynch" target="_blank">STORE</a></li><li><a href="?cat=FILM">FILM</a></li>
+          <li class="menu-item-has-children"><a href="?cat=CULTURE">CULTURE &amp; ARTS</a><ul class="sub-menu"><li><a href="?tag=music">MUSIC</a></li><li><a href="?cat=ARTS">ARTS</a></li><li><a href="?cat=NEW%20WAVE">NEW WAVE</a></li></ul></li>
+          <li><a href="https://www.flickr.com/photos/lebosslynch/albums" target="_blank">PHOTOGRAPHY</a></li>
+          <li class="menu-item-has-children"><a href="?tag=series">SERIES</a><ul class="sub-menu"><li><a href="?cat=KNIGHT%20LOVE%20L%E2%80%99S">KNIGHT LOVE L’S</a></li><li><a href="?cat=PHOTO%20SET">PHOTO SETS</a></li><li><a href="?cat=PIXTAPE">PIXTAPE</a></li></ul></li>
+          <li><a href="https://instagram.com/lebosslynch/" target="_blank">INSTAGRAM</a></li><li><a href="?page=about">about LYNCH</a></li>
+        </ul>
+      </div>
     </nav>
-    <div class="searchbtn">⌕</div>
+    <div class="search-header"><button class="search-toggle" type="button" aria-label="Search"></button></div>
   </div>
 </header>
-<main class="wrap main" id="app"><div class="status">Loading migration preview…</div></main>
-<footer class="footer"><div class="wrap">by LYNCH · WordPress → GitHub migration preview</div></footer>
+<div id="app"><div class="status">Loading migration preview…</div></div>
+<footer class="site-footer"><div class="site-footer-inner">by LYNCH · WordPress → GitHub migration preview</div></footer>
 <script>
 const RAW='https://raw.githubusercontent.com/criocreatives/byLYNCH/wordpress-migration/';
-const app=document.getElementById('app');
-const mt=document.querySelector('.menu-toggle'),mn=document.querySelector('.menu');if(mt&&mn){mt.addEventListener('click',()=>{const on=mn.classList.toggle('toggled');mt.setAttribute('aria-expanded',on?'true':'false');});}
-const qp=new URLSearchParams(location.search);
-const perPage=12;
 const FEATURED={"another-not-lit-christmas-eve":"2016/12/img_4713.jpg","mcavelle":"2016/12/mcavellc3a9.jpg","hotel-in-kingston":"2016/12/img_3125.jpg","dont-need":"2017/01/img_9773.jpg","the-disease":"2017/01/img_2563.jpg","anchor-studio-with-runkus":"2017/01/img_8977.jpg","omelette":"2017/01/img_9859.jpg","alpine-compound":"2017/01/img_0095.jpg","jada-the-iphone":"2017/01/mg_3845.jpg","raj-the-pretty-dress":"2017/01/img_5676.jpg","boaty-ft-pedro-deniro":"2017/01/img_5606.png","riviere-flechir":"2017/01/img_6001.jpg","god-ting":"2017/01/img_9088.jpg","sherlock-shenanigans":"2017/01/img_6264.jpg","saturday-night-blues-w-yanah-kone":"2017/01/img_6689.jpg","h-e-a-l-i-n-g-in-tivoli-gardens":"2017/01/img_4489.jpg","jungle-flex-w-hiidden-fvces":"2017/02/img_7403.jpg","yada":"2017/02/img_4682-2.jpg","new-wave-february-6-2017":"2017/02/img_8264-2.jpg","belisario-the-soundboy-by-leasho-johnson":"2017/02/mg_8573.jpg","compound-live":"2017/03/mg_7279.jpg","hail-who-hail-you":"2017/04/img_9942.jpg","tsajmelle":"2017/04/mg_8769-e1493052866531.jpg","naked-lady":"2017/05/mg_0792-1.jpg","light-skin-stop-wear":"2017/07/mg_4445.jpg","the-roze-the-rimz":"2017/07/mg_3918-1.jpg","unsicher":"2017/09/img_2810.jpg","sblv1":"2017/10/sblv1-promo2.jpg","red-october":"2017/10/mg_8782.jpg","tuyo":"2017/10/screenshot-31-e1509166962562.png","codeine-crazy":"2017/11/mg_9153.jpg","dubwise-ft-chronixx-friends":"2017/11/mg_0687.jpg","chocolate":"2017/11/mg_1010.jpg","my-gf":"2017/12/mg_2768.jpg","havana":"2018/01/mg_8518.jpg","phone-secks":"2018/03/mg_4530.jpg","russian-rickolette":"2018/03/mg_5378.jpg","no-rest-for-the-wicked-ft-jada-kingdom":"2018/06/mg_9431.jpg","something-like-a-dream":"2018/09/mg_7929.jpg","kingdom":"2018/09/mg_9407-2.jpg","lust":"2018/11/mg_8657-no-kltat.jpg","chloe-ana":"2019/02/mg_0359.jpg","kesi-g":"2019/03/mg_2598.jpg","ricki-ticki":"2019/03/mg_3409.jpg","purplereign":"2020/01/mg_8263.jpg","fabricki":"2020/01/mg_8295.jpg","black-gold":"2020/01/mg_1483-2.jpg","mcavelle-returns":"2020/02/mg_1894.jpg","falling-edge":"2021/02/share-24fb74e0-94c3-4bb7-b441-737eb082a940.jpg","bk":"2022/08/mg_9156.jpg","swove-in-ledish":"2024/09/img_7884.jpg","kraka":"2024/09/img_6780.jpg"};
-
+const app=document.getElementById('app'),qp=new URLSearchParams(location.search),perPage=12;
 function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
 function fmtDate(s){const d=new Date(s.replace(' ','T')+'-05:00');return d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});}
-function rewriteMedia(html){
-  return html
-    .replaceAll('src="/assets/uploads/','src="'+RAW+'assets/uploads/')
-    .replaceAll('href="/assets/uploads/','href="'+RAW+'assets/uploads/');
-}
-function splitPost(md){
-  const parts=md.split(/^---\s*$/m);
-  return parts.length>=3?{front:parts[1],body:parts.slice(2).join('---')}:{body:md};
-}
-function firstImg(body){
-  const m=body.match(/<img[^>]+src=["']([^"']+)["']/i);
-  if(!m) return '';
-  let src=m[1];
-  if(src.startsWith('/assets/uploads/')) src=RAW+'assets/uploads/'+src.slice('/assets/uploads/'.length);
-  return src;
-}
-function cardImg(p,body){
-  if(FEATURED[p.slug]) return RAW+'assets/uploads/'+FEATURED[p.slug];
-  return firstImg(body);
-}
-function stripText(body){
-  return body
-    .replace(/\[(gallery|caption|youtube|soundcloud)[^\]]*\]/gi,' ')
-    .replace(/<[^>]*>/g,' ')
-    .replace(/&nbsp;/gi,' ')
-    .replace(/&amp;/gi,'&')
-    .replace(/&#8217;/g,"'")
-    .replace(/\s+/g,' ')
-    .trim();
-}
-async function loadManifest(){
-  const r=await fetch(RAW+'migration-manifest.json',{cache:'no-store'});
-  if(!r.ok) throw new Error('Could not load migration manifest.');
-  return r.json();
-}
-async function loadPostSource(p){
-  const date=p.date.slice(0,10);
-  const r=await fetch(RAW+`_posts/${date}-${p.slug}.md`,{cache:'no-store'});
-  if(!r.ok) return {body:''};
-  return splitPost(await r.text());
-}
-function cardExcerpt(src){
-  const explicit=frontValue(src.front||'','excerpt');
-  if(explicit) return explicit;
-  const matches=[...(src.body||'').matchAll(/<p(?:\s[^>]*)?>([\s\S]*?)<\/p>/gi)];
-  for(const m of matches){
-    const t=stripText(m[1]);
-    if(t) return t;
-  }
-  return '';
-}
-function shortExcerpt(text,max=110){
-  text=(text||'').trim();
-  if(text.length<=max) return {text,cut:false};
-  let cut=text.slice(0,max).replace(/\s+\S*$/,'').trim();
-  return {text:cut,cut:true};
-}
+function splitPost(md){const parts=md.split(/^---\s*$/m);return parts.length>=3?{front:parts[1],body:parts.slice(2).join('---')}:{front:'',body:md};}
+function frontValue(front,key){const line=(front||'').split('\n').find(x=>x.startsWith(key+':'));if(!line)return '';return line.slice(key.length+1).trim().replace(/^["']|["']$/g,'');}
+function frontList(front,key){const lines=(front||'').split('\n'),i=lines.findIndex(x=>x.trim()===key+':');if(i<0)return[];const out=[];for(let n=i+1;n<lines.length;n++){if(!/^\s+-\s+/.test(lines[n]))break;out.push(lines[n].replace(/^\s+-\s+/,'').replace(/^["']|["']$/g,'').trim());}return out;}
+function rewriteMedia(html){return html.replaceAll('src="/assets/uploads/','src="'+RAW+'assets/uploads/').replaceAll('href="/assets/uploads/','href="'+RAW+'assets/uploads/');}
+function firstImg(body){const m=body.match(/<img[^>]+src=["']([^"']+)["']/i);if(!m)return '';let src=m[1];if(src.startsWith('/assets/uploads/'))src=RAW+'assets/uploads/'+src.slice('/assets/uploads/'.length);return src;}
+function cleanText(body){return body.replace(/<!--[sS]*?-->/g,' ').replace(/<figure[sS]*?<\/figure>/gi,' ').replace(/<img[^>]*>/gi,' ').replace(/<[^>]+>/g,' ').replace(/&nbsp;/gi,' ').replace(/&amp;/gi,'&').replace(/&#8217;/g,"’").replace(/&#8220;|&#8221;/g,'"').replace(/\s+/g,' ').trim();}
+function cardExcerpt(src){const explicit=frontValue(src.front||'','excerpt');if(explicit)return explicit;return cleanText(src.body);}
+function truncateWords(text,n=55){const w=(text||'').split(/\s+/).filter(Boolean);return {text:w.slice(0,n).join(' '),cut:w.length>n};}
+async function loadManifest(){const r=await fetch(RAW+'migration-manifest.json',{cache:'no-store'});if(!r.ok)throw new Error('Could not load migration manifest.');return r.json();}
+async function loadPostSource(p){const r=await fetch(RAW+'_posts/'+p.date.slice(0,10)+'-'+p.slug+'.md',{cache:'no-store'});if(!r.ok)return{front:'',body:''};return splitPost(await r.text());}
+function styleCards(){document.querySelectorAll('.blog .hentry.format-gallery.has-post-thumbnail').forEach(card=>{const meta=card.querySelector('.entry-meta'),thumb=card.querySelector('.post-thumbnail');if(!thumb)return;const top=(meta?meta.offsetHeight:0)+15;thumb.style.top=top+'px';thumb.style.height=Math.max(0,card.offsetHeight-top)+'px';if(meta){const a=meta.querySelector('.cat-links'),b=meta.querySelector('.comments-link');card.classList.toggle('long-meta',!!(a&&b&&a.offsetWidth+b.offsetWidth>=meta.offsetWidth));}});}
+function cleanImageLists(root=document){root.querySelectorAll('.entry-content li').forEach(li=>{if(li.querySelector('img')){li.classList.add('image-item');if(li.parentElement)li.parentElement.classList.add('image-list');}});}
 async function showIndex(){
-  let items=await loadManifest();
-  const cat=qp.get('cat');
-  if(cat) items=items.filter(x=>(x.categories||[]).some(c=>c.toUpperCase()===cat.toUpperCase()));
-  items.sort((a,b)=>b.date.localeCompare(a.date));
-  const page=Math.max(1,parseInt(qp.get('p')||'1',10));
-  const start=(page-1)*perPage;
-  const slice=items.slice(start,start+perPage);
+  document.body.className='blog';
+  let items=await loadManifest();const cat=qp.get('cat');if(cat)items=items.filter(x=>(x.categories||[]).some(c=>c.toUpperCase()===cat.toUpperCase()));items.sort((a,b)=>b.date.localeCompare(a.date));
+  const page=Math.max(1,parseInt(qp.get('p')||'1',10)),slice=items.slice((page-1)*perPage,page*perPage);
   const enriched=await Promise.all(slice.map(async p=>({p,src:await loadPostSource(p)})));
-  app.innerHTML=`<div class="grid">${enriched.map(({p,src})=>{
-    const img=cardImg(p,src.body);
-    const ex=shortExcerpt(cardExcerpt(src),110);
-    const excerpt=ex.text;
-    const comments=p.comments?(`${p.comments} comment${p.comments===1?'':'s'}`):'Leave a comment';
-    return `<article class="archive-card">
-      <div class="cardmeta"><span>${esc((p.categories||[]).join(', '))}</span><span>${comments}</span></div>
-      <a class="card" href="?post=${encodeURIComponent(p.slug)}">
-        ${img?`<img src="${img}" alt="">`:'<div style="position:absolute;inset:0;background:#222"></div>'}
-        <div class="shade"></div>
-        <div class="cardcopy"><h2>${esc(p.title)}</h2><p>${esc(excerpt)}${ex.cut?'… ':excerpt?' ':''}<b>Continue reading</b></p></div>
-      </a>
-    </article>`;
-  }).join('')}</div>
-  <div class="pager">${Array.from({length:Math.ceil(items.length/perPage)},(_,i)=>i+1).map(n=>`<button class="${n===page?'active':''}" onclick="location.href='?p=${n}${cat?'&cat='+encodeURIComponent(cat):''}'">${n}</button>`).join('')}</div>`;
-}
-function frontValue(front,key){
-  const line=(front||'').split('\n').find(x=>x.startsWith(key+':'));
-  if(!line)return '';
-  return line.slice(key.length+1).trim().replace(/^["']|["']$/g,'');
-}
-function frontList(front,key){
-  const lines=(front||'').split('\n');
-  const i=lines.findIndex(x=>x.trim()===key+':');
-  if(i<0)return[];
-  const out=[];
-  for(let n=i+1;n<lines.length;n++){
-    const line=lines[n];
-    if(!/^\s+-\s+/.test(line))break;
-    out.push(line.replace(/^\s+-\s+/,'').replace(/^["']|["']$/g,'').trim());
-  }
-  return out;
+  app.innerHTML='<div class="site-content-inner"><div class="content-area"><main class="site-main">'+enriched.map(({p,src})=>{
+    const img=FEATURED[p.slug]?RAW+'assets/uploads/'+FEATURED[p.slug]:firstImg(src.body),ex=truncateWords(cardExcerpt(src),55),comments=p.comments?(`${p.comments} Comment${p.comments===1?'':'s'}`):'Leave a comment';
+    return `<article class="hentry format-gallery has-post-thumbnail"><header class="entry-header"><div class="entry-meta"><span class="cat-links">${esc((p.categories||[]).join(', '))}</span><span class="comments-link">${comments}</span></div><a class="post-thumbnail" href="?post=${encodeURIComponent(p.slug)}" style="${img?'background-image:url(&quot;'+img+'&quot;)':''}"></a><h1 class="entry-title"><a href="?post=${encodeURIComponent(p.slug)}">${esc(p.title)}</a></h1></header><div class="entry-summary"><p>${esc(ex.text)}${ex.cut?'… ':ex.text?' ':''}<a class="more-link" href="?post=${encodeURIComponent(p.slug)}">Continue reading</a></p></div></article>`;
+  }).join('')+'</main><div class="pager">'+Array.from({length:Math.ceil(items.length/perPage)},(_,i)=>i+1).map(n=>`<button class="${n===page?'active':''}" onclick="location.href='?p=${n}${cat?'&cat='+encodeURIComponent(cat):''}'">${n}</button>`).join('')+'</div></div></div>';
+  requestAnimationFrame(styleCards);setTimeout(styleCards,250);
 }
 async function showPost(slug){
-  const items=await loadManifest();
-  const p=items.find(x=>x.slug===slug);
-  if(!p) throw new Error('Post not found.');
-  const src=await loadPostSource(p);
-  const tags=frontList(src.front||'','tags');
-  const author=frontValue(src.front||'','author')||'lebosslynch';
-  const modified=frontValue(src.front||'','modified');
-  const hero=FEATURED[slug]?RAW+'assets/uploads/'+FEATURED[slug]:firstImg(src.body);
+  document.body.className='single';const items=await loadManifest(),p=items.find(x=>x.slug===slug);if(!p)throw new Error('Post not found.');const src=await loadPostSource(p),tags=frontList(src.front||'','tags'),author=frontValue(src.front||'','author')||'lebosslynch',modified=frontValue(src.front||'','modified'),hero=FEATURED[slug]?RAW+'assets/uploads/'+FEATURED[slug]:firstImg(src.body);
   document.title=p.title+' — by LYNCH Preview';
-  app.className='post-main-preview';
-  app.innerHTML=`<header class="hero-preview">${hero?`<img src="${hero}" alt="">`:''}<div class="hero-inner"><div class="hero-cat">${esc((p.categories||[]).join(' · '))}</div><h1>${esc(p.title)}</h1></div></header>
-  <div class="single-shell"><article class="single-body">${rewriteMedia(src.body)}</article><aside class="meta-rail"><span>${fmtDate(p.date)}</span>${modified?`<span>${fmtDate(modified.split(' ')[0]+' 00:00:00')}</span>`:''}<span>${esc(author)}</span>${tags.length?`<span>${esc(tags.join(', '))}</span>`:''}</aside></div>
-  ${p.comments?`<section class="single-comments"><h2>${p.comments} Comment${p.comments===1?'':'s'}</h2><p style="color:#777">Archived WordPress comments are preserved in the migrated post source.</p></section>`:''}`;
+  app.innerHTML=`<header class="entry-header entry-hero"><div class="post-thumbnail">${hero?'<img data-featured-image src="'+hero+'" alt="">':'<img data-featured-image alt="">'}</div><div class="entry-header-wrapper"><div class="entry-header-inner"><div class="entry-meta">${esc((p.categories||[]).join(', '))}</div><h1 class="entry-title">${esc(p.title)}</h1></div></div></header><div class="site-content-inner"><div class="content-area"><main class="site-main"><article class="hentry single-entry"><div class="entry-content">${rewriteMedia(src.body)}</div><footer class="entry-footer"><span>${fmtDate(p.date)}</span>${modified?'<span>'+fmtDate(modified.split(' ')[0]+' 00:00:00')+'</span>':''}<span>${esc(author)}</span>${tags.length?'<span>'+esc(tags.join(', '))+'</span>':''}</footer></article>${p.comments?'<section class="comments-area"><h2>'+p.comments+' thought'+(p.comments===1?'':'s')+' on “'+esc(p.title)+'”</h2></section>':''}</main></div></div>`;
+  const hi=document.querySelector('[data-featured-image]');if(hi){hi.onerror=()=>{const first=document.querySelector('.entry-content img');if(first&&hi.src!==first.src)hi.src=first.src;};if(!hi.getAttribute('src')){const first=document.querySelector('.entry-content img');if(first)hi.src=first.src;}}
+  cleanImageLists(app);
 }
-async function showPage(name){
-  const path=name==='about'?'about/index.html':'contact/index.html';
-  const r=await fetch(RAW+path,{cache:'no-store'});
-  if(!r.ok) throw new Error('Could not load page.');
-  const src=splitPost(await r.text());
-  const title=name==='about'?'about LYNCH':'CONTACT';
-  app.innerHTML=`<div class="postwrap"><a class="back" href="./">← Back to journal</a><header class="posthead"><h1>${title}</h1></header><div class="postbody">${rewriteMedia(src.body)}</div></div>`;
-}
-(async()=>{
- try{
-  if(qp.get('post')) await showPost(qp.get('post'));
-  else if(qp.get('page')) await showPage(qp.get('page'));
-  else {app.className='wrap main'; await showIndex();}
- }catch(e){app.innerHTML='<div class="status"><strong>Preview error:</strong> '+esc(e.message)+'</div>';}
-})();
+async function showPage(name){document.body.className='';const path=name==='about'?'about/index.html':'contact/index.html',r=await fetch(RAW+path,{cache:'no-store'});if(!r.ok)throw new Error('Could not load page.');const src=splitPost(await r.text()),title=name==='about'?'about LYNCH':'CONTACT';app.innerHTML='<div class="site-content-inner"><div class="content-area"><main class="site-main"><article class="hentry"><h1>'+title+'</h1><div class="entry-content">'+rewriteMedia(src.body)+'</div></article></main></div></div>';cleanImageLists(app);}
+const nav=document.getElementById('site-navigation'),toggle=nav.querySelector('.menu-toggle');toggle.addEventListener('click',()=>{const on=nav.classList.toggle('toggled');toggle.setAttribute('aria-expanded',on?'true':'false');});
+document.querySelectorAll('.menu-item-has-children').forEach(li=>{const b=document.createElement('button');b.className='dropdown-toggle';b.type='button';b.setAttribute('aria-expanded','false');li.appendChild(b);b.addEventListener('click',e=>{e.preventDefault();const sub=li.querySelector('.sub-menu');if(!sub)return;const on=sub.classList.toggle('toggled');b.classList.toggle('toggled',on);b.setAttribute('aria-expanded',on?'true':'false');});});
+window.addEventListener('resize',()=>{clearTimeout(window.__r);window.__r=setTimeout(styleCards,120);});
+(async()=>{try{if(qp.get('post'))await showPost(qp.get('post'));else if(qp.get('page'))await showPage(qp.get('page'));else await showIndex();}catch(e){app.innerHTML='<div class="status"><strong>Preview error:</strong> '+esc(e.message)+'</div>';}})();
 </script>
 </body>
 </html>
