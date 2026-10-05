@@ -396,8 +396,8 @@ body.lightbox-open{overflow:hidden}
         <ul class="nav-menu">
           <li class="current-menu-item"><a href="./">HOME</a></li><li><a href="https://gumroad.com/seenbylynch" target="_blank">STORE</a></li><li><a href="?cat=FILM">FILM</a></li>
           <li class="menu-item-has-children"><a href="?cat=CULTURE">CULTURE &amp; ARTS</a><ul class="sub-menu"><li><a href="?tag=music">MUSIC</a></li><li><a href="?cat=ARTS">ARTS</a></li><li><a href="?cat=NEW%20WAVE">NEW WAVE</a></li></ul></li>
-          <li><a href="https://www.flickr.com/photos/lebosslynch/albums" target="_blank">PHOTOGRAPHY</a></li>
-          <li class="menu-item-has-children"><a href="?tag=series">SERIES</a><ul class="sub-menu"><li><a href="?cat=KNIGHT%20LOVE%20L%E2%80%99S">KNIGHT LOVE L’S</a></li><li><a href="?cat=PHOTO%20SET">PHOTO SETS</a></li><li><a href="?cat=PIXTAPE">PIXTAPE</a></li></ul></li>
+          <li><a href="./">ARCHIVE</a></li>
+          <li><a href="?cat=PIXTAPE">PIXTAPE</a></li>
           <li><a href="https://instagram.com/lebosslynch/" target="_blank">INSTAGRAM</a></li><li><a href="?page=about">about LYNCH</a></li>
         </ul>
       </div>
@@ -665,7 +665,12 @@ async function showIndex(){
   document.body.className='blog';
   archiveItems=await loadManifest();
   archiveCat=qp.get('cat')||'';
+  const archiveTag=qp.get('tag')||'';
   if(archiveCat)archiveItems=archiveItems.filter(x=>(x.categories||[]).some(c=>c.toUpperCase()===archiveCat.toUpperCase()));
+  if(archiveTag){
+    const tagged=await Promise.all(archiveItems.map(async p=>({p,src:await loadPostSource(p)})));
+    archiveItems=tagged.filter(({src})=>frontList(src.front||'','tags').some(t=>t.toLowerCase()===archiveTag.toLowerCase())).map(x=>x.p);
+  }
   archiveItems.sort((a,b)=>b.date.localeCompare(a.date));
   archiveLoaded=0;
   app.innerHTML='<div class="site-content-inner"><div class="content-area"><main class="site-main"></main><div class="older-posts-wrap"><button class="older-posts-button" type="button">OLDER POSTS</button></div></div></div>';
