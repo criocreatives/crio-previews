@@ -121,6 +121,11 @@ body:not(.single) .format-gallery.has-post-thumbnail{color:#fff;position:relativ
   padding-right:max(18px, calc((100vw - 1600px)/2 + 18px));
 }
 .single .bk-redesign .entry-content{grid-auto-rows:1px;grid-auto-flow:row;align-items:start}
+
+.bk-post-meta{width:100%;margin:0;padding:0;background:#fff;color:#111;border-radius:0}
+.bk-post-meta-inner{width:min(1600px,calc(100% - 20px));margin:0 auto;padding:16px 8px}
+.bk-redesign{padding-top:10px}
+.bk-redesign .bk-post-meta{display:none!important}
 </style>
 </head>
 <body class="blog">
@@ -208,10 +213,10 @@ async function showPost(slug){
   document.body.className='single';const items=await loadManifest(),p=items.find(x=>x.slug===slug);if(!p)throw new Error('Post not found.');const src=await loadPostSource(p),tags=frontList(src.front||'','tags'),author=frontValue(src.front||'','author')||'lebosslynch',modified=frontValue(src.front||'','modified'),hero=FEATURED[slug]?RAW+'assets/uploads/'+FEATURED[slug]:firstImg(src.body);
   document.title=p.title+' — by LYNCH Preview';
   const isBk=slug==='bk',comments=archivedComments(src.front||'');
-  const meta=isBk?`<div class="bk-post-meta"><div class="bk-post-date">${fmtDate(p.date)}</div>${tags.length?`<div class="bk-post-tags"><em>${esc(tags.join(', '))}</em></div>`:''}</div>`:'';
+  const meta=isBk?`<div class="bk-post-meta"><div class="bk-post-meta-inner"><div class="bk-post-date">${fmtDate(p.date)}</div>${tags.length?`<div class="bk-post-tags"><em>${esc(tags.join(', '))}</em></div>`:''}</div></div>`:'';
   const footer=isBk?'':`<footer class="entry-footer"><span>${fmtDate(p.date)}</span>${modified?'<span>'+fmtDate(modified.split(' ')[0]+' 00:00:00')+'</span>':''}<span>${esc(author)}</span>${tags.length?'<span>'+esc(tags.join(', '))+'</span>':''}</footer>`;
   const commentsHtml=comments.length?`<section class="comments-area"><h2>${comments.length} thought${comments.length===1?'':'s'} on “${esc(p.title)}”</h2>${comments.map(c=>`<article class="comment"><div class="comment-author">${esc(c.author)} says:</div>${c.date?`<div class="comment-date">${esc(c.date)}</div>`:''}<div class="comment-body">${esc(c.content)}</div></article>`).join('')}</section>`:(p.comments?`<section class="comments-area"><h2>${p.comments} thought${p.comments===1?'':'s'} on “${esc(p.title)}”</h2></section>`:'');
-  app.innerHTML=`<header class="entry-header entry-hero"><div class="post-thumbnail">${hero?'<img data-featured-image src="'+hero+'" alt="">':'<img data-featured-image alt="">'}</div><div class="entry-header-wrapper"><div class="entry-header-inner"><div class="entry-meta">${esc((p.categories||[]).join(', '))}</div><h1 class="entry-title">${esc(p.title)}</h1></div></div></header><div class="site-content-inner${isBk?' bk-redesign':''}"><div class="content-area"><main class="site-main"><article class="hentry single-entry">${meta}<div class="entry-content">${rewriteMedia(src.body)}</div>${footer}</article>${commentsHtml}</main></div></div>`;
+  app.innerHTML=`<header class="entry-header entry-hero"><div class="post-thumbnail">${hero?'<img data-featured-image src="'+hero+'" alt="">':'<img data-featured-image alt="">'}</div><div class="entry-header-wrapper"><div class="entry-header-inner"><div class="entry-meta">${esc((p.categories||[]).join(', '))}</div><h1 class="entry-title">${esc(p.title)}</h1></div></div></header>${meta}<div class="site-content-inner${isBk?' bk-redesign':''}"><div class="content-area"><main class="site-main"><article class="hentry single-entry"><div class="entry-content">${rewriteMedia(src.body)}</div>${footer}</article>${commentsHtml}</main></div></div>`;
   const hi=document.querySelector('[data-featured-image]');if(hi){hi.onerror=()=>{const first=document.querySelector('.entry-content img');if(first&&hi.src!==first.src)hi.src=first.src;};if(!hi.getAttribute('src')){const first=document.querySelector('.entry-content img');if(first)hi.src=first.src;}}
   cleanImageLists(app);
   if(isBk)initBkMasonry();
