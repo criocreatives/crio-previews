@@ -279,6 +279,32 @@ async function loadManifest(){const r=await fetch(RAW+'migration-manifest.json',
 async function loadPostSource(p){const r=await fetch(RAW+'_posts/'+p.date.slice(0,10)+'-'+p.slug+'.md',{cache:'no-store'});if(!r.ok)return{front:'',body:''};return splitPost(await r.text());}
 function styleCards(){document.querySelectorAll('.blog .hentry.format-gallery.has-post-thumbnail').forEach(card=>{const meta=card.querySelector('.entry-meta'),thumb=card.querySelector('.post-thumbnail');if(!thumb)return;const top=meta?(meta.offsetHeight+15):0;thumb.style.top=top+'px';thumb.style.height=Math.max(0,card.offsetHeight-top)+'px';if(meta){const a=meta.querySelector('.cat-links'),b=meta.querySelector('.comments-link');card.classList.toggle('long-meta',!!(a&&b&&a.offsetWidth+b.offsetWidth>=meta.offsetWidth));}});}
 function cleanImageLists(root=document){root.querySelectorAll('.entry-content li').forEach(li=>{if(li.querySelector('img')){li.classList.add('image-item');if(li.parentElement)li.parentElement.classList.add('image-list');}});}
+function normalizeNestedPostGalleries(){
+  const grid=document.querySelector('.bk-redesign .entry-content');
+  if(!grid)return;
+  [...grid.children].forEach(child=>{
+    const imgs=[...child.querySelectorAll('img')];
+    if(imgs.length<2)return;
+    const galleryLike=child.matches('.wp-block-gallery,.wp-block-coblocks-gallery-stacked,.gallery,[class*="gallery"]')||!!child.querySelector('.wp-block-gallery,.coblocks-gallery,.gallery,[class*="gallery"]');
+    if(!galleryLike)return;
+    const frag=document.createDocumentFragment();
+    imgs.forEach(img=>{
+      const closest=img.closest('figure');
+      let item;
+      if(closest&&closest!==child&&child.contains(closest)&&closest.querySelectorAll('img').length===1){
+        item=closest.cloneNode(true);
+      }else{
+        item=document.createElement('figure');
+        item.className='wp-block-image';
+        item.appendChild(img.cloneNode(true));
+      }
+      item.classList.add('masonry-item');
+      item.removeAttribute('style');
+      frag.appendChild(item);
+    });
+    child.replaceWith(frag);
+  });
+}
 function bkColumnCount(){const w=window.innerWidth;if(w>=900)return 3;if(w>=600)return 2;return 1;}
 function layoutBkMasonry(){
   const grid=document.querySelector('.bk-redesign .entry-content');
@@ -301,6 +327,7 @@ function layoutBkMasonry(){
 function initBkMasonry(){
   const grid=document.querySelector('.bk-redesign .entry-content');
   if(!grid)return;
+  normalizeNestedPostGalleries();
   grid.querySelectorAll('img').forEach(img=>{if(!img.complete)img.addEventListener('load',layoutBkMasonry);});
   requestAnimationFrame(()=>requestAnimationFrame(layoutBkMasonry));
 }
