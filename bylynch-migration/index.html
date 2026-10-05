@@ -154,6 +154,14 @@ body:not(.single) .format-gallery.has-post-thumbnail{color:#fff;position:relativ
 .bk-redesign .entry-content>h5,
 .bk-redesign .entry-content>h6,
 .bk-redesign .comment{border-radius:10px!important}
+
+/* Site-wide header link treatment */
+.main-navigation a,
+.main-navigation .current-menu-item>a{color:#000!important;transition:color .2s ease}
+.main-navigation a:hover,
+.main-navigation a:focus,
+.main-navigation .current-menu-item>a:hover,
+.main-navigation .current-menu-item>a:focus{color:#ed1744!important}
 </style>
 </head>
 <body class="blog">
@@ -249,7 +257,7 @@ async function showIndex(){
 async function showPost(slug){
   document.body.className='single';const items=await loadManifest(),p=items.find(x=>x.slug===slug);if(!p)throw new Error('Post not found.');const src=await loadPostSource(p),tags=frontList(src.front||'','tags'),author=frontValue(src.front||'','author')||'lebosslynch',modified=frontValue(src.front||'','modified'),hero=FEATURED[slug]?RAW+'assets/uploads/'+FEATURED[slug]:firstImg(src.body);
   document.title=p.title+' — by LYNCH Preview';
-  const isBk=slug==='bk',comments=archivedComments(src.front||'');
+  const isBk=slug==='bk'||slug==='falling-edge',comments=archivedComments(src.front||'');
   const meta=isBk?`<div class="bk-post-meta"><div class="bk-post-meta-inner"><div class="bk-post-date">${fmtDate(p.date)}</div>${tags.length?`<div class="bk-post-tags"><em>${esc(tags.join(', '))}</em></div>`:''}</div></div>`:'';
   const footer=isBk?'':`<footer class="entry-footer"><span>${fmtDate(p.date)}</span>${modified?'<span>'+fmtDate(modified.split(' ')[0]+' 00:00:00')+'</span>':''}<span>${esc(author)}</span>${tags.length?'<span>'+esc(tags.join(', '))+'</span>':''}</footer>`;
   const commentsHtml=comments.length?`<section class="comments-area"><h2>${comments.length} thought${comments.length===1?'':'s'} on “${esc(p.title)}”</h2>${comments.map(c=>`<article class="comment"><div class="comment-author">${esc(c.author)} says:</div>${c.date?`<div class="comment-date">${esc(c.date)}</div>`:''}<div class="comment-body">${esc(c.content)}</div></article>`).join('')}</section>`:(p.comments?`<section class="comments-area"><h2>${p.comments} thought${p.comments===1?'':'s'} on “${esc(p.title)}”</h2></section>`:'');
