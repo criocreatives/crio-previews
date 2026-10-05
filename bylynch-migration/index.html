@@ -274,6 +274,28 @@ body.lightbox-open{overflow:hidden}
 .blog .hentry.format-gallery.has-post-thumbnail .entry-summary{padding-bottom:38px!important;max-height:112px}
 .blog .hentry.format-gallery.has-post-thumbnail .entry-summary p{margin:0}
 .blog .hentry.format-gallery.has-post-thumbnail .entry-title{bottom:112px}
+
+/* Homepage card copy — 2-line excerpt, reveal on hover */
+.blog .hentry.format-gallery.has-post-thumbnail .card-copy{
+  position:absolute;left:0;right:0;bottom:0;z-index:3;padding:0 30px 30px;transition:transform .28s ease
+}
+.blog .hentry.format-gallery.has-post-thumbnail .card-copy .entry-title{
+  position:static!important;left:auto!important;right:auto!important;bottom:auto!important;
+  margin:0 0 10px!important;padding:0!important
+}
+.blog .hentry.format-gallery.has-post-thumbnail .card-copy .entry-summary{
+  position:static!important;left:auto!important;right:auto!important;bottom:auto!important;
+  margin:0!important;padding:0!important;max-height:none!important;overflow:visible!important
+}
+.blog .hentry.format-gallery.has-post-thumbnail .card-copy .entry-summary p{
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin:0
+}
+.blog .hentry.format-gallery.has-post-thumbnail:hover .card-copy,
+.blog .hentry.format-gallery.has-post-thumbnail:focus-within .card-copy{transform:translateY(-8px)}
+.blog .hentry.format-gallery.has-post-thumbnail:hover .card-copy .entry-summary p,
+.blog .hentry.format-gallery.has-post-thumbnail:focus-within .card-copy .entry-summary p{
+  display:block;overflow:visible;-webkit-line-clamp:unset
+}
 </style>
 </head>
 <body class="blog">
@@ -469,7 +491,7 @@ let archiveItems=[],archiveLoaded=0,archiveCat='';
 function archiveCardHtml(p,src){
   const img=FEATURED[p.slug]?RAW+'assets/uploads/'+FEATURED[p.slug]:firstImg(src.body);
   const ex=truncateWords(cardExcerpt(src),55);
-  return `<article class="hentry format-gallery has-post-thumbnail"><header class="entry-header"><a class="post-thumbnail" href="?post=${encodeURIComponent(p.slug)}" style="${img?'background-image:url(&quot;'+img+'&quot;)':''}"></a><h1 class="entry-title"><a href="?post=${encodeURIComponent(p.slug)}">${esc(p.title)}</a></h1></header><div class="entry-summary"><p>${esc(ex.text)}${ex.cut?'… ':ex.text?' ':''}<a class="more-link" href="?post=${encodeURIComponent(p.slug)}">Continue reading</a></p></div></article>`;
+  return `<article class="hentry format-gallery has-post-thumbnail"><header class="entry-header"><a class="post-thumbnail" href="?post=${encodeURIComponent(p.slug)}" style="${img?'background-image:url(&quot;'+img+'&quot;)':''}"></a></header><div class="card-copy"><h1 class="entry-title"><a href="?post=${encodeURIComponent(p.slug)}">${esc(p.title)}</a></h1><div class="entry-summary"><p>${esc(ex.text)}${ex.cut?'… ':ex.text?' ':''}<a class="more-link" href="?post=${encodeURIComponent(p.slug)}">Continue reading</a></p></div></div></article>`;
 }
 async function appendArchiveBatch(){
   const batch=archiveItems.slice(archiveLoaded,archiveLoaded+perPage);
