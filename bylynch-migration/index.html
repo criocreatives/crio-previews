@@ -176,6 +176,11 @@ body:not(.single) .format-gallery.has-post-thumbnail{color:#fff;position:relativ
   }
   .main-navigation ul ul .menu-item-has-children>a::after{transform:rotate(-45deg)!important;margin-top:-3px!important}
 }
+
+.older-posts-wrap{width:100%;display:flex;justify-content:center;clear:both;padding:22px 0 54px}
+.older-posts-button{appearance:none;-webkit-appearance:none;background:#fff;color:#ed1744;border:1px solid #ddd;border-radius:0;padding:10px 15px;font:700 13px/1.2 Lato,Arial,sans-serif;text-transform:uppercase;cursor:pointer;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+.older-posts-button:hover,.older-posts-button:focus{background:#ed1744;color:#fff;border-color:#ed1744;outline:none}
+.older-posts-button[disabled]{cursor:wait;opacity:.65}
 </style>
 </head>
 <body class="blog">
@@ -257,16 +262,37 @@ function initBkMasonry(){
   grid.querySelectorAll('img').forEach(img=>{if(!img.complete)img.addEventListener('load',layoutBkMasonry);});
   requestAnimationFrame(()=>requestAnimationFrame(layoutBkMasonry));
 }
+let archiveItems=[],archiveLoaded=0,archiveCat='';
+function archiveCardHtml(p,src){
+  const img=FEATURED[p.slug]?RAW+'assets/uploads/'+FEATURED[p.slug]:firstImg(src.body);
+  const ex=truncateWords(cardExcerpt(src),55);
+  const comments=p.comments?`${p.comments} Comment${p.comments===1?'':'s'}`:'Leave a comment';
+  return `<article class="hentry format-gallery has-post-thumbnail"><header class="entry-header"><div class="entry-meta"><span class="cat-links">${esc((p.categories||[]).join(', '))}</span><span class="comments-link">${comments}</span></div><a class="post-thumbnail" href="?post=${encodeURIComponent(p.slug)}" style="${img?'background-image:url(&quot;'+img+'&quot;)':''}"></a><h1 class="entry-title"><a href="?post=${encodeURIComponent(p.slug)}">${esc(p.title)}</a></h1></header><div class="entry-summary"><p>${esc(ex.text)}${ex.cut?'… ':ex.text?' ':''}<a class="more-link" href="?post=${encodeURIComponent(p.slug)}">Continue reading</a></p></div></article>`;
+}
+async function appendArchiveBatch(){
+  const batch=archiveItems.slice(archiveLoaded,archiveLoaded+perPage);
+  if(!batch.length)return;
+  const button=document.querySelector('.older-posts-button');
+  if(button){button.disabled=true;button.textContent='LOADING…';}
+  const enriched=await Promise.all(batch.map(async p=>({p,src:await loadPostSource(p)})));
+  const main=document.querySelector('.blog .site-main');
+  if(main)main.insertAdjacentHTML('beforeend',enriched.map(({p,src})=>archiveCardHtml(p,src)).join(''));
+  archiveLoaded+=batch.length;
+  const wrap=document.querySelector('.older-posts-wrap');
+  if(archiveLoaded>=archiveItems.length){if(wrap)wrap.remove();}
+  else if(button){button.disabled=false;button.textContent='OLDER POSTS';}
+  requestAnimationFrame(()=>requestAnimationFrame(styleCards));
+}
 async function showIndex(){
   document.body.className='blog';
-  let items=await loadManifest();const cat=qp.get('cat');if(cat)items=items.filter(x=>(x.categories||[]).some(c=>c.toUpperCase()===cat.toUpperCase()));items.sort((a,b)=>b.date.localeCompare(a.date));
-  const page=Math.max(1,parseInt(qp.get('p')||'1',10)),slice=items.slice((page-1)*perPage,page*perPage);
-  const enriched=await Promise.all(slice.map(async p=>({p,src:await loadPostSource(p)})));
-  app.innerHTML='<div class="site-content-inner"><div class="content-area"><main class="site-main">'+enriched.map(({p,src})=>{
-    const img=FEATURED[p.slug]?RAW+'assets/uploads/'+FEATURED[p.slug]:firstImg(src.body),ex=truncateWords(cardExcerpt(src),55),comments=p.comments?(`${p.comments} Comment${p.comments===1?'':'s'}`):'Leave a comment';
-    return `<article class="hentry format-gallery has-post-thumbnail"><header class="entry-header"><div class="entry-meta"><span class="cat-links">${esc((p.categories||[]).join(', '))}</span><span class="comments-link">${comments}</span></div><a class="post-thumbnail" href="?post=${encodeURIComponent(p.slug)}" style="${img?'background-image:url(&quot;'+img+'&quot;)':''}"></a><h1 class="entry-title"><a href="?post=${encodeURIComponent(p.slug)}">${esc(p.title)}</a></h1></header><div class="entry-summary"><p>${esc(ex.text)}${ex.cut?'… ':ex.text?' ':''}<a class="more-link" href="?post=${encodeURIComponent(p.slug)}">Continue reading</a></p></div></article>`;
-  }).join('')+'</main><div class="pager">'+Array.from({length:Math.ceil(items.length/perPage)},(_,i)=>i+1).map(n=>`<button class="${n===page?'active':''}" onclick="location.href='?p=${n}${cat?'&cat='+encodeURIComponent(cat):''}'">${n}</button>`).join('')+'</div></div></div>';
-  requestAnimationFrame(styleCards);setTimeout(styleCards,250);
+  archiveItems=await loadManifest();
+  archiveCat=qp.get('cat')||'';
+  if(archiveCat)archiveItems=archiveItems.filter(x=>(x.categories||[]).some(c=>c.toUpperCase()===archiveCat.toUpperCase()));
+  archiveItems.sort((a,b)=>b.date.localeCompare(a.date));
+  archiveLoaded=0;
+  app.innerHTML='<div class="site-content-inner"><div class="content-area"><main class="site-main"></main><div class="older-posts-wrap"><button class="older-posts-button" type="button">OLDER POSTS</button></div></div></div>';
+  document.querySelector('.older-posts-button')?.addEventListener('click',appendArchiveBatch);
+  await appendArchiveBatch();
 }
 async function showPost(slug){
   document.body.className='single';const items=await loadManifest(),p=items.find(x=>x.slug===slug);if(!p)throw new Error('Post not found.');const src=await loadPostSource(p),tags=frontList(src.front||'','tags'),author=frontValue(src.front||'','author')||'lebosslynch',modified=frontValue(src.front||'','modified'),hero=FEATURED[slug]?RAW+'assets/uploads/'+FEATURED[slug]:firstImg(src.body);
