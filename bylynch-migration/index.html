@@ -223,6 +223,14 @@ body:not(.single) .format-gallery.has-post-thumbnail{color:#fff;position:relativ
 .single .bk-redesign .entry-content embed{display:block;width:100%;max-width:100%;border-radius:10px}
 .single .bk-redesign .entry-content>ul,
 .single .bk-redesign .entry-content>ol{background:#151515;color:#f5f5f5;border-radius:10px;padding:18px 18px 18px 38px}
+
+/* Progressive post-gallery loading */
+.single .bk-redesign .entry-content img[loading="lazy"]:not(.lazy-loaded){
+  aspect-ratio:4/5;object-fit:cover;background:#0b0b0b
+}
+.single .bk-redesign .entry-content img.lazy-loaded{
+  aspect-ratio:auto!important;object-fit:initial
+}
 </style>
 </head>
 <body class="blog">
@@ -270,7 +278,12 @@ function archivedComments(front){
   }
   if(cur)out.push(cur);return out;
 }
-function rewriteMedia(html){return html.replaceAll('src="/assets/uploads/','src="'+RAW+'assets/uploads/').replaceAll('href="/assets/uploads/','href="'+RAW+'assets/uploads/');}
+function rewriteMedia(html){
+  return html
+    .replace(/<img\s+/g,'<img loading="lazy" decoding="async" ')
+    .replaceAll('src="/assets/uploads/','src="'+RAW+'assets/uploads/')
+    .replaceAll('href="/assets/uploads/','href="'+RAW+'assets/uploads/');
+}
 function firstImg(body){const m=body.match(/<img[^>]+src=["']([^"']+)["']/i);if(!m)return '';let src=m[1];if(src.startsWith('/assets/uploads/'))src=RAW+'assets/uploads/'+src.slice('/assets/uploads/'.length);return src;}
 function cleanText(body){return body.replace(/<!--[sS]*?-->/g,' ').replace(/<figure[sS]*?<\/figure>/gi,' ').replace(/<img[^>]*>/gi,' ').replace(/<[^>]+>/g,' ').replace(/&nbsp;/gi,' ').replace(/&amp;/gi,'&').replace(/&#8217;/g,"’").replace(/&#8220;|&#8221;/g,'"').replace(/\s+/g,' ').trim();}
 function cardExcerpt(src){const explicit=frontValue(src.front||'','excerpt');if(explicit)return explicit;return cleanText(src.body);}
@@ -328,7 +341,11 @@ function initBkMasonry(){
   const grid=document.querySelector('.bk-redesign .entry-content');
   if(!grid)return;
   normalizeNestedPostGalleries();
-  grid.querySelectorAll('img').forEach(img=>{if(!img.complete)img.addEventListener('load',layoutBkMasonry);});
+  grid.querySelectorAll('img').forEach(img=>{
+  const markLoaded=()=>{img.classList.add('lazy-loaded');layoutBkMasonry();};
+  if(img.complete&&img.naturalWidth)markLoaded();
+  else img.addEventListener('load',markLoaded,{once:true});
+});
   requestAnimationFrame(()=>requestAnimationFrame(layoutBkMasonry));
 }
 let archiveItems=[],archiveLoaded=0,archiveCat='';
@@ -369,7 +386,7 @@ async function showPost(slug){
   const meta=isBk?`<div class="bk-post-meta"><div class="bk-post-meta-inner"><div class="bk-post-date">${fmtDate(p.date)}</div>${tags.length?`<div class="bk-post-tags"><em>${esc(tags.join(', '))}</em></div>`:''}</div></div>`:'';
   const footer=isBk?'':`<footer class="entry-footer"><span>${fmtDate(p.date)}</span>${modified?'<span>'+fmtDate(modified.split(' ')[0]+' 00:00:00')+'</span>':''}<span>${esc(author)}</span>${tags.length?'<span>'+esc(tags.join(', '))+'</span>':''}</footer>`;
   const commentsHtml=comments.length?`<section class="comments-area"><h2>${comments.length} thought${comments.length===1?'':'s'} on “${esc(p.title)}”</h2>${comments.map(c=>`<article class="comment"><div class="comment-author">${esc(c.author)} says:</div>${c.date?`<div class="comment-date">${esc(c.date)}</div>`:''}<div class="comment-body">${esc(c.content)}</div></article>`).join('')}</section>`:(p.comments?`<section class="comments-area"><h2>${p.comments} thought${p.comments===1?'':'s'} on “${esc(p.title)}”</h2></section>`:'');
-  app.innerHTML=`<header class="entry-header entry-hero"><div class="post-thumbnail">${hero?'<img data-featured-image src="'+hero+'" alt="">':'<img data-featured-image alt="">'}</div><div class="entry-header-wrapper"><div class="entry-header-inner"><div class="entry-meta">${esc((p.categories||[]).join(', '))}</div><h1 class="entry-title">${esc(p.title)}</h1></div></div></header>${meta}<div class="site-content-inner${isBk?' bk-redesign':''}"><div class="content-area"><main class="site-main"><article class="hentry single-entry"><div class="entry-content">${rewriteMedia(src.body)}</div>${footer}</article>${commentsHtml}</main></div></div>`;
+  app.innerHTML=`<header class="entry-header entry-hero"><div class="post-thumbnail">${hero?'<img data-featured-image loading="eager" fetchpriority="high" decoding="async" src="'+hero+'" alt="">':'<img data-featured-image alt="">'}</div><div class="entry-header-wrapper"><div class="entry-header-inner"><div class="entry-meta">${esc((p.categories||[]).join(', '))}</div><h1 class="entry-title">${esc(p.title)}</h1></div></div></header>${meta}<div class="site-content-inner${isBk?' bk-redesign':''}"><div class="content-area"><main class="site-main"><article class="hentry single-entry"><div class="entry-content">${rewriteMedia(src.body)}</div>${footer}</article>${commentsHtml}</main></div></div>`;
   const hi=document.querySelector('[data-featured-image]');if(hi){hi.onerror=()=>{const first=document.querySelector('.entry-content img');if(first&&hi.src!==first.src)hi.src=first.src;};if(!hi.getAttribute('src')){const first=document.querySelector('.entry-content img');if(first)hi.src=first.src;}}
   cleanImageLists(app);
   if(isBk)initBkMasonry();
