@@ -216,6 +216,13 @@ body:not(.single) .format-gallery.has-post-thumbnail{color:#fff;position:relativ
 @media(min-width:768px){
   .blog .hentry.format-gallery.has-post-thumbnail{margin-bottom:60px!important}
 }
+
+/* Universal post redesign */
+.single .bk-redesign .entry-content video,
+.single .bk-redesign .entry-content iframe,
+.single .bk-redesign .entry-content embed{display:block;width:100%;max-width:100%;border-radius:10px}
+.single .bk-redesign .entry-content>ul,
+.single .bk-redesign .entry-content>ol{background:#151515;color:#f5f5f5;border-radius:10px;padding:18px 18px 18px 38px}
 </style>
 </head>
 <body class="blog">
@@ -331,7 +338,7 @@ async function showIndex(){
 async function showPost(slug){
   document.body.className='single';const items=await loadManifest(),p=items.find(x=>x.slug===slug);if(!p)throw new Error('Post not found.');const src=await loadPostSource(p),tags=frontList(src.front||'','tags'),author=frontValue(src.front||'','author')||'lebosslynch',modified=frontValue(src.front||'','modified'),hero=FEATURED[slug]?RAW+'assets/uploads/'+FEATURED[slug]:firstImg(src.body);
   document.title=p.title+' — by LYNCH Preview';
-  const isBk=slug==='bk'||slug==='falling-edge',comments=archivedComments(src.front||'');
+  const isBk=true,comments=archivedComments(src.front||'');
   const meta=isBk?`<div class="bk-post-meta"><div class="bk-post-meta-inner"><div class="bk-post-date">${fmtDate(p.date)}</div>${tags.length?`<div class="bk-post-tags"><em>${esc(tags.join(', '))}</em></div>`:''}</div></div>`:'';
   const footer=isBk?'':`<footer class="entry-footer"><span>${fmtDate(p.date)}</span>${modified?'<span>'+fmtDate(modified.split(' ')[0]+' 00:00:00')+'</span>':''}<span>${esc(author)}</span>${tags.length?'<span>'+esc(tags.join(', '))+'</span>':''}</footer>`;
   const commentsHtml=comments.length?`<section class="comments-area"><h2>${comments.length} thought${comments.length===1?'':'s'} on “${esc(p.title)}”</h2>${comments.map(c=>`<article class="comment"><div class="comment-author">${esc(c.author)} says:</div>${c.date?`<div class="comment-date">${esc(c.date)}</div>`:''}<div class="comment-body">${esc(c.content)}</div></article>`).join('')}</section>`:(p.comments?`<section class="comments-area"><h2>${p.comments} thought${p.comments===1?'':'s'} on “${esc(p.title)}”</h2></section>`:'');
