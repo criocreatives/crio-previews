@@ -181,6 +181,26 @@ body:not(.single) .format-gallery.has-post-thumbnail{color:#fff;position:relativ
 .older-posts-button{appearance:none;-webkit-appearance:none;background:#fff;color:#ed1744;border:1px solid #ddd;border-radius:0;padding:10px 15px;font:700 13px/1.2 Lato,Arial,sans-serif;text-transform:uppercase;cursor:pointer;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
 .older-posts-button:hover,.older-posts-button:focus{background:#ed1744;color:#fff;border-color:#ed1744;outline:none}
 .older-posts-button[disabled]{cursor:wait;opacity:.65}
+
+/* Homepage cards — clean 4:5 format */
+.blog .hentry.format-gallery.has-post-thumbnail{
+  aspect-ratio:4/5;height:auto!important;min-height:0!important;
+  border-radius:10px;overflow:hidden;position:relative
+}
+.blog .hentry.format-gallery.has-post-thumbnail .entry-header{position:static}
+.blog .hentry.format-gallery.has-post-thumbnail .post-thumbnail{
+  top:0!important;left:0;width:100%!important;height:100%!important;
+  margin:0!important;border-radius:10px
+}
+.blog .hentry.format-gallery.has-post-thumbnail .entry-title{
+  position:absolute;left:0;right:0;bottom:96px;margin:0!important;
+  padding:0 30px 15px!important;z-index:2
+}
+.blog .hentry.format-gallery.has-post-thumbnail .entry-summary{
+  position:absolute;left:0;right:0;bottom:0;margin:0!important;
+  padding:0 30px 30px!important;z-index:2;max-height:96px;overflow:hidden
+}
+.blog .hentry.format-gallery.has-post-thumbnail .entry-meta{display:none!important}
 </style>
 </head>
 <body class="blog">
@@ -235,7 +255,7 @@ function cardExcerpt(src){const explicit=frontValue(src.front||'','excerpt');if(
 function truncateWords(text,n=55){const w=(text||'').split(/\s+/).filter(Boolean);return {text:w.slice(0,n).join(' '),cut:w.length>n};}
 async function loadManifest(){const r=await fetch(RAW+'migration-manifest.json',{cache:'no-store'});if(!r.ok)throw new Error('Could not load migration manifest.');return r.json();}
 async function loadPostSource(p){const r=await fetch(RAW+'_posts/'+p.date.slice(0,10)+'-'+p.slug+'.md',{cache:'no-store'});if(!r.ok)return{front:'',body:''};return splitPost(await r.text());}
-function styleCards(){document.querySelectorAll('.blog .hentry.format-gallery.has-post-thumbnail').forEach(card=>{const meta=card.querySelector('.entry-meta'),thumb=card.querySelector('.post-thumbnail');if(!thumb)return;const top=(meta?meta.offsetHeight:0)+15;thumb.style.top=top+'px';thumb.style.height=Math.max(0,card.offsetHeight-top)+'px';if(meta){const a=meta.querySelector('.cat-links'),b=meta.querySelector('.comments-link');card.classList.toggle('long-meta',!!(a&&b&&a.offsetWidth+b.offsetWidth>=meta.offsetWidth));}});}
+function styleCards(){document.querySelectorAll('.blog .hentry.format-gallery.has-post-thumbnail').forEach(card=>{const meta=card.querySelector('.entry-meta'),thumb=card.querySelector('.post-thumbnail');if(!thumb)return;const top=meta?(meta.offsetHeight+15):0;thumb.style.top=top+'px';thumb.style.height=Math.max(0,card.offsetHeight-top)+'px';if(meta){const a=meta.querySelector('.cat-links'),b=meta.querySelector('.comments-link');card.classList.toggle('long-meta',!!(a&&b&&a.offsetWidth+b.offsetWidth>=meta.offsetWidth));}});}
 function cleanImageLists(root=document){root.querySelectorAll('.entry-content li').forEach(li=>{if(li.querySelector('img')){li.classList.add('image-item');if(li.parentElement)li.parentElement.classList.add('image-list');}});}
 function bkColumnCount(){const w=window.innerWidth;if(w>=900)return 3;if(w>=600)return 2;return 1;}
 function layoutBkMasonry(){
@@ -266,8 +286,7 @@ let archiveItems=[],archiveLoaded=0,archiveCat='';
 function archiveCardHtml(p,src){
   const img=FEATURED[p.slug]?RAW+'assets/uploads/'+FEATURED[p.slug]:firstImg(src.body);
   const ex=truncateWords(cardExcerpt(src),55);
-  const comments=p.comments?`${p.comments} Comment${p.comments===1?'':'s'}`:'Leave a comment';
-  return `<article class="hentry format-gallery has-post-thumbnail"><header class="entry-header"><div class="entry-meta"><span class="cat-links">${esc((p.categories||[]).join(', '))}</span><span class="comments-link">${comments}</span></div><a class="post-thumbnail" href="?post=${encodeURIComponent(p.slug)}" style="${img?'background-image:url(&quot;'+img+'&quot;)':''}"></a><h1 class="entry-title"><a href="?post=${encodeURIComponent(p.slug)}">${esc(p.title)}</a></h1></header><div class="entry-summary"><p>${esc(ex.text)}${ex.cut?'… ':ex.text?' ':''}<a class="more-link" href="?post=${encodeURIComponent(p.slug)}">Continue reading</a></p></div></article>`;
+  return `<article class="hentry format-gallery has-post-thumbnail"><header class="entry-header"><a class="post-thumbnail" href="?post=${encodeURIComponent(p.slug)}" style="${img?'background-image:url(&quot;'+img+'&quot;)':''}"></a><h1 class="entry-title"><a href="?post=${encodeURIComponent(p.slug)}">${esc(p.title)}</a></h1></header><div class="entry-summary"><p>${esc(ex.text)}${ex.cut?'… ':ex.text?' ':''}<a class="more-link" href="?post=${encodeURIComponent(p.slug)}">Continue reading</a></p></div></article>`;
 }
 async function appendArchiveBatch(){
   const batch=archiveItems.slice(archiveLoaded,archiveLoaded+perPage);
