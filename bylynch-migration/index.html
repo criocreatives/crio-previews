@@ -383,6 +383,20 @@ body.lightbox-open{overflow:hidden}
 .disease-dialogue .dialogue-line{margin:0}
 .disease-dialogue .seven{color:#3366ff;font-weight:700}
 .disease-dialogue .harry{color:#ffcc00;font-weight:700}
+
+/* New Wave archive landing */
+.new-wave-special{width:90%;margin:0 auto}
+.new-wave-special .new-wave-intro{padding:60px 0 54px;border-bottom:1px solid #eee}
+.new-wave-special .new-wave-intro h1{margin:0 0 28px;font-size:38px;line-height:1.15;font-weight:900;color:#111}
+.new-wave-special .new-wave-intro p{max-width:1050px;margin:0 0 18px;font-size:18px;line-height:1.55;color:#222}
+.new-wave-special .new-wave-intro p:last-child{margin-bottom:0;font-weight:700}
+.new-wave-special .new-wave-albums{padding:54px 0 70px}
+.new-wave-special .new-wave-albums h2{margin:0 0 28px;font-size:25px;line-height:1.2;font-weight:900;color:#111}
+@media(min-width:768px){.new-wave-special{width:648px}}
+@media(min-width:840px){.new-wave-special{width:720px}}
+@media(min-width:960px){.new-wave-special{width:840px}}
+@media(min-width:1080px){.new-wave-special{width:960px}}
+@media(min-width:1380px){.new-wave-special{width:1260px}}
 </style>
 </head>
 <body class="blog">
@@ -395,7 +409,7 @@ body.lightbox-open{overflow:hidden}
       <div class="menu-primary-container">
         <ul class="nav-menu">
           <li class="current-menu-item"><a href="./">HOME</a></li><li><a href="https://gumroad.com/seenbylynch" target="_blank">STORE</a></li><li><a href="?cat=FILM">FILM</a></li>
-          <li class="menu-item-has-children"><a href="?cat=CULTURE">CULTURE &amp; ARTS</a><ul class="sub-menu"><li><a href="?tag=music">MUSIC</a></li><li><a href="?cat=ARTS">ARTS</a></li> </ul></li>
+          <li class="menu-item-has-children"><a href="?cat=CULTURE">CULTURE &amp; ARTS</a><ul class="sub-menu"><li><a href="?tag=music">MUSIC</a></li><li><a href="?cat=ARTS">ARTS</a></li><li><a href="?special=new-wave">NEW WAVE</a></li></ul></li>
           <li><a href="https://www.flickr.com/photos/lebosslynch/albums" target="_blank" rel="noopener">ARCHIVE</a></li>
           <li><a href="?cat=PIXTAPE">PIXTAPE</a></li>
           <li><a href="https://instagram.com/lebosslynch/" target="_blank">INSTAGRAM</a></li><li><a href="?page=about">about LYNCH</a></li>
@@ -696,7 +710,7 @@ document.querySelectorAll('.menu-item-has-children').forEach(li=>{const b=docume
 window.addEventListener('resize',()=>{clearTimeout(window.__r);window.__r=setTimeout(()=>{styleCards();markClippedExcerpts();layoutBkMasonry();},180);});
 initPhotoLightbox();
 initSiteSearch();
-(async()=>{try{if(qp.get('post'))await showPost(qp.get('post'));else if(qp.get('page'))await showPage(qp.get('page'));else await showIndex();}catch(e){app.innerHTML='<div class="status"><strong>Preview error:</strong> '+esc(e.message)+'</div>';}})();
+(async()=>{try{if(qp.get('special')==='new-wave'){await renderNewWaveSpecial();}else if(qp.get('post'))await showPost(qp.get('post'));else if(qp.get('page'))await showPage(qp.get('page'));else await showIndex();}catch(e){app.innerHTML='<div class="status"><strong>Preview error:</strong> '+esc(e.message)+'</div>';}})();
 </script>
 </body>
 </html>
