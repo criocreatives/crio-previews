@@ -1,0 +1,49 @@
+name: Add LibreCounter to all HTML pages
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/add-librecounter.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  add-librecounter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add hidden LibreCounter image to every HTML page
+        shell: python
+        run: |
+          from pathlib import Path
+
+          snippet = '''\n<!-- LibreCounter: privacy-friendly page analytics -->\n<img src="https://librecounter.org/hidden.svg" referrerpolicy="unsafe-url" alt="" width="1" height="1" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">\n'''
+
+          changed = []
+          for path in Path('.').rglob('*.html'):
+              text = path.read_text(encoding='utf-8')
+              if 'librecounter.org/' in text:
+                  continue
+              if '</body>' in text:
+                  text = text.replace('</body>', snippet + '</body>', 1)
+              else:
+                  text += snippet
+              path.write_text(text, encoding='utf-8')
+              changed.append(str(path))
+
+          print(f'Updated {len(changed)} HTML pages')
+          for path in changed:
+              print(path)
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes needed."
+            exit 0
+          fi
+          git config user.name "Crio Creatives"
+          git config user.email "333865397+criocreatives@users.noreply.github.com"
+          git add '*.html' '**/*.html'
+          git commit -m "Add LibreCounter analytics across previews"
+          git push
