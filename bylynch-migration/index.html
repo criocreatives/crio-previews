@@ -418,6 +418,18 @@ body.lightbox-open{overflow:hidden}
 .demo-ad-sponsored{color:#5f6368!important;font-size:10px!important;line-height:1.2!important}
 .demo-ad-cta{flex:0 0 auto;border:1px solid #dadce0;border-radius:3px;background:#fff;color:#1a73e8;padding:9px 13px;font-size:12px;font-weight:700;white-space:nowrap}
 @media(max-width:767px){.demo-ad-wrap{margin:14px auto 4px}.demo-ad-unit{min-height:100px;padding:13px 14px;gap:12px}.demo-ad-copy strong{font-size:15px}.demo-ad-copy>span:last-child{display:none}.demo-ad-cta{padding:8px 10px}}
+
+/* Demo ad placements — post meta + after gallery */
+.bk-post-meta-inner{display:flex;align-items:center;justify-content:space-between;gap:28px}
+.bk-post-meta-copy{min-width:0;flex:1 1 auto}
+.demo-ad-inline{flex:0 1 520px;min-width:320px;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding-left:24px;border-left:1px solid #e5e5e5;font-family:Lato,Arial,sans-serif}
+.demo-ad-inline-label{flex:0 0 auto;color:#8a8a8a;font-size:8px;line-height:1.2;letter-spacing:.1em}
+.demo-ad-inline-body{min-width:0;display:flex;flex-direction:column;gap:2px;color:#202124}
+.demo-ad-inline-body strong{font-size:13px;line-height:1.25;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.demo-ad-after-gallery{width:100%;margin:30px 0 20px;font-family:Lato,Arial,sans-serif}
+.demo-ad-after-gallery .demo-ad-label{color:#888}
+.demo-ad-after-gallery .demo-ad-unit{background:#fff;border-color:#2a2a2a}
+@media(max-width:839px){.bk-post-meta-inner{align-items:flex-start;flex-direction:column;gap:14px;padding-top:14px;padding-bottom:14px}.demo-ad-inline{width:100%;min-width:0;flex:0 0 auto;justify-content:flex-start;padding:12px 0 0;border-left:0;border-top:1px solid #e5e5e5}.demo-ad-inline-label{display:none}.demo-ad-inline-body{flex:1 1 auto}.demo-ad-inline-body strong{white-space:normal}}
 </style>
 </head>
 <body class="blog">
@@ -440,17 +452,6 @@ body.lightbox-open{overflow:hidden}
     <div class="search-header"><button class="search-toggle" type="button" aria-label="Search"></button></div>
   </div>
 </header>
-<aside class="demo-ad-wrap" aria-label="Advertisement preview">
-  <div class="demo-ad-label">ADVERTISEMENT</div>
-  <div class="demo-ad-unit">
-    <div class="demo-ad-copy">
-      <span class="demo-ad-sponsored">Sponsored · Demo ad</span>
-      <strong>See what an AdSense banner would feel like here.</strong>
-      <span>This is only a visual placeholder — no ad network is loaded.</span>
-    </div>
-    <span class="demo-ad-cta">Learn more</span>
-  </div>
-</aside>
 <div id="app"><div class="status">Loading migration preview…</div></div>
 <footer class="site-footer"><div class="site-footer-inner">by LYNCH · WordPress → GitHub migration preview</div></footer>
 <script>
@@ -732,10 +733,10 @@ async function showPost(slug){
   document.body.className='single';const items=await loadManifest(),p=items.find(x=>x.slug===slug);if(!p)throw new Error('Post not found.');const src=await loadPostSource(p),tags=frontList(src.front||'','tags'),author=frontValue(src.front||'','author')||'lebosslynch',modified=frontValue(src.front||'','modified'),hero=FEATURED[slug]?RAW+'assets/uploads/'+FEATURED[slug]:firstImg(src.body);
   document.title=p.title+' — by LYNCH Preview';
   const isBk=true,comments=archivedComments(src.front||'');
-  const meta=isBk?`<div class="bk-post-meta"><div class="bk-post-meta-inner"><div class="bk-post-date">${fmtDate(p.date)}</div>${tags.length?`<div class="bk-post-tags"><em>${esc(tags.join(', '))}</em></div>`:''}</div></div>`:'';
+  const meta=isBk?`<div class="bk-post-meta"><div class="bk-post-meta-inner"><div class="bk-post-meta-copy"><div class="bk-post-date">${fmtDate(p.date)}</div>${tags.length?`<div class="bk-post-tags"><em>${esc(tags.join(', '))}</em></div>`:''}</div><aside class="demo-ad-inline" aria-label="Advertisement preview"><span class="demo-ad-inline-label">ADVERTISEMENT</span><div class="demo-ad-inline-body"><span class="demo-ad-sponsored">Sponsored · Demo ad</span><strong>Sample Google ad placement</strong></div><span class="demo-ad-cta">Learn more</span></aside></div></div>`:'';
   const footer=isBk?'':`<footer class="entry-footer"><span>${fmtDate(p.date)}</span>${modified?'<span>'+fmtDate(modified.split(' ')[0]+' 00:00:00')+'</span>':''}<span>${esc(author)}</span>${tags.length?'<span>'+esc(tags.join(', '))+'</span>':''}</footer>`;
   const commentsHtml=comments.length?`<section class="comments-area"><h2>${comments.length} thought${comments.length===1?'':'s'} on “${esc(p.title)}”</h2>${comments.map(c=>`<article class="comment"><div class="comment-author">${esc(c.author)} says:</div>${c.date?`<div class="comment-date">${esc(c.date)}</div>`:''}<div class="comment-body">${esc(c.content)}</div></article>`).join('')}</section>`:(p.comments?`<section class="comments-area"><h2>${p.comments} thought${p.comments===1?'':'s'} on “${esc(p.title)}”</h2></section>`:'');
-  app.innerHTML=`<header class="entry-header entry-hero"><div class="post-thumbnail">${hero?'<img data-featured-image loading="eager" fetchpriority="high" decoding="async" src="'+hero+'" alt="">':'<img data-featured-image alt="">'}</div><div class="entry-header-wrapper"><div class="entry-header-inner">${(()=>{const cats=(p.categories||[]).filter(c=>c!=='PHOTO SET'&&c!=='Uncategorized');return cats.length?'<div class="entry-meta">'+esc(cats.join(', '))+'</div>':'';})()}<h1 class="entry-title">${esc(p.title)}</h1></div></div></header>${meta}<div class="site-content-inner${isBk?' bk-redesign':''}"><div class="content-area"><main class="site-main"><article class="hentry single-entry"><div class="entry-content">${rewriteMedia(src.body)}</div>${footer}</article>${commentsHtml}</main></div></div>`;
+  app.innerHTML=`<header class="entry-header entry-hero"><div class="post-thumbnail">${hero?'<img data-featured-image loading="eager" fetchpriority="high" decoding="async" src="'+hero+'" alt="">':'<img data-featured-image alt="">'}</div><div class="entry-header-wrapper"><div class="entry-header-inner">${(()=>{const cats=(p.categories||[]).filter(c=>c!=='PHOTO SET'&&c!=='Uncategorized');return cats.length?'<div class="entry-meta">'+esc(cats.join(', '))+'</div>':'';})()}<h1 class="entry-title">${esc(p.title)}</h1></div></div></header>${meta}<div class="site-content-inner${isBk?' bk-redesign':''}"><div class="content-area"><main class="site-main"><article class="hentry single-entry"><div class="entry-content">${rewriteMedia(src.body)}</div>${footer}</article><aside class="demo-ad-after-gallery" aria-label="Advertisement preview"><div class="demo-ad-label">ADVERTISEMENT</div><div class="demo-ad-unit"><div class="demo-ad-copy"><span class="demo-ad-sponsored">Sponsored · Demo ad</span><strong>See what an AdSense banner would feel like here.</strong><span>This is only a visual placeholder — no ad network is loaded.</span></div><span class="demo-ad-cta">Learn more</span></div></aside>${commentsHtml}</main></div></div>`;
   const hi=document.querySelector('[data-featured-image]');if(hi){hi.onerror=()=>{const first=document.querySelector('.entry-content img');if(first&&hi.src!==first.src)hi.src=first.src;};if(!hi.getAttribute('src')){const first=document.querySelector('.entry-content img');if(first)hi.src=first.src;}}
   cleanImageLists(app);
   if(isBk)initBkMasonry();
