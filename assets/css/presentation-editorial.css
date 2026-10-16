@@ -54,3 +54,16 @@ body.crio-ed--koolya .page>.top{display:none!important}
 body.crio-ed--koolya .page>footer{display:none!important}
 body.crio-ed--koolya .hero{color:var(--ed-ink)}
 body.crio-ed--koolya .crio-ed-rule{background:var(--ed-paper)}
+
+/* Editorial readability and gallery captions on warm paper backgrounds. */
+body.crio-ed .hero :is(.lead,.lede,.hero-copy){color:#585855!important}
+body.crio-ed .hero :is(.eyebrow,.kicker){color:var(--ed-red)!important}
+body.crio-ed .overview-card :is(h3,p),body.crio-ed .gallery-card figcaption,body.crio-ed .gallery-card figcaption span{color:#333!important}
+body.crio-ed .overview-card p,body.crio-ed .gallery-card figcaption{color:#62605c!important}
+body.crio-ed--index main{background:var(--ed-paper);color:var(--ed-ink)}
+body.crio-ed--index .content .copy{color:#52514f}
+body.crio-ed--index .index{color:rgba(17,17,17,.08)}
+body.crio-ed--index h1{color:#191919}
+body.crio-ed--chateau-de-chanel .upload-placeholder,
+body.crio-ed--tiny-living .upload-placeholder,
+body.crio-ed--experimental-circular-home .upload-placeholder{background:#e9e6df;border-color:#c7c3ba;color:#242424}
