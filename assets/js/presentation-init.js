@@ -6,7 +6,7 @@
     if (!body || body.classList.contains('crio-ed')) return;
     const slug = location.pathname.split('/').filter(Boolean)[0] || 'index';
     body.classList.add('crio-ed', 'crio-ed--' + slug);
-    const originalHeader = [...document.querySelectorAll('header')].find(h => h.closest('body') === body);
+    const originalHeader = [...document.querySelectorAll('header')].find(h => h.closest('body') === body) || document.querySelector('.page > .top');
     const anchors = originalHeader ? [...originalHeader.querySelectorAll('a[href^="#"]')] : [];
     const seen = new Set();
     const menu = anchors.map(a => {
