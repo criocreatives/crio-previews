@@ -123,8 +123,15 @@ body.locked{overflow:hidden}
 .hero-frame .image-open{background:transparent}
 .hero-frame .image-open:after{right:24px;top:24px;bottom:auto}
 @media(max-width:650px){.twa-unified-gallery{grid-template-columns:1fr;gap:30px}.twa-unified-gallery .gallery-caption{padding-top:12px}}
-</style>
-<style id="twa-order-refinement">
+</style><style id="twa-site-pair">
+.twa-site-intro{max-width:920px;margin-bottom:34px}
+.twa-site-intro h3{font-family:Georgia,serif;font-size:clamp(40px,4.3vw,70px);font-weight:400;letter-spacing:-.055em;line-height:1.05;margin:16px 0 20px}
+.twa-site-intro p:not(.kicker){color:var(--quiet);font-size:16px;line-height:1.75;max-width:730px}
+.beforeblock .twa-site-images{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}
+.twa-site-images figure{min-width:0}
+.twa-site-images .image-open img{aspect-ratio:16/9;object-fit:contain;background:#d8d9d4}
+@media(max-width:700px){.beforeblock .twa-site-images{grid-template-columns:1fr;gap:28px}}
+</style><style id="twa-order-refinement">
 .hero-frame img{max-height:none;object-fit:contain}
 .twa-dark-disclaimer{color:#aeb8b1;border-color:#59635e;max-width:900px}
 @media(max-width:590px){nav a:last-child{display:inline}}
@@ -152,8 +159,9 @@ body.locked{overflow:hidden}
 </section>
 <section class="chapter beforeblock" id="site" aria-labelledby="site-title">
  <div class="wrap"><div class="section-id kicker"><span>Site context</span><span class="number">01 / 04</span></div>
- <div class="dual"><figure><a class="image-open" href="existing-aerial.jpg" data-caption="Existing Tyre Warehouse service centre"><img src="existing-aerial.jpg" loading="lazy" alt="Existing Tyre Warehouse service centre on Old Hope Road"></a><figcaption class="gallery-caption"><span>Existing service centre</span><i>Before</i></figcaption></figure>
- <aside><p class="kicker">Old Hope Road · Kingston</p><h3 id="site-title">An established site.<br>A new direction.</h3><p>The existing Tyre Warehouse service centre forms the foundation for a new vehicle showroom.</p></aside></div></div>
+ <div class="twa-site-intro"><p class="kicker">Old Hope Road · Kingston</p><h3 id="site-title">An established site. <em>A new direction.</em></h3><p>The existing Tyre Warehouse service centre forms the foundation for a new vehicle showroom. These two aerial images establish the current service-centre condition and surrounding site context.</p></div><div class="dual twa-site-images">
+<figure><a class="image-open" href="existing-aerial.jpg" data-caption="Existing Tyre Warehouse service centre"><img src="existing-aerial.jpg" loading="lazy" alt="Existing Tyre Warehouse service centre on Old Hope Road"></a><figcaption class="gallery-caption"><span>Existing service centre</span><i>Before / 01</i></figcaption></figure>
+<figure><a class="image-open" href="site-context-map.jpg" data-caption="Site context · Old Hope Road"><img src="site-context-map.jpg" loading="lazy" alt="Labeled aerial map of Tyre Warehouse along Old Hope Road near Oxford Road and South Avenue"></a><figcaption class="gallery-caption"><span>Site context — Old Hope Road</span><i>Location / 02</i></figcaption></figure></div></div>
 </section>
 <section class="chapter" id="vision">
  <div class="wrap"><div class="section-id kicker"><span>The proposition</span><span class="number">02 / 04</span></div>
