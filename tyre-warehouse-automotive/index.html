@@ -114,18 +114,15 @@ body.locked{overflow:hidden}
 <link rel="stylesheet" href="/assets/css/presentation-editorial.css?v=2">
 <script defer src="/assets/js/presentation-init.js"></script>
 
-<style id="twa-new-angles">
-.twa-gallery .twa-group-head{border-top:1px solid var(--rule);padding:21px 0 30px;margin-top:70px;display:grid;grid-template-columns:1fr minmax(220px,340px);gap:30px;align-items:end}
-.twa-gallery .twa-group-head:first-child{margin-top:0}
-.twa-gallery .twa-group-head h3{font-family:Georgia,"Times New Roman",serif;font-size:clamp(30px,3.3vw,51px);font-weight:400;letter-spacing:-.05em;line-height:1.06;margin:13px 0 0}
-.twa-gallery .twa-group-head p{color:var(--quiet);font-size:14px;line-height:1.75;max-width:330px;margin:0}
-.twa-gallery .twa-feature{margin:0 0 38px}
-.twa-gallery .twa-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;align-items:start;margin-bottom:60px}
-.twa-gallery .image-open img{width:100%;height:auto!important;aspect-ratio:auto!important;object-fit:contain!important}
-.twa-gallery .image-open{background:#d4d5d0}
-.twa-gallery .gallery-caption{letter-spacing:.015em}
-@media(max-width:800px){.twa-gallery .twa-group-head{grid-template-columns:1fr;gap:14px;margin-top:52px}.twa-gallery .twa-pair{gap:26px}}
-@media(max-width:590px){.twa-gallery .twa-pair{grid-template-columns:1fr;gap:30px;margin-bottom:42px}.twa-gallery .twa-feature{margin-bottom:35px}.twa-gallery .twa-group-head{padding:20px 0 24px}.twa-gallery .gallery-caption{gap:10px}}
+<style id="twa-gallery-unified">
+.twa-unified-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 30px;align-items:start}
+.twa-unified-gallery .image-open{background:#d8d9d4}
+.twa-unified-gallery .image-open img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain}
+.twa-unified-gallery .gallery-caption{padding:14px 0 10px}
+.twa-unified-gallery .twa-gallery-item{min-width:0}
+.hero-frame .image-open{background:transparent}
+.hero-frame .image-open:after{right:24px;top:24px;bottom:auto}
+@media(max-width:650px){.twa-unified-gallery{grid-template-columns:1fr;gap:30px}.twa-unified-gallery .gallery-caption{padding-top:12px}}
 </style>
 <style id="twa-order-refinement">
 .hero-frame img{max-height:none;object-fit:contain}
@@ -150,7 +147,7 @@ body.locked{overflow:hidden}
    </div>
   </div>
  </div>
- <figure class="hero-frame"><img src="twa-facade-glazing-2026.jpg" alt="Glazing and light-grey cladding detail along the proposed Tyre Warehouse Automotive dealership façade" fetchpriority="high"><figcaption>TWA / Showroom glazing &amp; cladding</figcaption></figure>
+ <figure class="hero-frame"><a class="image-open" href="twa-facade-glazing-2026.jpg" data-caption="Showroom glazing &amp; cladding · Hero"><img src="twa-facade-glazing-2026.jpg" alt="Glazing and light-grey cladding detail along the proposed Tyre Warehouse Automotive dealership façade" fetchpriority="high"></a><figcaption>TWA / Showroom glazing &amp; cladding</figcaption></figure>
  <div class="wrap fig-note"><span>Proposed TWA automotive showroom</span><span>Old Hope Road · Kingston, Jamaica</span></div>
 </section>
 <section class="chapter beforeblock" id="site" aria-labelledby="site-title">
@@ -164,25 +161,30 @@ body.locked{overflow:hidden}
  <div class="statement-copy"><p>Convert the existing service bays into a contemporary vehicle display showroom.</p><p>Full-height glazing, a unified façade and a prominent TWA entrance establish a distinct dealership identity.</p></div></div>
  </div>
 </section>
-<section class="project-views" id="design">
- <div class="wrap"><div class="section-id kicker"><span>Architectural visualizations</span><span class="number">03 / 04</span></div>
- <div class="views-head"><h2 class="huge">The proposed<br><em>showroom.</em></h2><p>Building perspectives, frontage studies and details of the new TWA identity.</p></div>
- <div class="twa-gallery">
- <div class="twa-group-head"><div><span class="kicker">Study 01</span><h3>Building &amp; context</h3></div><p>The proposed dealership in its roadside setting.</p></div>
- <div class="twa-pair">
- <figure><a class="image-open" href="twa-aerial-elevation-2026.jpg" data-caption="Aerial overview"><img src="twa-aerial-elevation-2026.jpg" loading="lazy" decoding="async" alt="Elevated view of proposed dealership and site context"></a><figcaption class="gallery-caption"><span>Aerial overview</span><i>01 / 06</i></figcaption></figure>
- <figure><a class="image-open" href="twa-site-forecourt-2026.jpg" data-caption="Site &amp; forecourt"><img src="twa-site-forecourt-2026.jpg" loading="lazy" decoding="async" alt="Elevated view across the empty forecourt toward the proposed showroom"></a><figcaption class="gallery-caption"><span>Site &amp; forecourt</span><i>02 / 06</i></figcaption></figure>
- </div>
- <div class="twa-group-head"><div><span class="kicker">Study 02</span><h3>Architectural frontage</h3></div><p>The long glass display frontage and grey-panelled façade.</p></div>
- <div class="twa-pair">
- <figure><a class="image-open" href="twa-facade-angled-2026.jpg" data-caption="Oblique frontage"><img src="twa-facade-angled-2026.jpg" loading="lazy" decoding="async" alt="Angled exterior perspective of the proposed vehicle showroom"></a><figcaption class="gallery-caption"><span>Oblique frontage</span><i>03 / 06</i></figcaption></figure>
- <figure><a class="image-open" href="twa-facade-centered-2026.jpg" data-caption="Primary elevation"><img src="twa-facade-centered-2026.jpg" loading="lazy" decoding="async" alt="Straight-on view of the showroom's glazing and central entry"></a><figcaption class="gallery-caption"><span>Primary elevation</span><i>04 / 06</i></figcaption></figure>
- </div>
- <div class="twa-group-head"><div><span class="kicker">Study 03</span><h3>Entrance &amp; identity</h3></div><p>The arrival experience and TWA brand signage.</p></div>
- <div class="twa-pair">
- <figure><a class="image-open" href="twa-entrance-street-2026.jpg" data-caption="Customer entrance"><img src="twa-entrance-street-2026.jpg" loading="lazy" decoding="async" alt="Street-level view of the showroom's new entrance and façade"></a><figcaption class="gallery-caption"><span>Customer entrance</span><i>05 / 06</i></figcaption></figure>
- <figure><a class="image-open" href="twa-entrance-detail-2026.jpg" data-caption="Signage detail"><img src="twa-entrance-detail-2026.jpg" loading="lazy" decoding="async" alt="Close low-angle view of TWA signage and the entrance portal"></a><figcaption class="gallery-caption"><span>Signage detail</span><i>06 / 06</i></figcaption></figure>
- </div>
+<section class="project-views" id="design" aria-label="Design gallery">
+ <div class="wrap"><div class="section-id kicker"><span>Gallery</span><span class="number">03 / 04</span></div>
+ <div class="views-head"><h2 class="huge">The proposed<br><em>showroom.</em></h2><p>Five distinct design views. Select an image to see it full size.</p></div>
+ <div class="twa-unified-gallery">
+ <figure class="twa-gallery-item">
+  <a class="image-open" href="twa-aerial-elevation-2026.jpg" data-caption="Aerial overview"><img src="twa-aerial-elevation-2026.jpg" loading="lazy" decoding="async" alt="Aerial perspective of the TWA dealership frontage and road"></a>
+  <figcaption class="gallery-caption"><span>Aerial overview</span><i>01 / 05</i></figcaption>
+ </figure>
+ <figure class="twa-gallery-item">
+  <a class="image-open" href="twa-facade-angled-2026.jpg" data-caption="Oblique frontage"><img src="twa-facade-angled-2026.jpg" loading="lazy" decoding="async" alt="Angled street perspective of the proposed TWA showroom"></a>
+  <figcaption class="gallery-caption"><span>Oblique frontage</span><i>02 / 05</i></figcaption>
+ </figure>
+ <figure class="twa-gallery-item">
+  <a class="image-open" href="twa-facade-centered-2026.jpg" data-caption="Primary elevation"><img src="twa-facade-centered-2026.jpg" loading="lazy" decoding="async" alt="Centered showroom frontage and vehicle display glazing"></a>
+  <figcaption class="gallery-caption"><span>Primary elevation</span><i>03 / 05</i></figcaption>
+ </figure>
+ <figure class="twa-gallery-item">
+  <a class="image-open" href="twa-entrance-street-2026.jpg" data-caption="Customer entrance"><img src="twa-entrance-street-2026.jpg" loading="lazy" decoding="async" alt="Street-level approach to the TWA main entrance"></a>
+  <figcaption class="gallery-caption"><span>Customer entrance</span><i>04 / 05</i></figcaption>
+ </figure>
+ <figure class="twa-gallery-item">
+  <a class="image-open" href="twa-entrance-detail-2026.jpg" data-caption="Brand & signage detail"><img src="twa-entrance-detail-2026.jpg" loading="lazy" decoding="async" alt="Close view of TWA lettering, signage and entrance portal"></a>
+  <figcaption class="gallery-caption"><span>Brand &amp; signage detail</span><i>05 / 05</i></figcaption>
+ </figure>
  </div></div>
 </section>
 <section class="closing" aria-label="The opportunity"><div class="wrap"><div class="section-id kicker"><span>The opportunity</span><span>Tyre Warehouse Automotive</span></div>
