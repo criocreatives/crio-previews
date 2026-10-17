@@ -35,6 +35,55 @@
     @media(max-width:700px){.wrap{width:calc(100% - 28px)}header{height:62px}.brand img{width:147px;height:42px}.site-link{min-height:38px;padding:0 12px}.hero{padding:46px 0 36px}.story{padding:46px 0}.gallery-section{padding:42px 0 64px}.gallery{gap:14px}}
   </style>
 <link rel="stylesheet" href="/assets/css/presentation-editorial.css?v=2">
+
+<style>
+/* Boscobel gallery: portrait and 3:2 landscape assets must never share a natural-height grid row. */
+body.crio-ed--boscobel-heights-residence .gallery-section{padding-block:clamp(42px,6vw,78px) 100px}
+body.crio-ed--boscobel-heights-residence .section-head{padding-bottom:24px;margin-bottom:38px;border-bottom:1px solid #cfcac3}
+body.crio-ed--boscobel-heights-residence .view-group+.view-group{margin-top:58px}
+body.crio-ed--boscobel-heights-residence .view-group-heading{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding-bottom:14px;margin-bottom:20px;border-bottom:1px solid #d0cbc3;font:700 11px/1.4 "Century Gothic",Arial,sans-serif;letter-spacing:.09em;color:#4f4c47}
+body.crio-ed--boscobel-heights-residence .view-group-heading span:last-child{color:#77736d;font-weight:400;letter-spacing:.02em}
+body.crio-ed--boscobel-heights-residence .gallery{display:grid;gap:18px}
+body.crio-ed--boscobel-heights-residence .gallery--portrait{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.crio-ed--boscobel-heights-residence .gallery--landscape{grid-template-columns:repeat(2,minmax(0,1fr))}
+body.crio-ed--boscobel-heights-residence .gallery .shot{grid-column:auto!important;min-width:0;margin:0;background:#fff!important;border:1px solid #d0cbc3!important;overflow:hidden}
+body.crio-ed--boscobel-heights-residence .gallery .shot>a{display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#e7e4df;aspect-ratio:3/2}
+body.crio-ed--boscobel-heights-residence .gallery--portrait .shot>a{aspect-ratio:9/16}
+body.crio-ed--boscobel-heights-residence .gallery .shot img{display:block;width:100%;height:100%;object-fit:contain;max-width:100%;transition:transform .25s ease}
+body.crio-ed--boscobel-heights-residence .gallery .shot:hover img{transform:none}
+body.crio-ed--boscobel-heights-residence .gallery .shot a:focus-visible{outline:3px solid #ed1c24;outline-offset:-3px}
+body.crio-ed--boscobel-heights-residence .gallery .zoom{width:36px;height:36px;top:12px;right:12px;border-radius:0;box-shadow:0 5px 16px rgba(0,0,0,.15);background:rgba(17,18,20,.79);color:white}
+body.crio-ed--boscobel-heights-residence .gallery figcaption{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 16px;background:#fff;font:600 11px/1.4 "Century Gothic",Arial,sans-serif;color:#232323;letter-spacing:.025em}
+body.crio-ed--boscobel-heights-residence .gallery figcaption span:last-child{font-size:10px;color:#77736d;font-weight:400}
+body.crio-ed--boscobel-heights-residence .lightbox{position:fixed;inset:0;z-index:1200;display:none;grid-template-rows:minmax(0,1fr) auto;gap:12px;padding:clamp(12px,2.5vw,28px);background:rgba(8,8,9,.97)}
+body.crio-ed--boscobel-heights-residence .lightbox.open{display:grid}
+body.crio-ed--boscobel-heights-residence .lightbox-stage{min-width:0;min-height:0;display:flex;align-items:center;justify-content:center;padding:26px 40px 0}
+body.crio-ed--boscobel-heights-residence .lightbox-stage img{width:auto;height:auto;max-width:100%;max-height:calc(100dvh - 148px);object-fit:contain}
+body.crio-ed--boscobel-heights-residence .lightbox .close{position:absolute;top:16px;right:18px;width:44px;height:44px;border-radius:0;background:#f4f4f4;color:#111214;cursor:pointer}
+body.crio-ed--boscobel-heights-residence .lightbox-toolbar{display:flex;align-items:center;justify-content:space-between;gap:24px;width:min(860px,100%);margin:0 auto;color:#f4f4f4;font:600 11px/1.4 "Century Gothic",Arial,sans-serif;letter-spacing:.08em}
+body.crio-ed--boscobel-heights-residence .lightbox-actions{display:flex;gap:8px}
+body.crio-ed--boscobel-heights-residence .lightbox-actions button{min-width:42px;min-height:40px;border:1px solid rgba(255,255,255,.3);background:#1b1b1e;color:#f4f4f4;font-size:21px;cursor:pointer}
+body.crio-ed--boscobel-heights-residence .lightbox-actions button:hover{border-color:#ed1c24}
+@media(max-width:760px){
+ body.crio-ed--boscobel-heights-residence .gallery--landscape{grid-template-columns:1fr}
+ body.crio-ed--boscobel-heights-residence .gallery--portrait{grid-template-columns:repeat(2,minmax(0,1fr))}
+ body.crio-ed--boscobel-heights-residence .gallery--portrait .shot:last-child{grid-column:1/-1!important;width:calc((100% - 14px)/2);justify-self:center}
+ body.crio-ed--boscobel-heights-residence .gallery{gap:14px}
+ body.crio-ed--boscobel-heights-residence .view-group+.view-group{margin-top:40px}
+ body.crio-ed--boscobel-heights-residence .lightbox-stage{padding:38px 0 0}
+ body.crio-ed--boscobel-heights-residence .lightbox-stage img{max-height:calc(100dvh - 164px)}
+}
+@media(max-width:480px){
+ body.crio-ed--boscobel-heights-residence .gallery--portrait{grid-template-columns:1fr}
+ body.crio-ed--boscobel-heights-residence .gallery--portrait .shot{width:min(100%,430px)!important;justify-self:center}
+ body.crio-ed--boscobel-heights-residence .gallery--portrait .shot:last-child{grid-column:auto!important}
+ body.crio-ed--boscobel-heights-residence .gallery .zoom{width:32px;height:32px;top:8px;right:8px}
+ body.crio-ed--boscobel-heights-residence .gallery figcaption{padding:11px 12px}
+ body.crio-ed--boscobel-heights-residence .section-head{margin-bottom:26px}
+ body.crio-ed--boscobel-heights-residence .lightbox{padding:12px}
+}
+@media(prefers-reduced-motion:reduce){body.crio-ed--boscobel-heights-residence .gallery .shot img{transition:none}}
+</style>
 <script defer src="/assets/js/presentation-init.js"></script>
 </head>
 <body>
@@ -52,7 +101,7 @@
         <p class="lead">This project began with a parcel of land and no pre-existing house design. Crio Creatives developed the residence from the ground up — shaping the plan, exterior character, circulation, landscape relationship and interior visual direction as one complete design.</p>
       </div>
       <figure class="hero-image">
-        <a href="images/Image21.png" class="lightbox-link"><img src="images/Image21.png" alt="Front elevation of Boscobel Heights Residence" fetchpriority="high"></a>
+        <a href="images/Image21.png" class="lightbox-link"><img src="images/Image21.png" width="2160" height="1440" alt="Front elevation of Boscobel Heights Residence" fetchpriority="high"></a>
       </figure>
     </div>
   </section>
@@ -80,89 +129,103 @@
     <div class="wrap">
       <div class="section-head">
         <div><p class="eyebrow">Project Views</p><h2>Complete Design Set.</h2></div>
-        <p class="section-note">Exterior, planning and interior views from the ground-up residential concept.</p>
+        <p class="section-note">Eleven additional perspectives from the ground-up residential concept. Select any view to inspect it at full resolution.</p>
       </div>
-      <div class="gallery">
-        <figure class="shot wide">
-    <a href="images/Image21.png" class="lightbox-link" aria-label="Open project view 01">
-      <img src="images/Image21.png" alt="Boscobel Heights Residence project view 1" loading="eager" decoding="async">
-      <span class="zoom" aria-hidden="true">↗︎</span>
-    </a>
-  </figure>
-<figure class="shot">
-    <a href="images/Image17.png" class="lightbox-link" aria-label="Open project view 02">
-      <img src="images/Image17.png" alt="Boscobel Heights Residence project view 2" loading="eager" decoding="async">
-      <span class="zoom" aria-hidden="true">↗︎</span>
-    </a>
-  </figure>
-<figure class="shot">
-    <a href="images/Image22.png" class="lightbox-link" aria-label="Open project view 03">
-      <img src="images/Image22.png" alt="Boscobel Heights Residence project view 3" loading="eager" decoding="async">
-      <span class="zoom" aria-hidden="true">↗︎</span>
-    </a>
-  </figure>
-<figure class="shot">
-    <a href="images/Image23.png" class="lightbox-link" aria-label="Open project view 04">
-      <img src="images/Image23.png" alt="Boscobel Heights Residence project view 4" loading="lazy" decoding="async">
-      <span class="zoom" aria-hidden="true">↗︎</span>
-    </a>
-  </figure>
-<figure class="shot wide">
-    <a href="images/Image24.png" class="lightbox-link" aria-label="Open project view 05">
-      <img src="images/Image24.png" alt="Boscobel Heights Residence project view 5" loading="lazy" decoding="async">
-      <span class="zoom" aria-hidden="true">↗︎</span>
-    </a>
-  </figure>
-<figure class="shot">
-    <a href="images/Image27.png" class="lightbox-link" aria-label="Open project view 06">
-      <img src="images/Image27.png" alt="Boscobel Heights Residence project view 6" loading="lazy" decoding="async">
-      <span class="zoom" aria-hidden="true">↗︎</span>
-    </a>
-  </figure>
-<figure class="shot">
-    <a href="images/Image28.png" class="lightbox-link" aria-label="Open project view 07">
-      <img src="images/Image28.png" alt="Boscobel Heights Residence project view 7" loading="lazy" decoding="async">
-      <span class="zoom" aria-hidden="true">↗︎</span>
-    </a>
-  </figure>
-<figure class="shot">
-    <a href="images/Image29.png" class="lightbox-link" aria-label="Open project view 08">
-      <img src="images/Image29.png" alt="Boscobel Heights Residence project view 8" loading="lazy" decoding="async">
-      <span class="zoom" aria-hidden="true">↗︎</span>
-    </a>
-  </figure>
-<figure class="shot wide">
-    <a href="images/Image30.png" class="lightbox-link" aria-label="Open project view 09">
-      <img src="images/Image30.png" alt="Boscobel Heights Residence project view 9" loading="lazy" decoding="async">
-      <span class="zoom" aria-hidden="true">↗︎</span>
-    </a>
-  </figure>
-<figure class="shot">
-    <a href="images/Image31.png" class="lightbox-link" aria-label="Open project view 10">
-      <img src="images/Image31.png" alt="Boscobel Heights Residence project view 10" loading="lazy" decoding="async">
-      <span class="zoom" aria-hidden="true">↗︎</span>
-    </a>
-  </figure>
-<figure class="shot">
-    <a href="images/Image33.png" class="lightbox-link" aria-label="Open project view 11">
-      <img src="images/Image33.png" alt="Boscobel Heights Residence project view 11" loading="lazy" decoding="async">
-      <span class="zoom" aria-hidden="true">↗︎</span>
-    </a>
-  </figure>
-<figure class="shot wide">
-    <a href="images/Image6.png" class="lightbox-link" aria-label="Open project view 12">
-      <img src="images/Image6.png" alt="Boscobel Heights Residence project view 12" loading="lazy" decoding="async">
-      <span class="zoom" aria-hidden="true">↗︎</span>
-    </a>
-  </figure>
+      <div class="view-group">
+        <div class="view-group-heading"><span>01 / Vertical perspectives</span><span>03 images</span></div>
+        <div class="gallery gallery--portrait">
+        <figure class="shot">
+          <a href="images/Image17.png" class="lightbox-link" aria-label="Open portrait project view 01">
+            <img src="images/Image17.png" width="2160" height="3840" alt="Boscobel Heights Residence — portrait project perspective 01" loading="eager" decoding="async">
+            <span class="zoom" aria-hidden="true">↗</span>
+          </a>
+          <figcaption><span>Perspective 01</span><span>View full image ↗</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="images/Image23.png" class="lightbox-link" aria-label="Open portrait project view 02">
+            <img src="images/Image23.png" width="1440" height="2160" alt="Boscobel Heights Residence — portrait project perspective 02" loading="eager" decoding="async">
+            <span class="zoom" aria-hidden="true">↗</span>
+          </a>
+          <figcaption><span>Perspective 02</span><span>View full image ↗</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="images/Image24.png" class="lightbox-link" aria-label="Open portrait project view 03">
+            <img src="images/Image24.png" width="1440" height="2160" alt="Boscobel Heights Residence — portrait project perspective 03" loading="eager" decoding="async">
+            <span class="zoom" aria-hidden="true">↗</span>
+          </a>
+          <figcaption><span>Perspective 03</span><span>View full image ↗</span></figcaption>
+        </figure>
+        </div>
+      </div>
+      <div class="view-group">
+        <div class="view-group-heading"><span>02 / Wide perspectives</span><span>08 images</span></div>
+        <div class="gallery gallery--landscape">
+        <figure class="shot">
+          <a href="images/Image22.png" class="lightbox-link" aria-label="Open landscape project view 04">
+            <img src="images/Image22.png" width="2160" height="1440" alt="Boscobel Heights Residence — landscape project perspective 04" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">↗</span>
+          </a>
+          <figcaption><span>Perspective 04</span><span>View full image ↗</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="images/Image27.png" class="lightbox-link" aria-label="Open landscape project view 05">
+            <img src="images/Image27.png" width="2160" height="1440" alt="Boscobel Heights Residence — landscape project perspective 05" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">↗</span>
+          </a>
+          <figcaption><span>Perspective 05</span><span>View full image ↗</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="images/Image28.png" class="lightbox-link" aria-label="Open landscape project view 06">
+            <img src="images/Image28.png" width="2160" height="1440" alt="Boscobel Heights Residence — landscape project perspective 06" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">↗</span>
+          </a>
+          <figcaption><span>Perspective 06</span><span>View full image ↗</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="images/Image29.png" class="lightbox-link" aria-label="Open landscape project view 07">
+            <img src="images/Image29.png" width="2160" height="1440" alt="Boscobel Heights Residence — landscape project perspective 07" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">↗</span>
+          </a>
+          <figcaption><span>Perspective 07</span><span>View full image ↗</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="images/Image30.png" class="lightbox-link" aria-label="Open landscape project view 08">
+            <img src="images/Image30.png" width="2160" height="1440" alt="Boscobel Heights Residence — landscape project perspective 08" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">↗</span>
+          </a>
+          <figcaption><span>Perspective 08</span><span>View full image ↗</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="images/Image31.png" class="lightbox-link" aria-label="Open landscape project view 09">
+            <img src="images/Image31.png" width="2160" height="1440" alt="Boscobel Heights Residence — landscape project perspective 09" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">↗</span>
+          </a>
+          <figcaption><span>Perspective 09</span><span>View full image ↗</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="images/Image33.png" class="lightbox-link" aria-label="Open landscape project view 10">
+            <img src="images/Image33.png" width="2160" height="1440" alt="Boscobel Heights Residence — landscape project perspective 10" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">↗</span>
+          </a>
+          <figcaption><span>Perspective 10</span><span>View full image ↗</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="images/Image6.png" class="lightbox-link" aria-label="Open landscape project view 11">
+            <img src="images/Image6.png" width="2160" height="1440" alt="Boscobel Heights Residence — landscape project perspective 11" loading="lazy" decoding="async">
+            <span class="zoom" aria-hidden="true">↗</span>
+          </a>
+          <figcaption><span>Perspective 11</span><span>View full image ↗</span></figcaption>
+        </figure>
+        </div>
       </div>
     </div>
   </section>
 </main>
 
-<div class="lightbox" id="lightbox" aria-hidden="true">
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Project image viewer" aria-modal="true" aria-hidden="true">
   <button class="close" type="button" aria-label="Close image">×</button>
-  <img src="" alt="Expanded project view">
+  <div class="lightbox-stage"><img alt="Expanded project view"></div>
+  <div class="lightbox-toolbar"><span class="lightbox-count" aria-live="polite">01 / 12</span><div class="lightbox-actions"><button type="button" class="lightbox-prev" aria-label="Previous image">←</button><button type="button" class="lightbox-next" aria-label="Next image">→</button></div></div>
 </div>
 
 <footer><div class="wrap">© 2026 Crio Creatives · Boscobel Heights Residence</div></footer>
@@ -170,21 +233,60 @@
 <script>
 (() => {
   const box=document.getElementById('lightbox');
-  const img=box.querySelector('img');
+  const img=box.querySelector('.lightbox-stage img');
   const close=box.querySelector('.close');
-  document.querySelectorAll('.lightbox-link').forEach(link=>{
-    link.addEventListener('click',e=>{
-      e.preventDefault();
-      img.src=link.getAttribute('href');
-      box.classList.add('open');
-      box.setAttribute('aria-hidden','false');
-      document.body.style.overflow='hidden';
-    });
-  });
-  const shut=()=>{box.classList.remove('open');box.setAttribute('aria-hidden','true');img.src='';document.body.style.overflow='';};
+  const prev=box.querySelector('.lightbox-prev');
+  const next=box.querySelector('.lightbox-next');
+  const count=box.querySelector('.lightbox-count');
+  const links=[...document.querySelectorAll('.lightbox-link')];
+  let current=0,returnFocus=null,previousOverflow='',touchStart=null;
+  const display=(index)=>{
+    current=(index+links.length)%links.length;
+    const target=links[current],thumbnail=target.querySelector('img');
+    img.src=target.href;
+    img.alt=thumbnail?.alt||'Expanded project view';
+    count.textContent=String(current+1).padStart(2,'0')+' / '+String(links.length).padStart(2,'0');
+  };
+  const open=(index,source)=>{
+    returnFocus=source;
+    previousOverflow=document.body.style.overflow;
+    display(index);
+    box.classList.add('open');
+    box.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    close.focus();
+  };
+  const shut=()=>{
+    if(!box.classList.contains('open'))return;
+    box.classList.remove('open');
+    box.setAttribute('aria-hidden','true');
+    img.removeAttribute('src');
+    document.body.style.overflow=previousOverflow;
+    returnFocus?.focus();
+  };
+  links.forEach((link,index)=>link.addEventListener('click',e=>{e.preventDefault();open(index,link)}));
   close.addEventListener('click',shut);
-  box.addEventListener('click',e=>{if(e.target===box)shut();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')shut();});
+  prev.addEventListener('click',()=>display(current-1));
+  next.addEventListener('click',()=>display(current+1));
+  box.addEventListener('click',e=>{if(e.target===box||e.target.classList.contains('lightbox-stage'))shut()});
+  document.addEventListener('keydown',e=>{
+    if(!box.classList.contains('open'))return;
+    if(e.key==='Escape'){e.preventDefault();shut()}
+    else if(e.key==='ArrowLeft'){e.preventDefault();display(current-1)}
+    else if(e.key==='ArrowRight'){e.preventDefault();display(current+1)}
+    else if(e.key==='Tab'){
+      const controls=[close,prev,next],at=controls.indexOf(document.activeElement);
+      if(e.shiftKey&&at<=0){e.preventDefault();next.focus()}
+      else if(!e.shiftKey&&at===2){e.preventDefault();close.focus()}
+    }
+  });
+  box.addEventListener('touchstart',e=>{touchStart=e.touches[0]?.clientX??null},{passive:true});
+  box.addEventListener('touchend',e=>{
+    if(touchStart===null)return;
+    const delta=(e.changedTouches[0]?.clientX??touchStart)-touchStart;
+    if(Math.abs(delta)>70)display(current+(delta<0?1:-1));
+    touchStart=null;
+  },{passive:true});
 })();
 </script>
 
