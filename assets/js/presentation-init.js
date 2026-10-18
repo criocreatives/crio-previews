@@ -1,6 +1,23 @@
 /* Crio Creatives | editorial presentation chrome.
    One floating header across all previews; retains each project's content and interactive components. */
 (() => {
+  // GA4 for Crio's dedicated client-preview property.
+  if (window.location.hostname === 'previews.criocreatives.com') {
+    const ga4Id = 'G-L4VQ7CB9E3';
+    if (!document.querySelector('script[data-crio-ga4="' + ga4Id + '"]')
+        && !document.querySelector('script[src*="googletagmanager.com/gtag/js?id=' + ga4Id + '"]')) {
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', ga4Id);
+      const tag = document.createElement('script');
+      tag.async = true;
+      tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga4Id;
+      tag.dataset.crioGa4 = ga4Id;
+      document.head.appendChild(tag);
+    }
+  }
+
   const FONT = '"Century Gothic","Avenir Next",Avenir,Helvetica,Arial,sans-serif';
   const logoSrc = 'https://criocreatives.com/assets/logos/Crio%20Creatives%20Logo%20wide%20white.svg';
   function initialize() {
