@@ -387,3 +387,11 @@ body.crio-architecture.crio-ed dialog img{
 @media(prefers-reduced-motion:reduce){
  body.crio-architecture.crio-ed :is(.shot,.media,.gallery-card) img{transition:none!important}
 }
+
+/* TWA: original showroom stylesheet used a green text-selection highlight.
+   Keep this interaction within the Crio palette without changing client imagery. */
+body.crio-architecture.arch-showroom::selection,
+body.crio-architecture.arch-showroom ::selection{
+  background:#ED1C24;
+  color:#F4F4F4;
+}
