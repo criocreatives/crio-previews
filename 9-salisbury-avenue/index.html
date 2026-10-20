@@ -228,7 +228,7 @@ body.crio-ed--9-salisbury-avenue .hero .hero-index span{display:block;margin-lef
 </script>
 <script>
 /* Match no-glyph controls on this project while keeping shared Crio header intact. */
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
  document.querySelectorAll('.crio-ed-footer a').forEach(a => {
   a.textContent = a.textContent.replace(/[\u2190-\u21ff\u2794-\u27bf]/g, '').trim();
  });
