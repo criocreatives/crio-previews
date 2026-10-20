@@ -225,6 +225,14 @@ body.crio-architecture.crio-ed--mannings-hill-road-apartment-complex .gallery .s
 }
 
 /* Lot 18: progressive design story and documentary images remain intact. */
+/* The Lot 18 overview is an inner media grid, not a standalone section. */
+body.crio-architecture.crio-ed--lot-18-mount-boon .overview{
+ padding:0!important;margin:0!important;background:transparent!important;border:0!important;
+}
+body.crio-architecture.crio-ed--mannings-hill-road-apartment-complex section.hero h1{
+ font-size:clamp(52px,6.1vw,96px)!important;
+}
+
 body.crio-architecture.crio-ed--lot-18-mount-boon main>section:not(.hero){
  padding-block:clamp(65px,7.5vw,110px);border-bottom:1px solid var(--arch-rule)!important;
 }
