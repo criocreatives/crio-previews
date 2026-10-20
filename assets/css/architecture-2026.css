@@ -84,6 +84,8 @@ body.crio-architecture.arch-photographic.crio-ed section.hero :is(.hero-grid,.he
 }
 body.crio-architecture.arch-photographic.crio-ed section.hero .hero-grid{
  display:flex!important;grid-template-columns:none!important;align-items:end!important;justify-content:flex-start;
+ /* Keep the image anchored to the full-width section, not the centered text grid. */
+ position:static!important;z-index:auto!important;
  min-height:clamp(600px,77svh,890px);gap:0!important;
 }
 body.crio-architecture.arch-photographic.crio-ed section.hero :is(.hero-grid>div:first-child,.hero-copy){
