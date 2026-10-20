@@ -238,6 +238,11 @@ body.crio-architecture.crio-ed--lot-18-mount-boon main>section:not(.hero){
 }
 body.crio-architecture.crio-ed--lot-18-mount-boon .gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
 body.crio-architecture.crio-ed--lot-18-mount-boon .feature-strip{gap:12px}
+/* The legacy editorial stylesheet makes overview descriptions pale grey for a dark panel.
+   Restore readable charcoal against the architectural system's off-white feature cards. */
+body.crio-architecture.crio-ed.crio-ed--lot-18-mount-boon .feature-strip .feature span{
+  color:var(--arch-muted)!important;
+}
 body.crio-architecture.crio-ed--lot-18-mount-boon :is(.fact,.feature){color:var(--arch-muted)!important}
 body.crio-architecture.crio-ed--lot-18-mount-boon :is(.caption,.card-copy){background:#EAEAEA!important}
 body.crio-architecture.crio-ed--lot-18-mount-boon .card-copy p{color:var(--arch-muted)!important}
